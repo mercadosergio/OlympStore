@@ -1,0 +1,9 @@
+<!-- Inputs pasar valor del padre al hijo -->
+<img [src]="img" (load)="imgLoad()" (error)="imgError()" *ngIf="img; else elseImg">
+
+<!-- <h1>{{counter}}</h1> -->
+<ng-template #elseImg>
+    <img width="200" [src]="imageDefault">
+</ng-template>
+
+<!-- Output passar valor de hijo a padre -->

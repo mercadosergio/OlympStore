@@ -1,0 +1,59 @@
+<div class="show-mobile">
+    <div>
+        <button (click)="toggleMenu()">
+          <!-- <img src="./assets/" alt="menu"> -->
+          <i class="fa-solid fa-bars"></i>
+       </button>
+        <button>
+          <img src="./assets/images/olymp-logo.png" alt="menu">
+       </button>
+        <button>
+          <!-- <img src="./assets/" alt="menu"> -->
+          <i class="fa-solid fa-cart-shopping"></i>
+       </button>
+    </div>
+</div>
+
+<div class="side-menu" [class.active]="activeMenu">
+    <button (click)="toggleMenu()">Close</button>
+    <ul>
+        <li>
+            <a href="">All</a>
+        </li>
+        <li>
+            <a href="">Computers</a>
+        </li>
+        <li>
+            <a href="">Phones</a>
+        </li>
+    </ul>
+</div>
+
+<div class="hide-mobile">
+    <div>
+        <nav>
+            <a href="" class="logo">
+                <img src="./assets/images/olymp-logo.png" alt="menu">
+            </a>
+            <ul>
+                <li>
+                    <a href="">All</a>
+                </li>
+                <li>
+                    <a href="">Computers</a>
+                </li>
+                <li>
+                    <a href="">Phones</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="info">
+            <div class="accounts">mercadosergio754@gmail.com</div>
+            <div>
+                <a href="">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
