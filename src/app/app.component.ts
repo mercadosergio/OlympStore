@@ -11,30 +11,30 @@ export class AppComponent {
   imgParent = './assets/images/imagen.png';
   showImage = true;
   products: Product[] = [
-    {
-      id: '1',
-      name: 'Bolso',
-      price: 57,
-      image: './assets/images/bolso.png'
-    },
-    {
-      id: '2',
-      name: 'Bolso',
-      price: 57,
-      image: './assets/images/bolso.png'
-    },
-    {
-      id: '3',
-      name: 'Bolso',
-      price: 57,
-      image: './assets/images/bolso.png'
-    },
-    {
-      id: '4',
-      name: 'Bolso',
-      price: 57,
-      image: './assets/images/bolso.png'
-    }
+    // {
+    //   id: '1',
+    //   name: 'Bolso',
+    //   price: 57,
+    //   image: './assets/images/bolso.png'
+    // },
+    // {
+    //   id: '2',
+    //   name: 'Bolso',
+    //   price: 57,
+    //   image: './assets/images/bolso.png'
+    // },
+    // {
+    //   id: '3',
+    //   name: 'Bolso',
+    //   price: 57,
+    //   image: './assets/images/bolso.png'
+    // },
+    // {
+    //   id: '4',
+    //   name: 'Bolso',
+    //   price: 57,
+    //   image: './assets/images/bolso.png'
+    // }
   ]
   onLoaded(img: string) {
     console.log('log padre', img);
