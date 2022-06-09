@@ -20,6 +20,9 @@ export class ProductsComponent implements OnInit {
 
   newShoppingCart: Product[] = [];
   total = 0;
+
+  today = new Date();
+  date = new Date(2021,1, 20);
   products: Product[] = [
     // {
     //   id: '1',
