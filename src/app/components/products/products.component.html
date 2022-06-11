@@ -5,15 +5,20 @@
 <p hidden>Fecha: {{ date | date: 'dd / MM / yyyy'}}</p>
 <p hidden>{{ 'LoremDSADSAD' | uppercase}}</p>
 <p hidden>{{ 'LoremDSADSAD' | reverse}}</p> -->
+<button (click)="createNewProduct()">create</button>
 <div class="product-grid">
     <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products" (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>
 <div class="product-detail" [class.active]="showDetail">
     <div *ngIf="productChosen">
-        <button (click)="toggleDetail()"><mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon>
+        <button (click)="toggleDetail()">
+          <i class="bi bi-box-arrow-right"></i>
         </button>
-        <!-- <app-img *ngIf="productChosen.images.length > 0" [img]="productChosen.images[0]"></app-img> -->
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="title-detail">
+            <h2>Detalles del producto</h2>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide mt-4" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img [src]="productChosen.images[0]" class="d-block w-100" alt="...">
@@ -38,6 +43,9 @@
         <div class="product-information">
             <h1>{{productChosen.title}}</h1>
             <p>{{productChosen.description}}</p>
+
+            <del><h2 class="price-before">{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}</h2></del>
+            <h2 class="price">{{productChosen.price | currency: 'COP'}}</h2>
         </div>
     </div>
 </div>
