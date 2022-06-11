@@ -9,6 +9,9 @@
 <div class="product-grid">
     <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products" (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>
+<div class="load-products">
+    <button mat-button color="primary" class="load_more" (click)="loadMore()">Next</button>
+</div>
 <div class="product-detail" [class.active]="showDetail">
     <div *ngIf="productChosen">
         <button (click)="toggleDetail()">

@@ -15,7 +15,9 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 // import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
@@ -37,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
     // SwiperModule
   ],
   providers: [],
