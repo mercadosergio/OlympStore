@@ -22,33 +22,21 @@ export class ProductsComponent implements OnInit {
   total = 0;
 
   today = new Date();
-  date = new Date(2021,1, 20);
-  products: Product[] = [
-    // {
-    //   id: '1',
-    //   name: 'PC Gamer',
-    //   price: 200,
-    //   image: './assets/images/pc-gamer.png'
-    // },
-    // {
-    //   id: '2',
-    //   name: 'Portatil',
-    //   price: 170,
-    //   image: './assets/images/portatil1.png'
-    // },
-    // {
-    //   id: '3',
-    //   name: 'Headsets gaming',
-    //   price: 57,
-    //   image: './assets/images/headset1.png'
-    // },
-    // {
-    //   id: '4',
-    //   name: 'Bolso',
-    //   price: 57,
-    //   image: './assets/images/bolso.png'
-    // }
-  ]
+  date = new Date(2021, 1, 20);
+  showDetail = false;
+  products: Product[] = [];
+
+  productChosen: Product = {
+    id: '',
+    price: 0,
+    images: [],
+    title: '',
+    category: {
+      id: '',
+      name: '',
+    },
+    description: ''
+  };
   ngOnInit(): void {
     this.productsService.getAllProducts()
       .subscribe(data => {
@@ -59,5 +47,18 @@ export class ProductsComponent implements OnInit {
     // this.newShoppingCart.push(product);
     this.storeService.addProduct(product);
     this.total = this.storeService.getTotal();
+  }
+
+  toggleDetail() {
+    this.showDetail = !this.showDetail;
+  }
+
+  onShowDetail(id: string) {
+    this.productsService.getProduct(id)
+      .subscribe(data => {
+        this.toggleDetail();
+        this.productChosen = data;
+      });
+
   }
 }

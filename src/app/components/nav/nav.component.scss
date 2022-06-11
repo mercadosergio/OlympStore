@@ -1,3 +1,8 @@
+button {
+    border: none;
+    background: transparent;
+}
+
 .show-mobile {
     display: block;
     box-shadow: 0px 2px 5px rgb(black, .2);
@@ -52,12 +57,19 @@
     nav {
         display: flex;
         align-items: center;
+        .menu-item {
+            margin-left: 70px;
+        }
         ul {
             display: flex;
             list-style: none;
+            li {
+                margin-right: 10px;
+            }
             a {
-                margin: 0 .2em;
                 color: inherit;
+                font-size: 18px;
+                margin: 0 .2em;
                 text-decoration: none;
             }
         }

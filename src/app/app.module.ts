@@ -12,6 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import {MatIconModule} from '@angular/material/icon';
+// import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,18 @@ import { HighlightDirective } from './directives/highlight.directive';
     NavComponent,
     ReversePipe,
     TimeAgoPipe,
-    HighlightDirective
+    HighlightDirective,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule
+    // SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
