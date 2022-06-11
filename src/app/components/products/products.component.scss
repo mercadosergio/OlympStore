@@ -1,6 +1,10 @@
 .product-grid {
     display: flex;
     flex-direction: column;
+    button {
+        border: none;
+        background: transparent;
+    }
 }
 
 .product-detail {
@@ -43,11 +47,6 @@
     img {
         border-radius: 3%;
     }
-}
-
-button {
-    border: none;
-    background: transparent;
 }
 
 .product-information {
@@ -93,4 +92,8 @@ button {
     .product-detail {
         left: 70%;
     }
+}
+
+.btn {
+    z-index: 10000;
 }

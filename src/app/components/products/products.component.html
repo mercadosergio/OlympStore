@@ -46,6 +46,8 @@
 
             <del><h2 class="price-before">{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}</h2></del>
             <h2 class="price">{{productChosen.price | currency: 'COP'}}</h2>
+            <!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
+            <button (click)="deleteProduct()" class="btn btn-danger">Delete</button>
         </div>
     </div>
 </div>

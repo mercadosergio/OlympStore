@@ -24,7 +24,6 @@ export class ProductComponent {
 
   constructor() { }
 
-
   onAddToCart() {
     this.addedProduct.emit(this.product);
   }
