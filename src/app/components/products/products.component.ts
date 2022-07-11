@@ -83,7 +83,7 @@ export class ProductsComponent implements OnInit {
         this.products.unshift(data);
       });
   }
-  //delete
+
   // updateProduct() {
   //   const changes: UpdateProductDTO = {
   //     title: 'changge title',
