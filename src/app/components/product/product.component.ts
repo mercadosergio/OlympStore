@@ -52,7 +52,6 @@ export class ProductComponent {
     // foto.src = this.product.images[0];
     // this.pdf.addImage(foto, this.product.images+"", 80, 82, 125, 50);
 
-
     const pr = String(this.product.price);
     const precio = this.pdf.splitTextToSize("Precio: $" + pr, 450);
     this.pdf.text("" + precio, 70, 180);

@@ -9,7 +9,17 @@ import { retry } from 'rxjs';
 export class ProductsService {
 
   private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products';
+  private apiUrlCategory = 'https://young-sands-07814.herokuapp.com/api/categories';
   constructor(private http: HttpClient) { }
+
+  getByCategory(categoryId: string, limit?: number, offset?: number) {
+    let params = new HttpParams();
+    if (limit && offset != null) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+    return this.http.get<Product[]>(`${this.apiUrlCategory}/${categoryId}/products/`, { params })
+  }
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
@@ -17,7 +27,7 @@ export class ProductsService {
       params = params.set('linit', limit);
       params = params.set('offset', offset);
     }
-    return this.http.get<Product[]>(this.apiUrl, { params })
+    return this.http.get<Product[]>(`${this.apiUrl}`, { params })
       .pipe(
         retry(3)
       );

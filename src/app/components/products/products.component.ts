@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -24,7 +24,8 @@ export class ProductsComponent implements OnInit {
   today = new Date();
   date = new Date(2021, 1, 20);
   showDetail = false;
-  products: Product[] = [];
+  @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
 
   productChosen: Product = {
     id: '',
@@ -38,16 +39,9 @@ export class ProductsComponent implements OnInit {
     description: ''
   };
 
-  limit = 10;
-  offset = 0;
-
   ngOnInit(): void {
-    this.productsService.getProductsByPage(10, 0)
-      .subscribe(data => {
-        this.products = data;
-        this.offset += this.limit;
-      });
   }
+
   onAddShoppingCart(product: Product) {
     // this.newShoppingCart.push(product);
     this.storeService.addProduct(product);
@@ -107,12 +101,7 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-
-  loadMore() {
-    this.productsService.getProductsByPage(this.limit, this.offset)
-      .subscribe(data => {
-        this.products = this.products.concat(data);
-        this.offset += this.limit;
-      });
+  onLoadMore() {
+    this.loadMore.emit();
   }
 }

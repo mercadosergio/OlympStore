@@ -10,7 +10,7 @@
     <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products" (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>
 <div class="load-products">
-    <button mat-button color="primary" class="load_more" (click)="loadMore()">Next</button>
+    <button mat-button color="primary" class="load_more" (click)="onLoadMore()">Next</button>
 </div>
 <div class="product-detail shadow p-3 mb-5 bg-white rounded" [class.active]="showDetail">
     <div *ngIf="productChosen">
