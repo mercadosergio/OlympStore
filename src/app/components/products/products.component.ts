@@ -15,7 +15,6 @@ export class ProductsComponent implements OnInit {
     private storeService: StoreService,
     private productsService: ProductsService
   ) {
-
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
 
@@ -41,7 +40,6 @@ export class ProductsComponent implements OnInit {
 
   limit = 10;
   offset = 0;
-
 
   ngOnInit(): void {
     this.productsService.getProductsByPage(10, 0)
