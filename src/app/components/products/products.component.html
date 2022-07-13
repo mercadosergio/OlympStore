@@ -12,7 +12,7 @@
 <div class="load-products">
     <button mat-button color="primary" class="load_more" (click)="onLoadMore()">Next</button>
 </div>
-<div class="product-detail shadow p-3 mb-5 bg-white rounded" [class.active]="showDetail">
+<div class="product-detail shadow p-3 bg-white rounded" [class.active]="showDetail">
     <div *ngIf="productChosen">
         <button (click)="toggleDetail()">
           <i class="bi bi-box-arrow-right"></i>

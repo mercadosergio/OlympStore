@@ -27,6 +27,13 @@ export class ProductsComponent implements OnInit {
   @Input() products: Product[] = [];
   @Output() loadMore = new EventEmitter();
 
+  @Input() set productId(id: string | null) {
+    if (id) {
+      this.onShowDetail(id);
+    }
+  }
+  // @Input() productId: string | null = null;
+
   productChosen: Product = {
     id: '',
     price: 0,
@@ -53,9 +60,12 @@ export class ProductsComponent implements OnInit {
   }
 
   onShowDetail(id: string) {
+    if (!this.showDetail) {
+      this.showDetail = true;
+    }
     this.productsService.getProduct(id)
       .subscribe(data => {
-        this.toggleDetail();
+        // this.toggleDetail();
         this.productChosen = data;
       });
 

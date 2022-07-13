@@ -16,6 +16,8 @@ export class CategoryComponent implements OnInit {
   limit = 10;
   offset = 0;
 
+  productId: string | null = null;
+
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService) { }
 
   ngOnInit(): void {
@@ -34,6 +36,8 @@ export class CategoryComponent implements OnInit {
         this.products = data;
         console.log(data);
       });
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.productId = params.get('product');
+    });
   }
-
 }
