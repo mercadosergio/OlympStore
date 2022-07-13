@@ -24,8 +24,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-
-// import { SwiperModule } from 'swiper/angular';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -54,8 +53,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatButtonModule
-    // SwiperModule
+    MatButtonModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
