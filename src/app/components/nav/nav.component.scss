@@ -71,6 +71,11 @@ button {
                 font-size: 18px;
                 margin: 0 .2em;
                 text-decoration: none;
+                padding: .2em .8em;
+            }
+            a.active {
+                border: 1px solid #000;
+                border-radius: 5px;
             }
         }
     }
