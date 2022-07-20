@@ -4,6 +4,7 @@ import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { concat } from 'rxjs';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -46,6 +47,8 @@ export class ProductsComponent implements OnInit {
     description: ''
   };
 
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
+
   ngOnInit(): void {
   }
 
@@ -60,15 +63,26 @@ export class ProductsComponent implements OnInit {
   }
 
   onShowDetail(id: string) {
+    this.statusDetail = 'loading';
     if (!this.showDetail) {
       this.showDetail = true;
     }
-    this.productsService.getProduct(id)
-      .subscribe(data => {
-        // this.toggleDetail();
+    this.productsService.getProduct(id).subscribe({
+      next: (data) => {
         this.productChosen = data;
-      });
-
+        this.statusDetail = 'success';
+      },
+      error: (errorMsg) => {
+        this.statusDetail = 'error';
+        // Swal.fire({
+        //   title: 'Error!',
+        //   text: errorMsg,
+        //   icon: 'error',
+        //   confirmButtonText: 'Ok',
+        // });
+        // window.alert(errorMsg);
+      }
+    });
   }
 
   createNewProduct() {
