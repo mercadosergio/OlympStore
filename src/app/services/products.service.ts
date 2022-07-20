@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.model';
 import { retry } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products';
-  private apiUrlCategory = 'https://young-sands-07814.herokuapp.com/api/categories';
+  private apiUrl = `${environment.API_URL}/api/products`;
+  private apiUrlCategory = `${environment.API_URL}/api/categories`;
+
   constructor(private http: HttpClient) { }
 
   getByCategory(categoryId: string, limit?: number, offset?: number) {
