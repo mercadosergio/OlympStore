@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { concat } from 'rxjs';
+import { concat, switchMap, zip } from 'rxjs';
 
 
 @Component({
@@ -83,6 +83,24 @@ export class ProductsComponent implements OnInit {
         // window.alert(errorMsg);
       }
     });
+  }
+
+  readAndUpdate(id: string) {
+    this.productsService.getProduct(id)
+      .pipe(
+        switchMap((product) =>
+          this.productsService.update(product.id, { title: 'change' }),
+        )
+      )
+      .subscribe(data => {
+        console.log(data);
+
+      });
+    this.productsService.fetchReadAndUpdate(id, { title: 'nuevo' })
+      .subscribe(response => {
+        const read = response[0];
+        const update = response[1];
+      })
   }
 
   createNewProduct() {
