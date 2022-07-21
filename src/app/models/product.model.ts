@@ -3,7 +3,6 @@ export interface Category {
   name: string;
 }
 
-
 export interface Product {
   id: string;
   title: string;
@@ -11,6 +10,7 @@ export interface Product {
   images: string[];
   description: string;
   category: Category;
+  taxes?: number;
 }
 
 export interface CreateProductDTO extends Omit<Product, 'id' | 'category'>{
