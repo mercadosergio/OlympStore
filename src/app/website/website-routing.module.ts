@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
         }
       },
       { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'login', component: LoginComponent },
     ]
   },
 
