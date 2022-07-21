@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,9 +8,10 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginComponent implements OnInit {
 
+  token = '';
+
   constructor(
-    private userService: UsersService, 
-    private authService: AuthService) { }
+    private userService: UsersService) { }
 
   ngOnInit(): void {
   }
@@ -24,13 +24,6 @@ export class LoginComponent implements OnInit {
     })
       .subscribe(rta => {
         console.log(rta);
-      });
-  }
-
-  login() {
-    this.authService.login('sergio@mail.com', '1234')
-      .subscribe(rta => {
-        console.log(rta.access_token);
       });
   }
 }

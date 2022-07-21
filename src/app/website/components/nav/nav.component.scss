@@ -84,6 +84,10 @@ button {
         align-items: center;
         .account {
             margin-right: .5em;
+            .profileEmail {
+                font-size: 20px !important;
+                // background: red !important;
+            }
         }
         .cart {
             position: relative;

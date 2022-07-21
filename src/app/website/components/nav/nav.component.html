@@ -45,9 +45,15 @@
             </div>
         </nav>
         <div class="info">
-            <button routerLink="./login">
-            <div class="accounts">mercadosergio754@gmail.com</div>
-          </button>
+            <!-- <button routerLink="./login"> -->
+            <div class="accounts">
+                <button *ngIf="!token; else elseBlock" (click)="login()">Login</button>
+                <ng-template #elseBlock>
+                    <label class="profileEmail">{{ profile?.email }}</label>
+                </ng-template>
+            </div>
+            <!-- </button> -->
+
             <div class="cart">
                 <a href="">
                     <i class="fa-solid fa-cart-shopping"></i>
