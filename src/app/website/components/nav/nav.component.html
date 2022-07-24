@@ -47,7 +47,7 @@
         <div class="info">
             <!-- <button routerLink="./login"> -->
             <div class="accounts">
-                <button *ngIf="!token; else elseBlock" (click)="login()">Login</button>
+                <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
                 <ng-template #elseBlock>
                     <label class="profileEmail">{{ profile?.email }}</label>
                 </ng-template>
