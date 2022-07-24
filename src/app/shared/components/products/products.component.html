@@ -7,6 +7,10 @@
 <p hidden>{{ 'LoremDSADSAD' | reverse}}</p> -->
 <button (click)="createNewProduct()">create</button>
 <button color="primary" class="btn" (click)="onShowDetail('1231243124')">Detalle</button>
+
+<a href="./assets/files/texto.txt" download>Descargar archivo</a>
+<button color="primary" (click)="download()">Descargar Pdf http</button>
+
 <div class="product-grid">
     <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products" (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>

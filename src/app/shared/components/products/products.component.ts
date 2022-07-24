@@ -3,6 +3,7 @@ import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/prod
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { concat, switchMap, zip } from 'rxjs';
+import { FilesService } from 'src/app/services/files.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private storeService: StoreService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private filesService: FilesService
   ) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
@@ -145,5 +147,10 @@ export class ProductsComponent implements OnInit {
 
   onLoadMore() {
     this.loadMore.emit();
+  }
+
+  download() {
+    this.filesService.getFile('miArchivo', 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf', 'application/pdf')
+      .subscribe();
   }
 }
