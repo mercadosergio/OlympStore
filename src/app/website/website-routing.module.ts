@@ -5,6 +5,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
@@ -20,6 +22,7 @@ const routes: Routes = [
       },
       { path: 'product/:id', component: ProductDetailComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'profile',canActivate: [AuthGuard], component: ProfileComponent },
     ]
   },
 

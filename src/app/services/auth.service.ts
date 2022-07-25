@@ -26,12 +26,14 @@ export class AuthService {
     // headers = headers.set('Authorization', `Bearer ${token}`);
     // const headers = new HttpHeaders();
     // headers.set('Authorization', `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiUrl}/profile`, {
+    return this.http.get<User>(`${this.apiUrl}/profile`
+      // ,{
       // headers: {
       //   Authorization: `Bearer ${token}`,
       //   // 'Content-type': 'application/json'
       // }
-    });
+      // }
+    );
   }
 
   loginAndGet(email: string, password: string) {

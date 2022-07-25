@@ -49,7 +49,7 @@
             <div class="accounts">
                 <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
                 <ng-template #elseBlock>
-                    <label class="profileEmail">{{ profile?.email }}</label>
+                    <a style="color: #000;" routerLink="/profile" class="profileEmail">{{ profile?.email }}</a>
                 </ng-template>
             </div>
             <!-- </button> -->

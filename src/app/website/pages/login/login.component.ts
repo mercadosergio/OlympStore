@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
       name: 'Sergio',
       email: 'sergio@mail.com',
       password: '1234',
+      // rol: 'customer',
     })
       .subscribe(rta => {
         console.log(rta);
