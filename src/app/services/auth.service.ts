@@ -12,7 +12,9 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   private apiUrl = `${environment.API_URL}/api/auth`;
-
+  private user = new BehaviorSubject<User | null>(null);
+  user$ = this.user.asObservable();
+  
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   login(email: string, password: string) {
@@ -33,7 +35,9 @@ export class AuthService {
       //   // 'Content-type': 'application/json'
       // }
       // }
-    )
+    ).pipe(
+      tap(user => this.user.next(user))
+    );
   }
 
   loginAndGet(email: string, password: string) {

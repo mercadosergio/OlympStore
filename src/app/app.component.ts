@@ -1,18 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from './models/product.model';
+import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'tienda';
   imgParent = './assets/images/imagen.png';
   showImage = true;
   products: Product[] = [];
 
-  constructor() { }
+  constructor(private authService: AuthService, private tokenService: TokenService) { }
+
+  ngOnInit() {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.authService.getProfile().subscribe();
+    }
+  }
 
   onLoaded(img: string) {
     console.log('log padre', img);
