@@ -3,7 +3,7 @@ export interface User {
   email: string;
   password: string;
   name: string;
-  rol?: string;
+  role: 'customer' | 'admin';
 }
 
 export interface CreateUserDTO extends Omit<User, 'id'> {
