@@ -153,4 +153,19 @@ export class ProductsComponent implements OnInit {
     this.filesService.getFile('miArchivo', 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf', 'application/pdf')
       .subscribe();
   }
+
+  imgRta = '';
+
+  onUpload(event: Event) {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+
+    if (file) {
+
+      this.filesService.uploadFile(file)
+        .subscribe(rta => {
+          this.imgRta = rta.location;
+        });
+    }
+  }
 }
