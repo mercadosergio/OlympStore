@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Auth } from '../models/auth.model';
 import { User } from '../models/user.model';
@@ -33,7 +33,7 @@ export class AuthService {
       //   // 'Content-type': 'application/json'
       // }
       // }
-    );
+    )
   }
 
   loginAndGet(email: string, password: string) {
@@ -41,5 +41,9 @@ export class AuthService {
       .pipe(
         switchMap(() => this.getProfile()),
       )
+  }
+
+  logout(){
+    this.tokenService.removeToken();
   }
 }
