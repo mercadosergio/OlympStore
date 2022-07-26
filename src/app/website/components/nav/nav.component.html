@@ -45,7 +45,6 @@
             </div>
         </nav>
         <div class="info">
-            <!-- <button routerLink="./login"> -->
             <div class="accounts">
                 <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
                 <ng-template #elseBlock>
@@ -53,7 +52,6 @@
                     <button (click)="logout()">Logout</button>
                 </ng-template>
             </div>
-            <!-- </button> -->
 
             <div class="cart">
                 <a href="">
