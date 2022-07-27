@@ -40,12 +40,24 @@
                 <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category"> Category </th>
                 <td valign="middle" mat-cell *matCellDef="let element"> {{element.category.name}} </td>
             </ng-container>
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                <td valign="middle" mat-cell *matCellDef="let element">
+                    <a class="edit">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a class="delete">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of products elements">
         </mat-paginator>
     </div>
 </div>

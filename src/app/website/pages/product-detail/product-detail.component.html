@@ -12,6 +12,8 @@
             <h1>{{ product?.title }}</h1>
             <h2>{{ product?.price | currency }}</h2>
             <p>{{ product?.description }}</p>
+            <button class="btn btn-secondary imp" (click)="generarPdf()"><mat-icon>print</mat-icon></button>
+            <button type="button" class="cart-button" (click)="onAddToCart()"><i class="bi bi-cart-plus-fill"></i> Add to cart</button>
         </div>
     </div>
 </div>

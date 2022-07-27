@@ -23,7 +23,7 @@ export interface TableProducts {
 export class AdminProductsComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
 
-  displayedColumns: string[] = ['id', 'image', 'title', 'price', 'description', 'category'];
+  displayedColumns: string[] = ['id', 'image', 'title', 'price', 'description', 'category', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

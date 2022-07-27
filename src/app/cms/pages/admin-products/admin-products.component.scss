@@ -17,3 +17,17 @@ th.mat-sort-header-sorted {
 .desc {
     overflow: auto;
 }
+
+.edit {
+    cursor: pointer;
+    mat-icon {
+        color: var(--secondary);
+    }
+}
+
+.delete {
+    cursor: pointer;
+    mat-icon {
+        color: #EF4444;
+    }
+}

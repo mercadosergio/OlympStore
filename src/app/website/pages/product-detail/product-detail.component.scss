@@ -1,12 +1,17 @@
 .page-product {
     padding: 0 3em;
     .detail {
+        margin: auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
+        width: 90%;
         .gallery {
             overflow: hidden;
             width: 100%;
+            img {
+                border-radius: 10px;
+            }
         }
         h2,
         h1 {
@@ -17,5 +22,21 @@
         h2 {
             font-size: 1.5em;
         }
+    }
+    .cart-button {
+        // float: right;
+        padding: 7px 14px;
+        background: #009966;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        i {
+            font-size: 30px;
+            color: #fff;
+        }
+        font-size: 18px;
     }
 }
