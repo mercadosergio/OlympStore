@@ -27,7 +27,7 @@ export class ProductsService {
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
     if (limit && offset) {
-      params = params.set('linit', limit);
+      params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
     return this.http.get<Product[]>(this.apiUrl, { params, context: checkTime() })
@@ -40,6 +40,10 @@ export class ProductsService {
           }
         }))
       );
+  }
+
+  getProducts(){
+    return this.http.get<Product[]>(`${this.apiUrl}`);
   }
 
   fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {

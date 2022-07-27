@@ -1,6 +1,7 @@
 .product-grid {
     display: flex;
     flex-direction: column;
+    margin: 20px 70px;
     button {
         border: none;
         background: transparent;
@@ -83,6 +84,7 @@
     font-size: 18px;
     justify-content: center;
     margin: auto;
+    color: rgb(51, 80, 96);
 }
 
 //tablets

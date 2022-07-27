@@ -5,17 +5,21 @@ import { CmsRoutingModule } from './cms-routing.module';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 @NgModule({
   declarations: [
     TasksComponent,
     GridComponent,
-    LayoutComponent
+    LayoutComponent,
+    AdminProductsComponent
   ],
   imports: [
     CommonModule,
-    CmsRoutingModule
+    CmsRoutingModule,
+    MaterialModule
   ]
 })
 export class CmsModule { }

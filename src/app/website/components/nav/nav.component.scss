@@ -101,11 +101,12 @@ button {
                 font-size: 18px;
                 margin: 0 .2em;
                 text-decoration: none;
-                padding: .2em .8em;
+                padding: .5em .8em;
+                border-radius: 5px;
             }
             a.active {
-                border: 1px solid #000;
-                border-radius: 5px;
+                background: rgb(51, 80, 96);
+                color: #fff;
             }
         }
     }

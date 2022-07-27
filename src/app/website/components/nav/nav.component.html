@@ -50,13 +50,17 @@
                 <ng-template #elseBlock>
                     <ul class="">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;" routerLink="/profile" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               {{ profile?.email }}
                             </a>
                             <ul class="dropdown-menu" style="padding-left: 10px; padding-right: 10px;" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" style="display: flex; align-items: center;" href="#">
+                                    <a class="dropdown-item" routerLink="/profile" style="display: flex; align-items: center;" href="#">
                                         <mat-icon>settings</mat-icon> Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" *ngIf="profile?.role == 'admin'" routerLink="/cms" style="display: flex; align-items: center;">
+                                        <mat-icon>vpn_key</mat-icon> Administración</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">

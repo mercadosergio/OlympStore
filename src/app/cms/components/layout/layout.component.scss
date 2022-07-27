@@ -6,11 +6,16 @@ div {
     grid-template-areas: "header header header" "nav content content";
     header {
         grid-area: header;
-        background-color: #3E51B5;
+        background-color: #6eccb1;
         color: white;
         padding: 1em;
-        box-shadow: 1px 2px 4px 0 rgb(21 99 157 / 16%);
+        // box-shadow: 1px 2px 4px 0 rgb(21 99 157 / 16%);
         border-bottom: 1px solid rgba(21, 99, 157, 0.16);
+        box-shadow: 0px 2px 5px rgb(black, .2);
+        display: flex;
+        img {
+            width: 130px;
+        }
     }
     nav {
         grid-area: nav;
