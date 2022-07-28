@@ -42,7 +42,7 @@ export class ProductsService {
       );
   }
 
-  getProducts(){
+  getProducts() {
     return this.http.get<Product[]>(`${this.apiUrl}`);
   }
 

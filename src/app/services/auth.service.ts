@@ -23,6 +23,7 @@ export class AuthService {
         tap(response => this.tokenService.saveToken(response.access_token))
       );
   }
+  
   getProfile() {
     // let headers = new HttpHeaders();
     // headers = headers.set('Authorization', `Bearer ${token}`);

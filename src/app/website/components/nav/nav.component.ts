@@ -18,7 +18,6 @@ export class NavComponent implements OnInit {
   categories!: Category[];
   profile: User | null = null;
 
-
   constructor(
     private storeService: StoreService,
     private authService: AuthService,
@@ -49,9 +48,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.loginAndGet('admin@mail.com', 'admin123')
-      .subscribe(() => {
-        this.router.navigate(['/profile']);
-      });
+      .subscribe();
 
     // this.authService.login('sergio@mail.com', '1234')
     //   .subscribe(rta => {
@@ -66,8 +63,6 @@ export class NavComponent implements OnInit {
   //       console.log(profile);
   //     });
   // }
-
-
 
   logout() {
     this.authService.logout();
