@@ -23,7 +23,7 @@ interface UserRole {
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements OnInit, OnExit {
+export class RegisterComponent implements OnInit {
   hide = true;
   public myform!: FormGroup;
 
@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit, OnExit {
   public mensajeConfirm: string = '';
   public icono: string = '';
 
+
   constructor(
     private userService: UsersService,
     private formBuilder: FormBuilder,
@@ -48,55 +49,33 @@ export class RegisterComponent implements OnInit, OnExit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.validarForm();
-    // this.openDialog();
+    this.myform = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role: '',
+    });
   }
 
-
-  createUser() {
-    this.userService.create({
-      name: 'Sergio',
-      email: 'sergio@mail.com',
-      password: '1234',
-      role: 'customer',
-    })
-      .subscribe(rta => {
-        console.log(rta);
-      });
-  }
 
   register() {
-    this.userService.create({
-      name: this.myform.get('name')?.value,
-      email: this.myform.get('email')?.value,
-      password: this.myform.get('password')?.value,
-      role: this.myform.get('role')?.value,
-    })
+    this.userService.create(this.myform.value)
       .subscribe(rta => {
-        this.mensajeConfirm = 'Registro completado. Bienvenido!'
+        this.mensajeConfirm = 'Registro completado. Bienvenido!';
         this.icono = 'check_circle_outline';
         this.openDialog();
         this.router.navigate(['/login']);
       });
   }
-
-  validarForm() {
-    this.myform = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required], [Validators.email]],
-      password: ['', [Validators.required], [Validators.minLength(8)]],
-      role: '',
-    });
-  }
-
-  onExit() {
-    if (this.myform.valid) {
-      return false;
-    } else {
-      const rta = confirm('Estás seguro de salir?');
-      return rta;
-    }
-  }
+  //implements onExit
+  // onExit() {
+  //   if (this.myform.valid) {
+  //     return false;
+  //   } else {
+  //     const rta = confirm('Estás seguro de salir?');
+  //     return rta;
+  //   }
+  // }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAlertaComponent, {

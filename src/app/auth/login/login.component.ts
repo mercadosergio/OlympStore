@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
 
   cargarFormulario() {
     this.myform = this.formBuilder.group({
-      email: ['', [Validators.required], [Validators.email]],
-      password: ['', [Validators.required], [Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -37,7 +37,5 @@ export class LoginComponent implements OnInit {
     this.authService.loginAndGet(this.myform.get('email')?.value, this.myform.get('password')?.value)
       .subscribe();
     this.router.navigate(['/home']);
-    console.log(this.myform.get('email')?.value);
-    console.log(this.myform.get('password')?.value);
   }
 }
