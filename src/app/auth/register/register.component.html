@@ -1,0 +1,33 @@
+<form [formGroup]="myform">
+    <div class="card">
+        <h1>
+            Registrarse
+        </h1>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let rol of userRole" [value]="rol.role">
+                    {{rol.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button (click)="register()" class="registerbtn" mat-raised-button>Registrarme</button>
+
+    </div>
+</form>
+<!-- [disabled]="!myform.valid" -->

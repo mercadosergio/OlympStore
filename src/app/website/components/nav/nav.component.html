@@ -46,8 +46,8 @@
         </nav>
         <div class="info">
             <div class="accounts">
-                <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
-                <a routerLink="/login" mat-button>Sign in</a>
+                <!-- <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button> -->
+                <a *ngIf="!profile; else elseBlock" routerLink="/login" mat-button>Sign in</a>
                 <ng-template #elseBlock>
                     <ul class="">
                         <li class="nav-item dropdown">

@@ -13,6 +13,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { SwiperModule } from 'swiper/angular';
+import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { SwiperModule } from 'swiper/angular';
     ReversePipe,
     TimeAgoPipe,
     HighlightDirective,
+    ModalAlertaComponent,
   ],
   exports: [
     ImgComponent,

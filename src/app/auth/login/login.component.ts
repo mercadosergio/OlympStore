@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -16,29 +17,13 @@ export class LoginComponent implements OnInit {
   public myform!: FormGroup;
 
   constructor(
-    private userService: UsersService,
     private authService: AuthService,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    // this.myform = this.formBuilder.group({
-    //   email: '',
-    //   password: '',
-    // });
     this.cargarFormulario();
 
-  }
-
-  createUser() {
-    this.userService.create({
-      name: 'Sergio',
-      email: 'sergio@mail.com',
-      password: '1234',
-      role: 'customer',
-    })
-      .subscribe(rta => {
-        console.log(rta);
-      });
   }
 
   cargarFormulario() {
@@ -51,6 +36,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.loginAndGet(this.myform.get('email')?.value, this.myform.get('password')?.value)
       .subscribe();
+    this.router.navigate(['/home']);
     console.log(this.myform.get('email')?.value);
     console.log(this.myform.get('password')?.value);
   }

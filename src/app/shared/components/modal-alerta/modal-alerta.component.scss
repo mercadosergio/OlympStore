@@ -1,0 +1,27 @@
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    .mat-icon {
+        font-size: 85px;
+        color: #009966;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        width: 85px;
+        height: 85px;
+        margin: 15px auto;
+    }
+    h3 {
+        font-size: 22px;
+    }
+}
+
+button {
+    margin: auto;
+    background: var(--secondary);
+    color: #fff;
+}
