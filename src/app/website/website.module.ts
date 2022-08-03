@@ -20,7 +20,6 @@ import { SwiperModule } from 'swiper/angular';
 import { MaterialModule } from '../shared/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
-// import { QuicklinkModule } from 'ngx-quicklink';
 
 
 
@@ -41,7 +40,6 @@ import { SharedModule } from '../shared/shared.module';
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
-    // QuicklinkModule
   ]
 })
 export class WebsiteModule { }
