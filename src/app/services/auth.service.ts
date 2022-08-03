@@ -14,7 +14,7 @@ export class AuthService {
   private apiUrl = `${environment.API_URL}/api/auth`;
   private user = new BehaviorSubject<User | null>(null);
   user$ = this.user.asObservable();
-  
+
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   login(email: string, password: string) {
@@ -23,7 +23,7 @@ export class AuthService {
         tap(response => this.tokenService.saveToken(response.access_token))
       );
   }
-  
+
   getProfile() {
     // let headers = new HttpHeaders();
     // headers = headers.set('Authorization', `Bearer ${token}`);
@@ -48,7 +48,7 @@ export class AuthService {
       )
   }
 
-  logout(){
+  logout() {
     this.tokenService.removeToken();
   }
 }
