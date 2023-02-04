@@ -1,27 +1,27 @@
-# Tienda
+# OlympStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+Aplicación web categoria E-COMMERCE de productos con API REST y LAZY LOADING
 
-## Development server
+![olymp-logo](https://user-images.githubusercontent.com/71235288/202929889-cc1a2083-38d3-4d0b-a5e2-5c5ba0f29c51.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##Instalación
 
-## Code scaffolding
+1. Debe abrir la consola de comandos y ubicarse en el directorio raiz del proyecto, ahí debe ejecutar <code>npm install</code>.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. La aplicación utiliza una API REST pública para consumir el contenido principal de esta, asi que, para ejecutar la aplicación y se traiga todo el contenido
+   debe escribir en la consola <code>npm start:proxy</code>.
 
-## Build
+##Información
+Puede mirar en tiempo real, el normal funcionamiento de esta aplicación en esta [demo][site].
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+[site]: https://calm-mandazi-cb4160.netlify.app/home
 
-## Running unit tests
+##Usuarios
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Admin
+- email: admin@mail.com
+- password: admin123
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Customer
+- email: maria@mail.com"
+- password: 12345
