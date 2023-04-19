@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -25,7 +25,7 @@ interface UserRole {
 
 export class RegisterComponent implements OnInit {
   hide = true;
-  public myform!: FormGroup;
+  public myform!: UntypedFormGroup;
 
   public userRole: UserRole[] = [
     {
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialog: MatDialog,
     private router: Router) { }
 

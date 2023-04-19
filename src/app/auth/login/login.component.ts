@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -14,12 +14,12 @@ export class LoginComponent implements OnInit {
   token = '';
   hide = true;
 
-  public myform!: FormGroup;
+  public myform!: UntypedFormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.cargarFormulario();
