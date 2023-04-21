@@ -8,35 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/d029bf1c92.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <script>
-        document.onmousemove = ver;
 
-        function ver(e) {
-            var x, y, x1, x2, y1, y2;
-            fact = 648 / 300;
-            opp = 100;
-
-            if (e == null) e = window.event;
-            x = e.clientX;
-            y = e.clientY;
-
-            x1 = -opp + (x) * fact;
-            y1 = -opp + (y) * fact;
-            x2 = +opp + (x) * fact;
-            y2 = +opp + (y) * fact;
-
-            document.images.grande.style.display = "inline";
-            document.images.grande.style.left = (x) * (1 - fact);
-            document.images.grande.style.top = (y) * (1 - fact);
-            document.images.grande.style.clip = "rect(" + y1 + "px," + x2 + "px," + y2 + "px," + x1 + "px)";
-        }
-    </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 

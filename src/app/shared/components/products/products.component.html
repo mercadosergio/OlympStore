@@ -16,7 +16,8 @@
     <img *ngIf="imgRta" [src]="imgRta" alt="">
 </div> -->
 <div class="product-grid">
-    <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products" (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
+    <app-product class="shadow p-3 mb-5 bg-white rounded" [product]="product" *ngFor="let product of products"
+        (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>
 <div class="load-products">
     <button mat-button class="load_more" (click)="onLoadMore()">Next</button>
@@ -24,39 +25,28 @@
 <div class="product-detail shadow p-3 bg-white rounded" [class.active]="showDetail">
     <div *ngIf="productChosen">
         <button (click)="toggleDetail()">
-          <i class="bi bi-box-arrow-right"></i>
+            <i class="bi bi-box-arrow-right"></i>
         </button>
 
         <div class="title-detail">
             <h2>Detalles del producto</h2>
         </div>
-        <div id="carouselExampleControls" class="carousel slide mt-4" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img [src]="productChosen.images[0]" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img [src]="productChosen.images[1]" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img [src]="productChosen.images[2]" class="d-block w-100" alt="...">
-                </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+        <div>
+            <swiper-container class="mySwiper" navigation="true" pagination="true" keyboard="true" mousewheel="true"
+                css-mode="true">
+                <swiper-slide *ngFor="let img of productChosen.images">
+                    <img [src]="img" class="" alt="...">
+                </swiper-slide>
+            </swiper-container>
         </div>
+
         <div class="product-information">
             <h1>{{productChosen.title}}</h1>
             <p>{{productChosen.description}}</p>
 
-            <del><h2 class="price-before">{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}</h2></del>
+            <del>
+                <h2 class="price-before">{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}</h2>
+            </del>
             <h2 class="price">{{productChosen.price | currency: 'COP'}}</h2>
             <!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
             <button (click)="deleteProduct()" class="btn btn-danger">Delete</button>

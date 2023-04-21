@@ -1,21 +1,21 @@
-<div class="show-mobile">
-    <div>
+<header class="show-mobile bkg-primary">
+    <nav>
         <button (click)="toggleMenu()">
-          <!-- <img src="./assets/" alt="menu"> -->
-          <i class="fa-solid fa-bars"></i>
-       </button>
+            <!-- <img src="./assets/" alt="menu"> -->
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <button>
-          <img src="./assets/images/olymp-logo.png" alt="menu">
-       </button>
+            <img src="./assets/images/olymp-logo.png" alt="menu">
+        </button>
         <button>
-          <!-- <img src="./assets/" alt="menu"> -->
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span class="counter">{{counter}}</span>
-       </button>
-    </div>
-</div>
+            <!-- <img src="./assets/" alt="menu"> -->
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="counter">{{counter}}</span>
+        </button>
+    </nav>
+</header>
 
-<div class="side-menu" [class.active]="activeMenu">
+<aside class="side-menu" [class.active]="activeMenu">
     <button class="closebtn" (click)="toggleMenu()"><mat-icon>close</mat-icon></button>
     <ul>
         <li>
@@ -25,50 +25,55 @@
             <a [routerLink]="['/category',item.id]">{{item.name}}</a>
         </li>
     </ul>
-</div>
+</aside>
 
-<div class="hide-mobile">
+<header class="hide-mobile bkg-primary">
     <div>
         <nav>
             <a routerLink="/" class="logo">
                 <img src="./assets/images/olymp-logo.png" alt="menu">
             </a>
-            <div class="menu-item">
-                <ul>
-                    <li>
-                        <a routerLinkActive="active" href="" routerLink="home">Todo</a>
-                    </li>
-                    <li *ngFor="let item of categories">
-                        <a routerLinkActive="active" [routerLink]="['/category',item.id]">{{item.name}}</a>
-                    </li>
-                </ul>
-            </div>
+
+            <ul class="menu-ul--category">
+                <li>
+                    <a routerLinkActive="active" href="" routerLink="home">Todo</a>
+                </li>
+                <li *ngFor="let item of categories">
+                    <a routerLinkActive="active" [routerLink]="['/category',item.id]">{{item.name}}</a>
+                </li>
+            </ul>
+
         </nav>
-        <div class="info">
+        <nav class="info">
             <div class="accounts">
                 <!-- <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button> -->
-                <a *ngIf="!profile; else elseBlock" routerLink="/login" mat-button>Sign in</a>
-                <a *ngIf="!profile; else elseBlock" routerLink="/register" mat-button>Register</a>
+                <a class="auth-options" *ngIf="!profile; else elseBlock" routerLink="/login">Login</a>
+                <a class="auth-options" *ngIf="!profile; else elseBlock" routerLink="/register">Sign up</a>
                 <ng-template #elseBlock>
                     <ul class="">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              {{ profile?.email }}
+                            <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ profile?.email }}
                             </a>
-                            <ul class="dropdown-menu" style="padding-left: 10px; padding-right: 10px;" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" style="padding-left: 10px; padding-right: 10px;"
+                                aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" routerLink="/profile" style="display: flex; align-items: center;" href="#">
+                                    <a class="dropdown-item" routerLink="/profile"
+                                        style="display: flex; align-items: center;" href="#">
                                         <mat-icon>settings</mat-icon> Profile</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" *ngIf="profile?.role == 'admin'" routerLink="/cms" style="display: flex; align-items: center;">
+                                    <a class="dropdown-item" *ngIf="profile?.role == 'admin'" routerLink="/cms"
+                                        style="display: flex; align-items: center;">
                                         <mat-icon>vpn_key</mat-icon> Administración</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a style="color: #EF4444; display: flex; align-items: center; cursor: pointer;" class="dropdown-item logout" (click)="logout()">
+                                    <a style="color: #EF4444; display: flex; align-items: center; cursor: pointer;"
+                                        class="dropdown-item logout" (click)="logout()">
                                         <mat-icon>exit_to_app</mat-icon> Logout</a>
                                 </li>
                             </ul>
@@ -82,6 +87,6 @@
                 </a>
                 <span class="counter">{{counter}}</span>
             </div>
-        </div>
+        </nav>
     </div>
-</div>
+</header>

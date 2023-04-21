@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -39,6 +39,8 @@ import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.com
     RouterModule,
     MaterialModule,
     // SwiperModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class SharedModule { }
