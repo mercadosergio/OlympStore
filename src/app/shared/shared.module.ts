@@ -12,7 +12,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
-import { SwiperModule } from 'swiper/angular';
+// import { SwiperModule } from 'swiper/angular';
 import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
 
 
@@ -38,7 +38,7 @@ import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.com
     CommonModule,
     RouterModule,
     MaterialModule,
-    SwiperModule
+    // SwiperModule
   ]
 })
 export class SharedModule { }

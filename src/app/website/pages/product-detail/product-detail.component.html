@@ -2,25 +2,45 @@
     <button (click)="goToBack()" class="btn btn-secondary m-3">Back</button>
     <div class="detail" *ngIf="product">
         <div class="gallery">
-            <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff" [spaceBetween]="10" [navigation]="true" [thumbs]="{ swiper: thumbsSwiper }" class="mySwiper2">
+
+            <div class="container-slide">
+                <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+                    thumbs-swiper=".mySwiper2" loop="true" space-between="10" navigation="true">
+                    <swiper-slide *ngFor="let img of product?.images">
+                        <img [src]="img" />
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+            
+            <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="3" free-mode="true"
+            watch-slides-progress="true">
+            <swiper-slide *ngFor="let img of product?.images">
+                    <img [src]="img" width="100"/>
+                </swiper-slide>
+            </swiper-container>
+
+            <!-- <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff" [spaceBetween]="10"
+                [navigation]="true" [thumbs]="{ swiper: thumbsSwiper }" class="mySwiper2">
                 <ng-template swiperSlide *ngFor="let img of product?.images">
                     <img class="imgZoom" [src]="img" alt="img" width="300">
                     <img name="grande" class="imgOriginal" [src]="img" alt="img" width="648">
                 </ng-template>
             </swiper>
-            <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="3" [freeMode]="true" [watchSlidesProgress]="true" class="mySwiper">
+            <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="3" [freeMode]="true"
+                [watchSlidesProgress]="true" class="mySwiper">
                 <ng-template swiperSlide *ngFor="let img of product?.images">
                     <img class="imgZoom" [src]="img" alt="img" width="300">
                     <img name="grande" class="imgOriginal" [src]="img" alt="img" width="648">
                 </ng-template>
-            </swiper>
+            </swiper> -->
         </div>
         <div>
-            <h1>{{ product?.title }}</h1>
-            <h2>{{ product?.price | currency }}</h2>
-            <p>{{ product?.description }}</p>
+            <h1>{{ product.title }}</h1>
+            <h2>{{ product.price | currency }}</h2>
+            <p>{{ product.description }}</p>
             <button class="print btn btn-secondary imp" (click)="generarPdf()"><mat-icon>print</mat-icon> Print</button>
-            <button type="button" class="cart-button" (click)="onAddToCart()"><i class="bi bi-cart-plus-fill"></i> Add to cart</button>
+            <button type="button" class="cart-button" (click)="onAddToCart()"><i class="bi bi-cart-plus-fill"></i> Add
+                to cart</button>
         </div>
     </div>
 </div>

@@ -15,11 +15,12 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 
 
 import { LayoutComponent } from './components/layout/layout.component';
-import { SwiperModule } from 'swiper/angular';
+// import { SwiperModule } from 'swiper/angular';
 // Material
 import { MaterialModule } from '../shared/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 
@@ -36,10 +37,11 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SwiperModule,
+    // SwiperModule,
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WebsiteModule { }

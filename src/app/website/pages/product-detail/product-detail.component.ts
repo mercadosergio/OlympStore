@@ -8,7 +8,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 import { ViewEncapsulation, ViewChild } from "@angular/core";
-import { SwiperComponent } from "swiper/angular";
+// import { SwiperComponent } from "swiper/angular";
 
 // import Swiper core and required modules
 import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";

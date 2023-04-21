@@ -1,32 +1,34 @@
-@import "~swiper/css";
-@import "~swiper/css/free-mode";
-@import "~swiper/css/navigation";
-@import "~swiper/css/thumbs";
 .page-product {
     padding: 0 3em;
+
     .detail {
         margin: auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
         width: 90%;
+
         .gallery {
             overflow: hidden;
             width: 100%;
+
             img {
                 border-radius: 10px;
             }
         }
+
         h2,
         h1 {
             margin-bottom: 5px;
             font-weight: bold;
             font-size: 2em;
         }
+
         h2 {
             font-size: 1.5em;
         }
     }
+
     .cart-button {
         // float: right;
         width: 100%;
@@ -40,12 +42,15 @@
         display: flex;
         align-items: center;
         margin: 15px 0;
+
         i {
             font-size: 30px;
             color: #fff;
         }
+
         font-size: 18px;
     }
+
     .print {
         width: 100px;
         display: flex;
@@ -54,89 +59,67 @@
     }
 }
 
-ng-template {
-    position: relative;
+.container-slide {
+    width: 100%;
+    // height: 35rem;
 }
 
-.imgOriginal,
-.imgZoom {
-    top: 0;
-    left: 0;
-    border: 0;
-    overflow: hidden;
-    display: block;
+swiper-container {
+    width: 100%;
+    height: 100%;
 }
 
-.imgOriginal {
-    clip: rect(0px, 100px, 100px, 0px);
-}
-
-.imgZoom {
-    position: absolute;
-}
-
-.swiper-slide {
+swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #fff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
     align-items: center;
 }
 
-.swiper-slide img {
-    display: block;
+swiper-slide img {
+    // display: sw </swiper-slidek;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-body {
-    color: #000;
-}
-
-.swiper {
+swiper-container {
     width: 100%;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.swiper-slide {
+swiper-slide {
     background-size: cover;
     background-position: center;
 }
 
-.mySwiper2 {
-    height: 60%;
+.mySwiper {
+    height: 80%;
     width: 100%;
 }
 
-.mySwiper {
+.mySwiper2 {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
 }
 
-.mySwiper .swiper-slide {
+.mySwiper2 swiper-slide {
     width: 25%;
     height: 100%;
     opacity: 0.4;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+.mySwiper2 .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.swiper-slide img {
-    display: block;
+swiper-slide img {
+    // display: sw </swiper-slidek;
     width: 100%;
     height: 100%;
     object-fit: cover;
