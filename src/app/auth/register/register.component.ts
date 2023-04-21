@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OnExit } from 'src/app/guards/exit.guard';
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private router: Router) { }
 
