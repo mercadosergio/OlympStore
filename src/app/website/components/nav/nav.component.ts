@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
@@ -17,6 +17,16 @@ export class NavComponent implements OnInit {
   counter = 0;
   categories!: Category[];
   profile: User | null = null;
+
+  navbarfixed: boolean = false;
+
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 100) {
+      this.navbarfixed = true;
+    } else {
+      this.navbarfixed = false;
+    }
+  }
 
   constructor(
     private storeService: StoreService,

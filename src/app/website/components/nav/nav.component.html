@@ -27,11 +27,11 @@
     </ul>
 </aside>
 
-<header class="hide-mobile bkg-primary">
+<header class="hide-mobile bkg-primary" (scroll)="onScroll()" [ngClass]="navbarfixed ? 'fixed' : 'nonfixed'">
     <div>
         <nav>
             <a routerLink="/" class="logo">
-                <img src="./assets/images/olymp-logo.png" alt="menu">
+                <img src="./assets/images/olymp-logo.png" alt="Olymp logo" width="240">
             </a>
 
             <ul class="menu-ul--category">

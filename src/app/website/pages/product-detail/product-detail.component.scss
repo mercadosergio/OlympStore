@@ -24,18 +24,22 @@
             font-size: 2em;
         }
 
+        h1 {
+            color: var(--secondary);
+            font-size: 40px;
+        }
+
         h2 {
             font-size: 1.5em;
         }
     }
 
     .cart-button {
-        // float: right;
         width: 100%;
         text-align: center;
         justify-content: center;
         padding: 7px 14px;
-        background: #009966;
+        background: var(--secondary);
         color: #fff;
         border: none;
         border-radius: 5px;

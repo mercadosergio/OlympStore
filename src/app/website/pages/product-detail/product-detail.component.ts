@@ -90,7 +90,7 @@ export class ProductDetailComponent implements OnInit {
     });
 
     const logo = new Image();
-    logo.src = 'assets/images/olymp-logo-t.png';
+    logo.src = 'assets/images/olymp-logo.png';
     this.pdf.addImage(logo, '', 80, 42, 125, 50);
     this.addWaterMark(this.pdf);
     window.open(URL.createObjectURL(this.pdf.output('blob')));

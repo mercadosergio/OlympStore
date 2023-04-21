@@ -6,7 +6,9 @@
 <h2>{{product.taxes | currency: 'COP'}}</h2>
 <!-- <p appHighlight>{{product.description}}</p> -->
 
-<div class="acciones">
-    <button class="btn btn-primary mt-2" (click)="onShowDetail()">Details</button>
-    <button type="button" class="cart-button" (click)="onAddToCart()"><i class="bi bi-cart-plus-fill"></i></button>
+<div class="actions-container">
+  <button class="detail-button bkg-primary" (click)="onShowDetail()">Details</button>
+  <button type="button" class="cart-button" (click)="onAddToCart()">
+    Add to cart<i class="bi bi-cart-plus-fill"></i>
+  </button>
 </div>
