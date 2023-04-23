@@ -8,6 +8,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { ExitGuard } from '../guards/exit.guard';
+import { CategoryComponent } from './pages/category/category.component';
 
 
 const routes: Routes = [
@@ -16,10 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       {
-        path: 'category', loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule),
-        data: {
-          preload: true,
-        }
+        path: 'category/:id', component: CategoryComponent,
       },
       { path: 'product/:id', component: ProductDetailComponent },
       {

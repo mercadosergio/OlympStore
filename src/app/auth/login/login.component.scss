@@ -1,7 +1,10 @@
 .bg {
     position: relative;
+    display: flex;
     width: 100%;
-    height: 100% !important;
+    height: 100vh;
+    justify-content: center;
+    // align-items: center;
 }
 
 .login-form {
@@ -45,7 +48,9 @@ input.example-right-align {
 }
 
 .loginbtn {
-    background: var(--secondary);
-    color: var(--primary);
+    background: var(--primary);
+    color: #fff;
     font-size: 17px;
+    padding: 10px;
+    cursor: pointer;
 }

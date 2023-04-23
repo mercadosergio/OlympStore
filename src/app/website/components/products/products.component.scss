@@ -1,8 +1,4 @@
-.product-grid {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 70px;
-
+.products-layout {
     button {
         border: none;
         background: transparent;
@@ -33,6 +29,7 @@
     transition: all ease-out .5s;
     transform: translateX(100%);
     padding: 1rem;
+    box-shadow: 0px 20px 0px rgb(1 41 112 / 10%);
 
     &.active {
         transform: translateX(0);
@@ -55,6 +52,7 @@
 
     button {
         cursor: pointer;
+
         i {
             float: left;
             color: #000;
@@ -130,9 +128,37 @@ swiper-slide img {
     object-fit: cover;
 }
 
-//tablets
-@media screen and (min-width: 40em) and (max-width: 63.9em) {
-    .product-grid {
+// mobile
+@media screen and (max-width: 425px) {
+    .products-layout {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+
+        .product-card {
+            margin: 10px 0;
+        }
+    }
+}
+
+// tablets
+@media screen and (min-width: 450px) and (max-width: 768px) {
+    .products-layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 15px;
+        padding: 20px 30px;
+    }
+
+    .product-detail {
+        left: 40%;
+    }
+}
+
+// tablets
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .products-layout {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 15px;
@@ -143,12 +169,15 @@ swiper-slide img {
     }
 }
 
-//web
-@media screen and (min-width: 64em) {
-    .product-grid {
+// web
+@media screen and (min-width: 1050px) {
+    .products-layout {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 15px;
+        width: 90%;
+        margin: auto;
+        margin-top: 40px;
     }
 
     .product-detail {

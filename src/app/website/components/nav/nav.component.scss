@@ -1,4 +1,4 @@
-.fixed{
+.fixed {
     position: fixed;
     width: 100%;
     transition: 0.2s linear;
@@ -7,7 +7,7 @@
 
 .nonfixed {
     position: static;
-    transition:  0.2s linear;
+    transition: 0.2s linear;
     top: -50px;
 }
 
@@ -17,11 +17,12 @@ button {
 }
 
 .show-mobile {
-    display: block;
     box-shadow: 0px 2px 5px rgb(black, .2);
     color: #ffffff;
     transition: 0.2s;
-    >div {
+
+    >nav {
+        width: 100%;
         padding: 1em;
         display: flex;
         justify-content: space-between;
@@ -36,6 +37,7 @@ button {
             }
 
             i {
+                color: #fff;
                 font-size: 30px;
             }
         }
@@ -88,31 +90,41 @@ button {
         mat-icon {
             font-size: 50px;
         }
+
+        i {
+            color: #fff;
+            font-size: 30px;
+        }
     }
 
     ul {
         margin-top: 50px;
+
+        li {
+            a {
+                color: #fff;
+            }
+        }
     }
 }
 
 .hide-mobile {
-    display: none;
     box-shadow: 0px 2px 5px rgb(black, .2);
     color: #ffffff;
     transition: 0.2s;
-    
+
     >div {
         padding: 0 1em;
         display: flex;
         justify-content: space-between;
-        // align-items: center;
     }
 
     .logo {
         margin-right: 1em;
         display: flex;
         align-items: center;
-        img{
+
+        img {
             margin: 10px;
         }
     }
@@ -134,7 +146,7 @@ button {
 
             a {
                 color: inherit;
-                font-size: 18px;
+                font-size: 16px;
                 margin: 0 .2em;
                 text-decoration: none;
                 padding: .5em .8em;
@@ -155,7 +167,7 @@ button {
 
         .auth-options {
             color: #fff;
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 .2em;
             text-decoration: none;
             padding: .5em .8em;
@@ -168,7 +180,6 @@ button {
 
             .profileEmail {
                 font-size: 20px !important;
-                // background: red !important;
                 color: #000;
                 text-decoration: none !important;
             }
@@ -207,26 +218,54 @@ button {
 
 /* Medium only */
 
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+@media screen and (max-width: 425px) {
     .show-mobile {
-        display: none;
+        display: flex;
     }
 
     .hide-mobile {
-        display: block;
+        display: none;
     }
 }
 
+@media screen and (min-width: 450px) and (max-width: 768px) {
+    .show-mobile {
+        display: flex;
+    }
+    
+    .hide-mobile {
+        display: none;
+    }
+    .logo img{
+        width: 240px;
+    }
+}
+
+@media screen and (min-width: 770px) and (max-width: 1024px) {
+    .show-mobile {
+        display: none;
+    }
+    
+    .hide-mobile {
+        display: block;
+    }
+    .logo img{
+        width: 240px;
+    }
+}
 
 /* Large and up */
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 1050px) {
     .show-mobile {
         display: none;
     }
 
     .hide-mobile {
         display: block;
+    }
+    .logo img{
+        width: 240px;
     }
 }
 

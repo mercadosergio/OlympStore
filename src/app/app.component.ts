@@ -12,7 +12,6 @@ register();
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'tienda';
   imgParent = './assets/images/imagen.png';
   showImage = true; 
   products: Product[] = [];

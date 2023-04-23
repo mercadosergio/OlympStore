@@ -1,22 +1,22 @@
 <header class="show-mobile bkg-primary">
     <nav>
         <button (click)="toggleMenu()">
-            <!-- <img src="./assets/" alt="menu"> -->
-            <i class="fa-solid fa-bars"></i>
+            <i class="bi bi-list"></i>
         </button>
+        <a routerLink="home">
+            <img src="./assets/images/olymp-logo.png" alt="Olymp logo" width="200">
+        </a>
         <button>
-            <img src="./assets/images/olymp-logo.png" alt="menu">
-        </button>
-        <button>
-            <!-- <img src="./assets/" alt="menu"> -->
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="bi bi-cart-fill"></i>
             <span class="counter">{{counter}}</span>
         </button>
     </nav>
 </header>
 
 <aside class="side-menu" [class.active]="activeMenu">
-    <button class="closebtn" (click)="toggleMenu()"><mat-icon>close</mat-icon></button>
+    <button class="closebtn" (click)="toggleMenu()">
+        <i class="bi bi-x-lg"></i>
+    </button>
     <ul>
         <li>
             <a href="" routerLink="home">Todo</a>
@@ -31,12 +31,12 @@
     <div>
         <nav>
             <a routerLink="/" class="logo">
-                <img src="./assets/images/olymp-logo.png" alt="Olymp logo" width="240">
+                <img src="./assets/images/olymp-logo.png" alt="Olymp logo">
             </a>
 
             <ul class="menu-ul--category">
                 <li>
-                    <a routerLinkActive="active" href="" routerLink="home">Todo</a>
+                    <a routerLinkActive="active" href="" routerLink="home">All</a>
                 </li>
                 <li *ngFor="let item of categories">
                     <a routerLinkActive="active" [routerLink]="['/category',item.id]">{{item.name}}</a>
@@ -83,7 +83,7 @@
             </div>
             <div class="cart">
                 <a href="">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="bi bi-cart-fill"></i>
                 </a>
                 <span class="counter">{{counter}}</span>
             </div>

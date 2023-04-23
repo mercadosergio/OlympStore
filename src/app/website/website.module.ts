@@ -15,12 +15,16 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 
 
 import { LayoutComponent } from './components/layout/layout.component';
-// import { SwiperModule } from 'swiper/angular';
 // Material
 import { MaterialModule } from '../shared/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ProductComponent } from './components/product/product.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
+import { ImgComponent } from './components/img/img.component';
+import { CategoryComponent } from './pages/category/category.component';
 
 
 
@@ -29,15 +33,19 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     NavComponent,
     HomeComponent,
     MycartComponent,
-
+    ProductComponent,
+    ProductsComponent,
+    ModalAlertaComponent,
+    ImgComponent,
     RecoveryComponent,
     ProfileComponent,
     ProductDetailComponent,
-    LayoutComponent],
+    LayoutComponent,
+    CategoryComponent
+  ],
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    // SwiperModule,
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,

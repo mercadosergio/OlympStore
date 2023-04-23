@@ -1,21 +1,4 @@
-<!-- <p>Productos añadidos: {{newShoppingCart.length}}</p> -->
-<!-- <p>Total: ${{total}}</p> -->
-<!-- <p hidden>Today: {{ today | date: 'short'}}</p>
-<p hidden>Time Ago: {{ today | timeAgo }}</p>
-<p hidden>Fecha: {{ date | date: 'dd / MM / yyyy'}}</p>
-<p hidden>{{ 'LoremDSADSAD' | uppercase}}</p>
-<p hidden>{{ 'LoremDSADSAD' | reverse}}</p> -->
-<!-- <button (click)="createNewProduct()">create</button> -->
-<!-- <button color="primary" class="btn" (click)="onShowDetail('1231243124')">Detalle</button> -->
-
-<!-- <a href="./assets/files/texto.txt" download>Descargar archivo</a> -->
-<!-- <button color="primary" (click)="download()">Descargar Pdf http</button> -->
-<!--
-<div>
-    <input type="file" (change)="onUpload($event)">
-    <img *ngIf="imgRta" [src]="imgRta" alt="">
-</div> -->
-<div class="product-grid">
+<div class="products-layout">
     <app-product class="product-card" [product]="product" *ngFor="let product of products"
         (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
 </div>
@@ -54,3 +37,21 @@
         </div>
     </div>
 </aside>
+
+<!-- <p>Productos añadidos: {{newShoppingCart.length}}</p> -->
+<!-- <p>Total: ${{total}}</p> -->
+<!-- <p hidden>Today: {{ today | date: 'short'}}</p>
+<p hidden>Time Ago: {{ today | timeAgo }}</p>
+<p hidden>Fecha: {{ date | date: 'dd / MM / yyyy'}}</p>
+<p hidden>{{ 'LoremDSADSAD' | uppercase}}</p>
+<p hidden>{{ 'LoremDSADSAD' | reverse}}</p> -->
+<!-- <button (click)="createNewProduct()">create</button> -->
+<!-- <button color="primary" class="btn" (click)="onShowDetail('1231243124')">Detalle</button> -->
+
+<!-- <a href="./assets/files/texto.txt" download>Descargar archivo</a> -->
+<!-- <button color="primary" (click)="download()">Descargar Pdf http</button> -->
+<!--
+<div>
+    <input type="file" (change)="onUpload($event)">
+    <img *ngIf="imgRta" [src]="imgRta" alt="">
+</div> -->

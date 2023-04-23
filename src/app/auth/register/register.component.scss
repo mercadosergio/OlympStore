@@ -13,6 +13,9 @@ form {
 
 .card {
     padding: 15px;
+    background: var(--default-bg);
+    display: flex;
+    flex-direction: column;
 }
 
 .example-container .mat-form-field+.mat-form-field {
@@ -33,7 +36,15 @@ input.example-right-align {
 }
 
 .registerbtn {
-    background: var(--secondary);
-    color: var(--primary);
+    background: var(--primary);
+    color: #fff;
     font-size: 17px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.card>h1 ,
+.card>p {
+    text-align: center;
 }
