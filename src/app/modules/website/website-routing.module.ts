@@ -6,9 +6,9 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { LayoutComponent } from './components/layout/layout.component';
 
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AuthGuard } from '../guards/auth.guard';
-import { ExitGuard } from '../guards/exit.guard';
+
 import { CategoryComponent } from './pages/category/category.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 const routes: Routes = [

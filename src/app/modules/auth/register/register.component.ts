@@ -7,7 +7,7 @@ import { OnExit } from 'src/app/guards/exit.guard';
 import { CustomValidators } from 'src/app/utils/validators';
 import { RequestStatus } from 'src/app/models/types/request-status.model';
 import { UsersService } from 'src/app/services/users.service';
-import { ModalAlertaComponent } from 'src/app/website/components/modal-alerta/modal-alerta.component';
+import { ModalAlertaComponent } from '../../website/components/modal-alerta/modal-alerta.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 export interface DialogData {
@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
         .subscribe({
           next: () => {
             this.status = 'success';
-            this.router.navigate(['/app/'])
+            // this.router.navigate(['/app/'])
           },
           error: (error) => {
             this.status = 'failed';

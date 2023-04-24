@@ -9,6 +9,12 @@
         background: #ffffff;
         box-shadow: 0px 0 30px rgb(1 41 112 / 10%);
         border-radius: .5rem;
+        transition: all .1s ease;
+    }
+
+    .product-card:hover {
+        background: #d1d1d1;
+        cursor: pointer;
     }
 }
 
@@ -18,9 +24,7 @@
     left: 0%;
     bottom: 0;
     right: 0;
-    // background-color: whitesmoke;
     background: white;
-    // background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
     display: flex;
     flex-direction: column;
     // border-left: 15px solid #6eccb1;

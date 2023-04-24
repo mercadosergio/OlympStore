@@ -7,6 +7,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -14,11 +15,13 @@ import { MaterialModule } from './material/material.module';
     ReversePipe,
     TimeAgoPipe,
     HighlightDirective,
+    SpinnerComponent,
   ],
   exports: [
     ReversePipe,
     TimeAgoPipe,
     HighlightDirective,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

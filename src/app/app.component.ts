@@ -13,7 +13,7 @@ register();
 })
 export class AppComponent implements OnInit {
   imgParent = './assets/images/imagen.png';
-  showImage = true; 
+  showImage = true;
   products: Product[] = [];
 
   constructor(private authService: AuthService, private tokenService: TokenService) { }

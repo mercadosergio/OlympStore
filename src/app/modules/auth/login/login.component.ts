@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
             this.status = 'success';
             this.router.navigate(['/home']);
           },
-          error: () => {
+          error: (error) => {
             this.status = 'failed';
+            console.log(error);
           }
         });
     } else {
