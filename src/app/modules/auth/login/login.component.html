@@ -1,15 +1,13 @@
-<!-- <button class="btn btn-primary m-4" (click)="createUser()">Crear Usuario</button> -->
-<div class="bg">
-    <form [formGroup]="myform">
-        <div class="login-form">
-            <h1>
-                Ingresar
-            </h1>
-            <mat-form-field appearance="outline">
+<div class="w-screen h-screen flex flex-col items-center bg-white sm:bg-gray-100 pt-20">
+    <app-logo></app-logo>
+    <form [formGroup]="myform" class="flex">
+        <div class="flex flex-col sm:w-full md:w-96 lg:w-80 bg-white shadow-none sm:shadow-lg py-5 px-4 items-center">
+            <h1 class="font-medium">Iniciar sesión</h1>
+            <mat-form-field class="w-full" appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email">
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field class="w-full" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -17,9 +15,14 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            <button (click)="login()" class="loginbtn">Login</button>
-            <br>
-            <p>¿No tienes una cuenta? <a routerLink="/register">Registrate</a></p>
+            <button (click)="login()" class="bg-primary w-full text-white p-1 text-lg font-medium">Login</button>
+            <hr class="my-4 border-b-1 border-r-gray-300" />
+            <div
+                class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
+                <a routerLink="/forgot-password" class="text-blue-600">Olvidé la contraseña</a>
+                <span class="text-gray-500 hidden md:block">•</span>
+                <a routerLink="/register" class="text-blue-600">Registrarme</a>
+            </div>
         </div>
     </form>
 </div>

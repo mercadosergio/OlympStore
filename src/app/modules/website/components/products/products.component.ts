@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService,
-    private filesService: FilesService
+    private filesService: FilesService,
   ) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }

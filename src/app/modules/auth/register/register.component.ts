@@ -27,7 +27,8 @@ interface UserRole {
 })
 
 export class RegisterComponent implements OnInit {
-  hide = true;
+  hide: boolean = true;
+  visibilityIcon: string = '';
   // public formRegister!: FormGroup;
   // public formVerifyEmail!: FormGroup;
 
@@ -69,7 +70,9 @@ export class RegisterComponent implements OnInit {
   }, {
     validators: [CustomValidators.MatchValidator('password', 'confirmPassword')]
   });
+
   ngOnInit(): void {
+    this.visibilityIcon = (this.hide ? 'visibility_off' : 'visibility');
   }
 
   register() {

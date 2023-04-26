@@ -14,7 +14,10 @@ export class HomeComponent implements OnInit {
   offset = 0;
   productId: string | null = null;
 
-  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private productsService: ProductsService,
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
     this.productsService.getProductsByPage(10, 0)
@@ -22,10 +25,11 @@ export class HomeComponent implements OnInit {
         this.products = data;
         this.offset += this.limit;
       });
+
     this.activatedRoute.queryParamMap.subscribe(params => {
-        this.productId=params.get('product');
-        console.log(this.productId);
-        
+      this.productId = params.get('product');
+      console.log(this.productId);
+
     });
   }
 

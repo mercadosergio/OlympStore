@@ -1,14 +1,14 @@
 <a [routerLink]="['/product',product.id]">
   <app-img *ngIf="product.images.length > 0" [img]="product.images[0]"></app-img>
 </a>
-<h2>{{product.price | currency: 'COP'}}</h2>
-<p>{{product.title}}</p>
-<h2>{{product.taxes | currency: 'COP'}}</h2>
-<!-- <p appHighlight>{{product.description}}</p> -->
+<h1 class="font-semibold text-green-600 text-2xl my-1">{{product.price | currency: 'COP'}}</h1>
+<p class="m-0">{{product.title}}</p>
+<h2 class="font-semibold text-green-600 text-2xl my-1">{{product.taxes | currency: 'COP'}}</h2>
 
-<div class="actions-container">
-  <button class="detail-button bkg-primary" (click)="onShowDetail()">Details</button>
-  <button type="button" class="cart-button" (click)="onAddToCart()">
+<div class="flex justify-between mt-3">
+  <button class="rounded-md py-2.5 px-2 text-base bg-primary text-white" (click)="onShowDetail()">Details</button>
+  <button class="rounded-md py-2.5 px-2 text-base bg-secondary hover:bg-white hover:border-secondary border"
+    type="button" (click)="onAddToCart()">
     Add to cart<i class="bi bi-cart-plus-fill"></i>
   </button>
 </div>

@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MaterialModule } from './modules/shared/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
+import { LogoComponent } from './modules/shared/components/logo/logo.component';
 
 
 
@@ -25,6 +26,7 @@ import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
+    LogoComponent
   ],
   imports: [
     FormsModule,
@@ -35,7 +37,7 @@ import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
     ReactiveFormsModule,
     MaterialModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },

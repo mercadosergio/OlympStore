@@ -9,7 +9,7 @@ export class StoreService {
 
   private newShoppingCart: Product[] = [];
   private myCart = new BehaviorSubject<Product[]>([]);
-  myCart$ = this.myCart.asObservable();// observable
+  myCart$ = this.myCart.asObservable();
 
   constructor() { }
 

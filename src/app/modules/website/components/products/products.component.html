@@ -1,43 +1,63 @@
-<div class="products-layout">
-    <app-product class="product-card" [product]="product" *ngFor="let product of products"
-        (addedProduct)="onAddShoppingCart($event)" (showProduct)="onShowDetail($event)"></app-product>
+<div class="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4
+py-5 px-7 lg:w-11/12 m-auto">
+	<app-product *ngFor="let product of products"
+		[product]="product"
+		(addedProduct)="onAddShoppingCart($event)"
+		(showProduct)="onShowDetail($event)"
+		class="p-4 bg-white shadow-lg rounded-lg my-2 sm:my-0 hover:bg-gray-300 cursor-pointer">
+	</app-product>
 </div>
-<div class="load-products">
-    <button class="load_more bgless-btn" (click)="onLoadMore()"><u>Next</u></button>
+<div class="flex mx-auto my-7 w-72">
+	<button (click)="onLoadMore()"
+		class="bg-white m-auto text-xl text-secondary border border-primary rounded-lg p-3">
+		Ver más
+	</button>
 </div>
-<aside class="product-detail shadow p-3 bg-white rounded" [class.active]="showDetail">
-    <div *ngIf="productChosen">
-        <button (click)="toggleDetail()">
-            <i class="bi bi-box-arrow-right"></i>
-        </button>
-
-        <div class="title-detail">
-            <h2>Detalles del producto</h2>
-        </div>
-        <div>
-            <swiper-container class="mySwiper" navigation="true" pagination="true" keyboard="true" mousewheel="true"
-                css-mode="true">
-                <swiper-slide *ngFor="let img of productChosen.images">
-                    <img [src]="img" class="" alt="...">
-                </swiper-slide>
-            </swiper-container>
-        </div>
-
-        <div class="product-information">
-            <h1>{{productChosen.title}}</h1>
-            <p>{{productChosen.description}}</p>
-
-            <del>
-                <h2 class="price-before">{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}</h2>
-            </del>
-            <h2 class="price">{{productChosen.price | currency: 'COP'}}</h2>
-            <!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
-            <!-- <button (click)="deleteProduct()" class="btn btn-danger">Delete</button> -->
-            <a [routerLink]="['/product',productChosen.id]">Ver</a>
-        </div>
-    </div>
+<aside [class.active]="showDetail"
+	class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0
+	flex flex-col justify-start shadow-xl">
+	<div *ngIf="productChosen">
+		<button (click)="toggleDetail()">
+			<i class="bi bi-box-arrow-right"></i>
+		</button>
+		<h1 class="text-4xl">
+			Detalles del producto
+		</h1>
+		<div>
+			<swiper-container class="mySwiper"
+				navigation="true"
+				pagination="true"
+				keyboard="true"
+				mousewheel="true"
+				css-mode="true">
+				<swiper-slide *ngFor="let img of productChosen.images">
+					<img [src]="img"
+						class
+						alt="...">
+				</swiper-slide>
+			</swiper-container>
+		</div>
+		<div class="my-4">
+			<h1 class="text-3xl font-bold text-secondary">
+				{{productChosen.title}}
+			</h1>
+			<p class="text-base">
+				{{productChosen.description}}
+			</p>
+			<del class="text-red-600">
+				<p class="text-lg">
+					{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}
+				</p>
+			</del>
+			<p class="text-2xl text-green-700 font-bold">
+				{{productChosen.price | currency: 'COP'}}
+			</p>
+			<!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
+			<!-- <button (click)="deleteProduct()" class="btn btn-danger">Delete</button> -->
+			<a [routerLink]="['/product',productChosen.id]">Ver</a>
+		</div>
+	</div>
 </aside>
-
 <!-- <p>Productos añadidos: {{newShoppingCart.length}}</p> -->
 <!-- <p>Total: ${{total}}</p> -->
 <!-- <p hidden>Today: {{ today | date: 'short'}}</p>
@@ -47,11 +67,9 @@
 <p hidden>{{ 'LoremDSADSAD' | reverse}}</p> -->
 <!-- <button (click)="createNewProduct()">create</button> -->
 <!-- <button color="primary" class="btn" (click)="onShowDetail('1231243124')">Detalle</button> -->
-
 <!-- <a href="./assets/files/texto.txt" download>Descargar archivo</a> -->
 <!-- <button color="primary" (click)="download()">Descargar Pdf http</button> -->
-<!--
-<div>
+<!-- <div>
     <input type="file" (change)="onUpload($event)">
     <img *ngIf="imgRta" [src]="imgRta" alt="">
 </div> -->

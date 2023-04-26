@@ -1,35 +1,43 @@
-<form [formGroup]="formRegister">
-    <div class="card">
-        <h1>
-            Registrarse
-        </h1>
-        <mat-form-field appearance="outline">
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Rol</mat-label>
-            <mat-select formControlName="role">
-                <mat-option *ngFor="let rol of userRole" [value]="rol.role">
-                    {{rol.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <button (click)="register()" class="registerbtn">Registrarme</button>
-        <p>¿Ya tienes una cuenta? <a routerLink="/login">Inciar sesión</a></p>
+<div class="w-screen h-screen bg-white sm:bg-gray-100 
+relative flex flex-col items-center pt-20">
+    <app-logo class=""></app-logo>
+    <form [formGroup]="formRegister" class="flex w-11/12 sm:w-96">
+        <div class="flex flex-col py-5 px-4 bg-gray-50 w-full items-center shadow-none sm:shadow-lg">
+            <h1 class="font-medium">
+                Registro de usuario
+            </h1>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon aria-hidden="false" fontIcon="home"></mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Rol</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let rol of userRole" [value]="rol.role">
+                        {{rol.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button (click)="register()" [disabled]="!formRegister.valid"
+                class="bg-primary w-full text-white p-1 text-lg font-medium">Registrarme</button>
+            <hr class="my-4 border-b-1 border-r-gray-300" />
+            <div
+                class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
+                <a routerLink="/login" class="text-blue-600">Iniciar sesión</a>
+            </div>
 
-      </div>
-</form>
-<!-- [disabled]="!myform.valid" -->
+        </div>
+    </form>
+</div>

@@ -41,7 +41,7 @@ import { CategoryComponent } from './pages/category/category.component';
     ProfileComponent,
     ProductDetailComponent,
     LayoutComponent,
-    CategoryComponent
+    CategoryComponent,
   ],
   imports: [
     CommonModule,

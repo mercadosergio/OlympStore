@@ -21,10 +21,12 @@ export class ProductComponent {
       name: ''
     }
   };
+  // productsCounter: number | string = 0;
+
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {}
 
   onAddToCart() {
     this.addedProduct.emit(this.product);

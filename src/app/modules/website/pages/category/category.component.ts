@@ -18,7 +18,10 @@ export class CategoryComponent implements OnInit {
 
   productId: string | null = null;
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductsService
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
@@ -39,5 +42,13 @@ export class CategoryComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.productId = params.get('product');
     });
+  }
+
+  onLoadMore() {
+    this.productService.getProductsByPage(this.limit, this.offset)
+      .subscribe(data => {
+        this.products = this.products.concat(data);
+        this.offset += this.limit;
+      });
   }
 }

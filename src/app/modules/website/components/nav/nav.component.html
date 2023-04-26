@@ -1,92 +1,156 @@
-<header class="show-mobile bkg-primary">
-    <nav>
-        <button (click)="toggleMenu()">
-            <i class="bi bi-list"></i>
-        </button>
-        <a routerLink="home">
-            <img src="./assets/images/olymp-logo.png" alt="Olymp logo" width="200">
-        </a>
-        <button>
-            <i class="bi bi-cart-fill"></i>
-            <span class="counter">{{counter}}</span>
-        </button>
-    </nav>
+<header class="block md:hidden bg-primary text-white duration-200">
+	<nav class="w-full p-4 flex justify-between items-center">
+		<button (click)="toggleMenu()">
+			<i class="bi bi-list text-3xl"></i>
+		</button>
+		<a routerLink="home">
+			<img class="w-36"
+				src="./assets/images/olymp-logo.png"
+				alt="Olymp logo">
+		</a>
+		<button class="relative">
+			<i class="bi bi-cart-fill text-3xl"></i>
+			<span class="w-5 h-5 leading-5 bg-secondary rounded-full block text-white text-center absolute -top-2.5 -right-2.5">{{counter}}</span>
+		</button>
+	</nav>
 </header>
-
-<aside class="side-menu" [class.active]="activeMenu">
-    <button class="closebtn" (click)="toggleMenu()">
-        <i class="bi bi-x-lg"></i>
-    </button>
-    <ul>
-        <li>
-            <a href="" routerLink="home">Todo</a>
-        </li>
-        <li *ngFor="let item of categories">
-            <a [routerLink]="['/category',item.id]">{{item.name}}</a>
-        </li>
-    </ul>
+<aside [class.active]="activeMenu"
+	class="side-menu fixed top-0 right-0 left-0 bottom-0 z-10 bg-primary 
+        text-white flex justify-start ease-out duration-500">
+	<button (click)="toggleMenu()"
+		class="absolute top-0 right-5 ml-11">
+		<i class="bi bi-x-lg text-3xl"></i>
+	</button>
+	<ul class="w-full mt-11">
+		<li>
+			<a (click)="toggleMenu()"
+				class="my-2.5 text-xl block duration-300 hover:border-l-8 hover:border-l-white p-2 pl-8"
+				routerLink="home">
+				All
+			</a>
+		</li>
+		<li *ngFor="let item of categories">
+			<a [routerLink]="['/category',item.id]"
+				(click)="toggleMenu()"
+				class="my-2.5 text-xl block duration-300 hover:border-l-8 hover:border-l-white p-2 pl-8">
+				{{item.name}}
+			</a>
+		</li>
+	</ul>
 </aside>
-
-<header class="hide-mobile bkg-primary" (scroll)="onScroll()" [ngClass]="navbarfixed ? 'fixed' : 'nonfixed'">
-    <div>
-        <nav>
-            <a routerLink="home" class="logo">
-                <img src="./assets/images/olymp-logo.png" alt="Olymp logo">
-            </a>
-
-            <ul class="menu-ul--category">
-                <li>
-                    <a routerLinkActive="active" href="" routerLink="home">All</a>
-                </li>
-                <li *ngFor="let item of categories">
-                    <a routerLinkActive="active" [routerLink]="['/category',item.id]">{{item.name}}</a>
-                </li>
-            </ul>
-
-        </nav>
-        <nav class="info">
-            <div class="accounts">
-                <!-- <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button> -->
-                <a class="auth-options" *ngIf="!profile; else elseBlock" routerLink="/login">Login</a>
-                <a class="auth-options" *ngIf="!profile; else elseBlock" routerLink="/register">Sign up</a>
-                <ng-template #elseBlock>
-                    <ul class="">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ profile?.email }}
-                            </a>
-                            <ul class="dropdown-menu" style="padding-left: 10px; padding-right: 10px;"
-                                aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" routerLink="/profile"
-                                        style="display: flex; align-items: center;" href="#">
-                                        <mat-icon>settings</mat-icon> Profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" *ngIf="profile?.role == 'admin'" routerLink="/cms"
-                                        style="display: flex; align-items: center;">
-                                        <mat-icon>vpn_key</mat-icon> Administración</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a style="color: #EF4444; display: flex; align-items: center; cursor: pointer;"
-                                        class="dropdown-item logout" (click)="logout()">
-                                        <mat-icon>exit_to_app</mat-icon> Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </ng-template>
-            </div>
-            <div class="cart">
-                <a href="">
-                    <i class="bi bi-cart-fill"></i>
-                </a>
-                <span class="counter">{{counter}}</span>
-            </div>
-        </nav>
-    </div>
+<header [ngClass]="navbarfixed ? 'fixed' : 'nonfixed'"
+	(scroll)="onScroll()"
+	class="hidden md:block duration-200 desktop">
+	<nav class="w-full flex bg-white">
+		<div class="w-11/12 m-auto flex justify-between text-black items-center">
+			<a routerLink="home"
+				class="mr-4 flex items-center">
+				<img class="m-2.5 w-60"
+					src="./assets/images/olymp-logo.png"
+					alt="Olymp logo">
+			</a>
+			<div class>
+				<form id="animated-2">
+					<input type="text"
+						class="py-3 px-5 text-sm border border-gray-400 border-r-0 
+						rounded-tl rounded-bl w-52"
+						name="q"
+						maxlength="100">
+					<button type="submit"
+						class="py-3 px-4 text-base text-center bg-gray-300 rounded-tr 
+						rounded-br relative -left-1 hover:bg-gray-400">
+						<i class="bi bi-search"></i>
+					</button>
+				</form>
+			</div>
+			<div class="mr-2 flex">
+				<a *ngIf="!profile; else elseBlock"
+					class="text-base mx-1"
+					routerLink="/login">
+					Login
+				</a>
+				<a *ngIf="!profile; else elseBlock"
+					class="text-base mx-1"
+					routerLink="/register">
+					Sign up
+				</a>
+				<ng-template #elseBlock>
+					<ul class>
+						<li class="nav-item dropdown">
+							<a class="text-xl"
+								id="navbarDropdown"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								{{ profile?.email }}
+							</a>
+							<ul class="dropdown-menu"
+								style="padding-left: 10px; padding-right: 10px;"
+								aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item"
+										routerLink="/profile"
+										style="display: flex; align-items: center;"
+										href="#">
+										<mat-icon>settings</mat-icon>
+										Profile
+									</a>
+								</li>
+								<li>
+									<a *ngIf="profile?.role == 'admin'"
+										class="dropdown-item"
+										routerLink="/cms"
+										style="display: flex; align-items: center;">
+										<mat-icon>vpn_key</mat-icon>
+										Administración
+									</a>
+								</li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<a (click)="logout()"
+										style="color: #EF4444; display: flex; align-items: center; cursor: pointer;"
+										class="dropdown-item logout">
+										<mat-icon>exit_to_app</mat-icon>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</ng-template>
+			</div>
+		</div>
+	</nav>
+	<div class="flex px-4 justify-between bg-primary text-white h-16">
+		<nav class="flex items-center">
+			<ul class="ml-16 flex list-none h-full">
+				<li class="mr-2.5 flex">
+					<a class="text-base mx-1 flex items-center py-2 px-3 menu-item ease-out duration-200 hover:bg-secondary"
+						routerLinkActive="active"
+						href
+						routerLink="home">
+						All
+					</a>
+				</li>
+				<li *ngFor="let item of categories"
+					class="mr-2.5 flex">
+					<a [routerLink]="['/category',item.id]"
+						class="text-base mx-1 flex items-center py-2 px-3 menu-item ease-out duration-200 hover:bg-secondary"
+						routerLinkActive="active">
+						{{item.name}}
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="flex items-center">
+			<div class="relative mx-4">
+				<a href>
+					<i class="bi bi-cart-fill text-2xl"></i>
+				</a>
+				<span class="w-5 h-5 leading-5 bg-secondary rounded-full block text-white text-center absolute -top-2.5 -right-2.5">{{counter}}</span>
+			</div>
+		</nav>
+	</div>
 </header>
