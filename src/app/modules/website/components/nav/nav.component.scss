@@ -11,6 +11,16 @@
     top: -50px;
 }
 
+.up-fixed {
+    transition: 0.2s linear;
+    height: 0px;
+}
+
+.up-nonfixed {
+    transition: 0.2s linear;
+    height: 100%;
+}
+
 // Input search
 
 *,
