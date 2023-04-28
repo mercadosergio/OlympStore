@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { StoreService } from 'src/app/services/store.service';
+import { initDropdowns } from 'flowbite';
 
 @Component({
   selector: 'app-nav',
@@ -19,6 +20,7 @@ export class NavComponent implements OnInit {
   profile: User | null = null;
 
   navbarfixed: boolean = false;
+  user$ = this.authService.user$;
 
   @HostListener('window:scroll', ['$event']) onScroll() {
     if (window.scrollY > 100) {
@@ -43,6 +45,7 @@ export class NavComponent implements OnInit {
       .subscribe(data => {
         this.profile = data;
       });
+    initDropdowns();
   }
 
   toggleMenu() {
@@ -60,15 +63,6 @@ export class NavComponent implements OnInit {
     if (!this.profile) {
       this.router.navigate(['/login']);
     }
-
-    // this.authService.loginAndGet('admin@mail.com', 'admin123')
-    //   .subscribe();
-
-    // this.authService.login('sergio@mail.com', '1234')
-    //   .subscribe(rta => {
-    //     console.log(rta.access_token);
-    //     this.token = rta.access_token;
-    //   });
   }
 
   // getProfile() {

@@ -19,6 +19,8 @@ export class AdminGuard implements CanActivate {
       .pipe(
         map(user => {
           if (user?.role === 'admin') {
+            console.log(user?.role);
+            
             return true;
           } else {
             this.router.navigate(['/home']);

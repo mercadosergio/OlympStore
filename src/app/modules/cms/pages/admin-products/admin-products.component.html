@@ -1,63 +1,168 @@
-<div class="cont">
-    <h1>Administrar productos</h1>
-    <!-- <mat-form-field appearance="standard">
+<div class="mx-8">
+	<h1>
+		Administrar productos
+	</h1>
+	<!-- <mat-form-field appearance="standard">
         <mat-label>Buscar</mat-label>
         <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="" #input />
     </mat-form-field> -->
 
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
-            <!-- Id Column -->
-            <ng-container matColumnDef="id">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Id </th>
-                <td valign="middle" mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
 
-            <!-- Image Column -->
-            <ng-container matColumnDef="image">
-                <th valign="middle" mat-header-cell *matHeaderCellDef> Image </th>
-                <td valign="middle" mat-cell *matCellDef="let element"> <img class="imgRef" [src]="element.images[0]" alt=""> </td>
-            </ng-container>
 
-            <!-- Title Column -->
-            <ng-container matColumnDef="title">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title"> Title </th>
-                <td valign="middle" mat-cell *matCellDef="let element"> {{element.title}} </td>
-            </ng-container>
 
-            <!-- Price Column -->
-            <ng-container matColumnDef="price">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price"> Price </th>
-                <td valign="middle" mat-cell *matCellDef="let element"> $ {{element.price}} </td>
-            </ng-container>
-            <!-- Description Column -->
-            <ng-container style="max-width: 500px;" matColumnDef="description">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by description"> Description </th>
-                <td valign="middle" class="desc" mat-cell *matCellDef="let element"> {{element.description}} </td>
-            </ng-container>
-            <!-- Category Column -->
-            <ng-container matColumnDef="category">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category"> Category </th>
-                <td valign="middle" mat-cell *matCellDef="let element"> {{element.category.name}} </td>
-            </ng-container>
-            <!-- Action Column -->
-            <ng-container matColumnDef="action">
-                <th valign="middle" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                <td valign="middle" mat-cell *matCellDef="let element">
-                    <a class="edit">
-                        <mat-icon>edit</mat-icon>
-                    </a>
-                    <a class="delete">
-                        <mat-icon>delete</mat-icon>
-                    </a>
-                </td>
-            </ng-container>
+	<div class="mat-elevation-z8">
+		<table [dataSource]="dataSource"
+			(matSortChange)="announceSortChange($event)"
+			mat-table
+			matSort>
+			<!-- Id Column -->
+			<ng-container matColumnDef="id">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header
+					sortActionDescription="Sort by number">
+					Id
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					{{element.id}}
+				</td>
+			</ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of products elements">
-        </mat-paginator>
-    </div>
+
+
+
+			<!-- Image Column -->
+			<ng-container matColumnDef="image">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell>
+					Image
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					<img [src]="element.images[0]"
+						class="w-20"
+						alt>
+				</td>
+			</ng-container>
+
+
+
+
+
+			<!-- Title Column -->
+			<ng-container matColumnDef="title">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header
+					sortActionDescription="Sort by title">
+					Title
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					{{element.title}}
+				</td>
+			</ng-container>
+
+
+
+
+
+			<!-- Price Column -->
+			<ng-container matColumnDef="price">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header
+					sortActionDescription="Sort by price">
+					Price
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					$ {{element.price}}
+				</td>
+			</ng-container>
+			<!-- Description Column -->
+			<ng-container style="max-width: 500px;"
+				matColumnDef="description">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header
+					sortActionDescription="Sort by description">
+					Description
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					class="overflow-auto"
+					mat-cell>
+					{{element.description}}
+				</td>
+			</ng-container>
+			<!-- Category Column -->
+			<ng-container matColumnDef="category">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header
+					sortActionDescription="Sort by category">
+					Category
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					{{element.category.name}}
+				</td>
+			</ng-container>
+			<!-- Action Column -->
+			<ng-container matColumnDef="action">
+				<th *matHeaderCellDef
+					valign="middle"
+					mat-header-cell
+					mat-sort-header>
+					Action
+				</th>
+				<td *matCellDef="let element"
+					valign="middle"
+					mat-cell>
+					<a class="edit text-blue-700 mx-1">
+						<fa-icon [icon]="faPenToSquare"
+							class="text-2xl"></fa-icon>
+					</a>
+					<a class="delete text-red-500 mx-1">
+						<fa-icon [icon]="faTrashCan"
+							class="text-2xl"></fa-icon>
+					</a>
+				</td>
+			</ng-container>
+
+
+
+
+
+			<tbody>
+				<tr *matHeaderRowDef="displayedColumns"
+					mat-header-row></tr>
+				<tr *matRowDef="let row; columns: displayedColumns;"
+					mat-row></tr>
+			</tbody>
+		</table>
+
+
+
+
+
+		<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+			showFirstLastButtons
+			aria-label="Select page of products elements">
+		</mat-paginator>
+	</div>
 </div>

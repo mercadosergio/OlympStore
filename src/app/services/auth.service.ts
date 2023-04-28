@@ -1,12 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Auth, ResponseLogin } from '../models/auth.model';
-import { CreateUserDTO, User } from '../models/user.model';
+import { Auth } from '../models/auth.model';
+import { User } from '../models/user.model';
 import { TokenService } from './token.service';
-import { ILogin } from '../models/interfaces/login.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +13,20 @@ import { ILogin } from '../models/interfaces/login.model';
 export class AuthService {
 
   private apiUrl = `${environment.API_URL}/api`;
-  private user = new BehaviorSubject<User | null>(null);
-  user$ = this.user.asObservable();
+  user$ = new BehaviorSubject<User | null>(null);
+
 
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
 
+  getDataUser() {
+    return this.user$.getValue();
+  }
+
   login(email: string, password: string) {
-    return this.http.post<ResponseLogin>(`${this.apiUrl}/auth/login`, {
+    return this.http.post<Auth>(`${this.apiUrl}/auth/login`, {
       email,
       password
     })
@@ -36,7 +39,7 @@ export class AuthService {
   }
 
   register(name: string, email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/api/users`, {
+    return this.http.post(`${this.apiUrl}/users`, {
       name,
       email,
       password
@@ -46,26 +49,23 @@ export class AuthService {
   registerAndLogin(name: string, email: string, password: string) {
     return this.register(name, email, password)
       .pipe(
-        switchMap(() => this.login(email, password))
+        switchMap(() => this.loginAndGet(email, password))
       );
   }
 
+  getMeProfile() {
+    return this.http.get<User>(`${this.apiUrl}/auth/profile`, {
+      context: checkToken(),
+    });
+  }
 
   getProfile() {
-    // let headers = new HttpHeaders();
-    // headers = headers.set('Authorization', `Bearer ${token}`);
-    // const headers = new HttpHeaders();
-    // headers.set('Authorization', `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiUrl}/profile`
-      // ,{
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      //   // 'Content-type': 'application/json'
-      // }
-      // }
-    ).pipe(
-      tap(user => this.user.next(user))
-    );
+    return this.getMeProfile()
+      .pipe(
+        tap(user => {
+          this.user$.next(user);
+        })
+      );
   }
 
   loginAndGet(email: string, password: string) {

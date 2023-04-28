@@ -1,28 +1,31 @@
-.grid-cms {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+.card:hover .ref {
+    animation: skew-y-shakeing 0.5s;
+    animation-iteration-count: 1;
 }
 
-a {
-    text-decoration: none;
-}
 
-.card {
-    padding: 15px;
-    // height: 200px;
-    border: 3px solid var(--primary);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    i {
-        color: var(--secondary);
-        font-size: 140px;
+@keyframes skew-y-shakeing {
+    0% {
+        transform: skewY(-15deg);
     }
-    p {
-        margin: 15px auto;
-        font-size: 20px;
-        color: var(--secondary);
+
+    5% {
+        transform: skewY(15deg);
+    }
+
+    10% {
+        transform: skewY(-15deg);
+    }
+
+    15% {
+        transform: skewY(15deg);
+    }
+
+    20% {
+        transform: skewY(0deg);
+    }
+
+    100% {
+        transform: skewY(0deg);
     }
 }

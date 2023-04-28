@@ -22,11 +22,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
 import { ImgComponent } from './components/img/img.component';
 import { CategoryComponent } from './pages/category/category.component';
-
-
 
 @NgModule({
   declarations: [
@@ -35,7 +32,6 @@ import { CategoryComponent } from './pages/category/category.component';
     MycartComponent,
     ProductComponent,
     ProductsComponent,
-    ModalAlertaComponent,
     ImgComponent,
     RecoveryComponent,
     ProfileComponent,

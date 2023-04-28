@@ -1,4 +1,4 @@
-div {
+.layout {
     display: grid;
     height: 100vh;
     grid-template-columns: 220px 1fr;
@@ -6,21 +6,11 @@ div {
     grid-template-areas: "header header header" "nav content content";
     header {
         grid-area: header;
-        background-color: #6eccb1;
-        color: white;
-        padding: 1em;
-        // box-shadow: 1px 2px 4px 0 rgb(21 99 157 / 16%);
-        border-bottom: 1px solid rgba(21, 99, 157, 0.16);
         box-shadow: 0px 2px 5px rgb(black, .2);
-        display: flex;
-        img {
-            width: 130px;
-        }
     }
-    nav {
+    aside {
         grid-area: nav;
         border-right: 1px solid rgba(21, 99, 157, 0.16);
-        background-color: #fff;
         a {
             margin: 0;
             padding: 0;

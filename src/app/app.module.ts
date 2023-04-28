@@ -17,8 +17,7 @@ import { MaterialModule } from './modules/shared/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { LogoComponent } from './modules/shared/components/logo/logo.component';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -38,6 +37,7 @@ import { LogoComponent } from './modules/shared/components/logo/logo.component';
     MaterialModule,
     ReactiveFormsModule,
     SharedModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },

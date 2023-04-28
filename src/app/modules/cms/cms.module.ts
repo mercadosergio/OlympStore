@@ -7,6 +7,7 @@ import { GridComponent } from './pages/grid/grid.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MaterialModule } from '../shared/material/material.module';
   imports: [
     CommonModule,
     CmsRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule
   ]
 })
 export class CmsModule { }

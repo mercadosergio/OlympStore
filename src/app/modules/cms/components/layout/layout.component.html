@@ -1,47 +1,87 @@
-<div>
-    <header>
-        <img src="./assets/images/olymp-logo.png">
-        <!-- <div> -->
-        <a *ngIf="!profile; else elseBlock" routerLink="/login" mat-button>Sign in</a>
-        <ng-template #elseBlock>
-            <ul class="">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle profileEmail" style="color: #000; font-size: 18px;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ profile?.email }}
-                      </a>
-                    <ul class="dropdown-menu" style="padding-left: 10px; padding-right: 10px;" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" routerLink="/profile" style="display: flex; align-items: center;" href="#">
-                                <mat-icon>settings</mat-icon> Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" *ngIf="profile?.role == 'admin'" routerLink="/cms" style="display: flex; align-items: center;">
-                                <mat-icon>vpn_key</mat-icon> Administración</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a style="color: #EF4444; display: flex; align-items: center; cursor: pointer;" class="dropdown-item logout" (click)="logout()">
-                                <mat-icon>exit_to_app</mat-icon> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </ng-template>
-        <!-- </div> -->
-    </header>
-    <nav>
-        <ul>
-            <li>
-                <mat-icon>remove_red_eye</mat-icon>
-                <a routerLink="/home">Ver como usuario</a>
-            </li>
-            <li><a routerLink="grid">Grid Page</a></li>
-            <li><a routerLink="tasks">Tasks Page</a></li>
-        </ul>
-    </nav>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
+<div class="layout">
+	<header class="hidden md:flex justify-center bg-primary text-white top-0 drop-shadow desktop">
+		<nav class="w-11/12 m-auto flex justify-between items-center">
+			<a routerLink="home"
+				class="mr-4 flex items-center">
+				<img class="m-2.5 w-60"
+					src="./assets/images/olymp-logo.png"
+					alt="Olymp logo">
+			</a>
+			<div class="mr-2 flex">
+				<ng-container *ngIf="user$ | async as user">
+					<button id="dropdownInformationButton"
+						data-dropdown-toggle="dropdownInformation"
+						class="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+						type="button">
+						<img class="h-8 w-8 rounded-full"
+							src="../assets/images/descarga.jpg"
+							alt>
+					</button>
+					<div id="dropdownInformation"
+						class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+						<div class="px-4 py-3 text-sm text-gray-900">
+							<div>{{profile?.name}}</div>
+							<div class="font-medium truncate">
+								{{ profile?.email }}
+							</div>
+						</div>
+						<ul class="py-2 text-sm text-gray-700"
+							aria-labelledby="dropdownInformationButton">
+							<li>
+								<a routerLink="/profile"
+									class="block px-4 py-2 hover:bg-gray-100 text-gray-700">
+									Settings
+								</a>
+							</li>
+							<li *ngIf="profile?.role == 'admin'">
+								<a class="block px-4 py-2 hover:bg-gray-100 text-gray-700"
+									routerLink="/cms">
+									Administración
+								</a>
+							</li>
+						</ul>
+						<div class="py-2">
+							<a (click)="logout()"
+								routerLink
+								class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+								Sign out
+							</a>
+						</div>
+					</div>
+				</ng-container>
+			</div>
+		</nav>
+	</header>
+	<aside id="default-sidebar"
+		class="bg-white"
+		aria-label="Sidebar">
+		<div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+			<ul class="space-y-2 font-medium">
+				<li>
+					<a routerLink="/home"
+						class="flex items-center p-2 text-gray-900 rounded-lg w-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+						<fa-icon [icon]="faEye"></fa-icon>
+						<span class="ml-3">Watch as customer</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="grid"
+						class="flex items-center p-2 text-gray-900 rounded-lg w-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+						<fa-icon [icon]="faGrip"></fa-icon>
+						<span class="ml-3">Grid Page</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="tasks"
+						class="flex items-center p-2 text-gray-900 rounded-lg w-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+						<fa-icon [icon]="faBars"></fa-icon>
+						<span class="ml-3">Tasks Page</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</aside>
+	<main>
+		<router-outlet></router-outlet>
+	</main>
 </div>

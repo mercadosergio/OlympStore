@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -28,6 +29,9 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  faTrashCan = faTrashCan;
+  faPenToSquare = faPenToSquare;
 
   constructor(private productService: ProductsService, private _liveAnnouncer: LiveAnnouncer) {
   }

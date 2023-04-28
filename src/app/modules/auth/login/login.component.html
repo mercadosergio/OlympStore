@@ -1,28 +1,72 @@
 <div class="w-screen h-screen flex flex-col items-center bg-white sm:bg-gray-100 pt-20">
-    <app-logo></app-logo>
-    <form [formGroup]="myform" class="flex">
-        <div class="flex flex-col sm:w-full md:w-96 lg:w-80 bg-white shadow-none sm:shadow-lg py-5 px-4 items-center">
-            <h1 class="font-medium">Iniciar sesión</h1>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
-            </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            <button (click)="login()" class="bg-primary w-full text-white p-1 text-lg font-medium">Login</button>
-            <hr class="my-4 border-b-1 border-r-gray-300" />
-            <div
-                class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
-                <a routerLink="/forgot-password" class="text-blue-600">Olvidé la contraseña</a>
-                <span class="text-gray-500 hidden md:block">•</span>
-                <a routerLink="/register" class="text-blue-600">Registrarme</a>
-            </div>
-        </div>
-    </form>
+	<app-logo></app-logo>
+	<form [formGroup]="formLogin"
+		class="flex">
+		<div class="flex flex-col sm:w-full md:w-96 lg:w-80 bg-white shadow-none sm:shadow-lg py-5 px-4 items-center">
+			<h1 class="font-medium">Iniciar sesión</h1>
+			<mat-form-field class="w-full"
+				appearance="outline">
+				<mat-label>Email</mat-label>
+				<input matInput
+					formControlName="email">
+			</mat-form-field>
+			<div *ngIf="formLogin.controls.email.touched && formLogin.controls.email.invalid">
+				<p *ngIf="formLogin.controls.email.hasError('required')"
+					class="font-medium text-red-500 text-xs mt-1 ml-1">
+					This field is mandatory
+				</p>
+				<p *ngIf="formLogin.controls.email.hasError('email')"
+					class="font-medium text-red-500 text-xs mt-1 ml-1">
+					This field should be a email
+				</p>
+			</div>
+			<mat-form-field class="w-full"
+				appearance="outline">
+				<mat-label>Password</mat-label>
+				<input [type]="hide ? 'password' : 'text'"
+					matInput
+					formControlName="password">
+				<button [attr.aria-label]="'Hide password'"
+					[attr.aria-pressed]="hide"
+					(click)="hide = !hide"
+					mat-icon-button
+					matSuffix>
+					<fa-icon [icon]="hide ? faEyeSlash : faEye"></fa-icon>
+				</button>
+			</mat-form-field>
+			<div *ngIf="formLogin.controls.password.touched && formLogin.controls.password.invalid">
+				<p *ngIf="formLogin.controls.password.hasError('required')"
+					class="font-medium text-red-500 text-xs mt-1 ml-1">
+					This field is mandatory
+				</p>
+				<p *ngIf="formLogin.controls.password.hasError('minlength')"
+					class="font-medium text-red-500 text-xs mt-1 ml-1">
+					This field should be greater than 8 characters
+				</p>
+			</div>
+            <div *ngIf="status === 'failed'">
+                <p
+                  class="font-medium text-red-500 text-xs mt-1 ml-1"
+                >
+                  Credentials are invalid
+                </p>
+              </div>
+			<button (click)="login()"
+				class="bg-primary w-full text-white p-1 text-lg font-medium">
+				Login
+			</button>
+			<hr class="my-4 border-b-1 border-r-gray-300">
+			<div class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
+				<a routerLink="/forgot-password"
+					class="text-blue-600">
+					Olvidé la contraseña
+				</a>
+				<span class="text-gray-500 hidden md:block">•</span>
+				<a routerLink="/register"
+					class="text-blue-600">
+					Registrarme
+				</a>
+			</div>
+		</div>
+	</form>
 </div>

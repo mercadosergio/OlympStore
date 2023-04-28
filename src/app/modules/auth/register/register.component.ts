@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { OnExit } from 'src/app/guards/exit.guard';
 import { CustomValidators } from 'src/app/utils/validators';
 import { RequestStatus } from 'src/app/models/types/request-status.model';
-import { UsersService } from 'src/app/services/users.service';
-import { ModalAlertaComponent } from '../../website/components/modal-alerta/modal-alerta.component';
 import { AuthService } from 'src/app/services/auth.service';
-
-export interface DialogData {
-  message: string,
-  icon: string,
-}
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { IFormRegister } from 'src/app/models/interfaces/register.model';
 
 interface UserRole {
   name: string;
@@ -28,9 +20,10 @@ interface UserRole {
 
 export class RegisterComponent implements OnInit {
   hide: boolean = true;
+  hideConfirm: boolean = true;
   visibilityIcon: string = '';
-  // public formRegister!: FormGroup;
-  // public formVerifyEmail!: FormGroup;
+
+  public formRegister!: FormGroup<IFormRegister>;
 
   public userRole: UserRole[] = [
     {
@@ -43,35 +36,24 @@ export class RegisterComponent implements OnInit {
     }
   ];
 
-  public mensajeConfirm: string = '';
-  public icono: string = '';
+  // public mensajeConfirm: string = '';
+  // public icono: string = '';
 
   status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
 
   showRegisterForm: boolean = false;
 
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog,
     private router: Router) { }
 
-  formVerifyEmail = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.email, Validators.required]],
-  });
-
-  formRegister = this.formBuilder.nonNullable.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    confirmPassword: ['', [Validators.required]],
-    role: 'customer',
-  }, {
-    validators: [CustomValidators.MatchValidator('password', 'confirmPassword')]
-  });
-
   ngOnInit(): void {
+    this.loadForm();
     this.visibilityIcon = (this.hide ? 'visibility_off' : 'visibility');
   }
 
@@ -79,42 +61,32 @@ export class RegisterComponent implements OnInit {
     if (this.formRegister.valid) {
       this.status = 'loading';
       const { name, email, password } = this.formRegister.getRawValue();
-
       this.authService.registerAndLogin(name, email, password)
         .subscribe({
           next: () => {
             this.status = 'success';
-            // this.router.navigate(['/app/'])
+            this.router.navigate(['/home']);
           },
           error: (error) => {
             this.status = 'failed';
             console.log(error);
           }
-        })
-      // this.userService.create(this.formRegister.value)
-      //   .subscribe(rta => {
-      //     this.mensajeConfirm = 'Registro completado. Bienvenido!';
-      //     this.icono = 'check_circle_outline';
-      //     this.openDialog();
-      //     this.router.navigate(['/login']);
-      //   });
+        });
+    } else {
+      this.formRegister.markAllAsTouched();
     }
+    console.log(this.formRegister);
+    
   }
-  //implements onExit
-  // onExit() {
-  //   if (this.formRegister.valid) {
-  //     return false;
-  //   } else {
-  //     const rta = confirm('Estás seguro de salir?');
-  //     return rta;
-  //   }
-  // }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ModalAlertaComponent, {
-      width: '350px',
-      data: { message: this.mensajeConfirm, icon: this.icono },
+  private loadForm() {
+    this.formRegister = this.formBuilder.nonNullable.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required]],
+      role: 'customer',
+    }, {
+      validators: [CustomValidators.MatchValidator('password', 'confirmPassword')]
     });
   }
-
 }

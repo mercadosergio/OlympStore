@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faBars, faEye, faGrip } from '@fortawesome/free-solid-svg-icons';
+import { initDropdowns } from 'flowbite';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,11 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  
+
   profile: User | null = null;
-  constructor(private router: Router, private authService:AuthService) { }
+  faEye = faEye;
+  faGrip = faGrip;
+  faBars = faBars;
+
+  user$ = this.authService.user$;
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    initDropdowns();
   }
 
   logout() {

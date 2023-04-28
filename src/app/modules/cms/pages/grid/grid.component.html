@@ -1,8 +1,43 @@
-<div class="grid-cms">
-    <a routerLink="/cms/products-cms">
-        <div class="card">
-            <i class="bi bi-cart-check-fill"></i>
-            <p>Gestionar productos</p>
-        </div>
-    </a>
+<h1>Stats</h1>
+<div class="grid grid-cols-3 gap-9">
+	<div class="flex flex-row justify-center bg-gradient-to-r from-secondary via-white to-white p-6 gap-8 rounded-lg border-2 shadow-xl">
+		<div class="my-auto">
+			<div class="text-lg text-gray-800">Users</div>
+			<div class="text-4xl text-gray-700">{{usersCount}}</div>
+		</div>
+		<div class="text-blue-300 my-auto bg-blue-500 rounded-full p-4">
+			<fa-icon [icon]="faUsers"
+				class="text-4xl"></fa-icon>
+		</div>
+	</div>
+	<div class="flex flex-row justify-center bg-gradient-to-r from-secondary via-white to-white p-6 gap-8 rounded-lg border-2 shadow-xl">
+		<div class="my-auto">
+			<div class="text-lg text-gray-800">Products</div>
+			<div class="text-4xl text-gray-700">{{productsCount}}</div>
+		</div>
+		<div class="text-green-300 my-auto bg-green-500 rounded-full p-4">
+			<fa-icon [icon]="faBoxOpen"
+				class="text-4xl"></fa-icon>
+		</div>
+	</div>
+	<div class="flex flex-row justify-center bg-gradient-to-r from-secondary via-white to-white p-6 gap-8 rounded-lg border-2 shadow-xl">
+		<div class="my-auto">
+			<div class="text-lg text-gray-800">Categories</div>
+			<div class="text-4xl text-gray-700">{{categoriesCount}}</div>
+		</div>
+		<div class="text-yellow-300 my-auto bg-yellow-500 rounded-full p-4">
+			<fa-icon [icon]="faTags"
+				class="text-4xl"></fa-icon>
+		</div>
+	</div>
+</div>
+<div class="grid grid-cols-4 gap-7 my-10">
+	<a routerLink="/cms/products-cms"
+		class="shadow-lg">
+		<div class="card p-4 flex flex-col items-center border-solid border-2 border-secondary rounded-md bg-white">
+			<fa-icon [icon]="faShopify"
+				class="ref text-secondary text-10xl"></fa-icon>
+			<p class="text-black my-4 text-xl">Gestionar productos</p>
+		</div>
+	</a>
 </div>

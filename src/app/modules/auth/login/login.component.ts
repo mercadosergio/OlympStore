@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { IFormLogin, ILogin } from 'src/app/models/interfaces/login.model';
 import { RequestStatus } from 'src/app/models/types/request-status.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
   hide = true;
   status: RequestStatus = 'init';
 
-  public myform!: FormGroup<IFormLogin>;
+  public formLogin!: FormGroup<IFormLogin>;
+
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
 
   constructor(
     private authService: AuthService,
@@ -28,16 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   private loadForm() {
-    this.myform = this.formBuilder.nonNullable.group({
+    this.formLogin = this.formBuilder.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   login() {
-    if (this.myform.valid) {
+    if (this.formLogin.valid) {
       this.status = 'loading';
-      this.authService.loginAndGet(this.User.email, this.User.password)
+      this.authService.loginAndGet(this.formLogin.controls.email.value, this.formLogin.controls.password.value)
         .subscribe({
           next: () => {
             this.status = 'success';
@@ -45,18 +49,17 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             this.status = 'failed';
-            console.log(error);
           }
         });
     } else {
-      this.myform.markAsUntouched();
+      this.formLogin.markAsUntouched();
     }
   }
 
   get User(): ILogin {
     return {
-      email: this.myform.controls.email.value,
-      password: this.myform.controls.password.value,
+      email: this.formLogin.controls.email.value,
+      password: this.formLogin.controls.password.value,
     }
   }
 }
