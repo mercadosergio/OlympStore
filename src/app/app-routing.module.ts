@@ -14,13 +14,8 @@ const routes: Routes = [
       preload: true,
     }
   },
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'register',
-    canDeactivate: [ExitGuard],
-    component: RegisterComponent
-  },
-  { path: 'cms', canActivate: [AdminGuard], loadChildren: () => import('./modules/cms/cms.module').then(m => m.CmsModule) },
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'admin', canActivate: [AdminGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
   { path: '**', component: NotFoundComponent },
 ];
 

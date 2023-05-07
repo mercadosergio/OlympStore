@@ -1,5 +1,17 @@
 h1,
 h2,
 p {
-    margin: 0;
+  margin: 0;
+}
+
+.emerg {
+  opacity: 0;
+  visibility: hidden;
+  bottom: -24px;
+}
+
+.marco:hover > .emerg {
+  opacity: 80%;
+  visibility: visible;
+  bottom: 0;
 }

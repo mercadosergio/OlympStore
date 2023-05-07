@@ -5,14 +5,30 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { StoreService } from 'src/app/services/store.service';
-import { initDropdowns } from 'flowbite';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
+  animations: [
+    trigger('AnimationTrigger0', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(.95)' }),
+        animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'scale(1)' }),
+        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' }))
+      ])
+    ])
+  ]
 })
 export class NavComponent implements OnInit {
+
+  isProfileDropdown = false;
+  faShoppingCart = faShoppingCart;
 
   activeMenu = false;
   counter = 0;
@@ -45,10 +61,10 @@ export class NavComponent implements OnInit {
       .subscribe(data => {
         this.profile = data;
       });
-    initDropdowns();
+    this.isProfileDropdown = false;
   }
 
-  toggleMenu() {
+  toggleMobileSidebar() {
     this.activeMenu = !this.activeMenu;
   }
 
@@ -65,16 +81,13 @@ export class NavComponent implements OnInit {
     }
   }
 
-  // getProfile() {
-  //   this.authService.getProfile(this.token)
-  //     .subscribe(profile => {
-  //       console.log(profile);
-  //     });
-  // }
-
   logout() {
     this.authService.logout();
     this.profile = null;
     this.router.navigate(['/home']);
+  }
+
+  toggleMenu() {
+    this.isProfileDropdown = !this.isProfileDropdown;
   }
 }

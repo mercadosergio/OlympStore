@@ -16,13 +16,14 @@ export class AppComponent implements OnInit {
   showImage = true;
   products: Product[] = [];
 
+  user$ = this.authService.user$;
+  token = this.tokenService.getToken();
+  
   constructor(private authService: AuthService, private tokenService: TokenService) { }
-
   ngOnInit() {
-    const token = this.tokenService.getToken();
-    if (token) {
+    if (this.user$) {
       this.authService.getProfile().subscribe();
-    }    
+    }
   }
 
   toggleImg() {

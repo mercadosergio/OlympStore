@@ -9,7 +9,7 @@ Aplicación web categoria E-COMMERCE de productos con API REST y LAZY LOADING
 1. Debe abrir la consola de comandos y ubicarse en el directorio raiz del proyecto, ahí debe ejecutar <code>npm install</code>.
 
 2. La aplicación utiliza una API REST pública para consumir el contenido principal de esta, asi que, para ejecutar la aplicación y se traiga todo el contenido
-   debe escribir en la consola <code>npm start:proxy</code>.
+   debe escribir en la consola <code>npm run start:proxy</code>.
 
 ## Información
 Puede mirar en tiempo real, el normal funcionamiento de esta aplicación en esta [demo][site].

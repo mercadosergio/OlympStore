@@ -1,5 +1,5 @@
-<div class="marco">
-    <img [src]="img" (load)="imgLoad()" (error)="imgError()" *ngIf="img; else elseImg">
+<div class="overflow-hidden rounded-tl-lg rounded-tr-lg">
+    <img class="duration-500 transition-all ease-in-out hover:scale-150" [src]="img" (load)="imgLoad()" (error)="imgError()" *ngIf="img; else elseImg">
 </div>
 <!-- <h1>{{counter}}</h1> -->
 <ng-template #elseImg>

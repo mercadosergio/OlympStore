@@ -1,15 +1,17 @@
-<div class="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4
+<div class="block sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4
 py-5 px-7 lg:w-11/12 m-auto">
-	<app-product *ngFor="let product of products"
+	<app-product
+	class="flex mx-auto"
+	*ngFor="let product of products"
 		[product]="product"
 		(addedProduct)="onAddShoppingCart($event)"
 		(showProduct)="onShowDetail($event)"
-		class="p-4 bg-white shadow-lg rounded-lg my-2 sm:my-0 hover:bg-gray-300 cursor-pointer">
+>
 	</app-product>
 </div>
 <div class="flex mx-auto my-7 w-72">
 	<button (click)="onLoadMore()"
-		class="bg-white m-auto text-xl text-secondary border border-primary rounded-lg p-3">
+		class="bg-white m-auto text-xl text-secondary border hover:border-secondary rounded-lg p-3">
 		Ver más
 	</button>
 </div>
@@ -73,3 +75,4 @@ py-5 px-7 lg:w-11/12 m-auto">
     <input type="file" (change)="onUpload($event)">
     <img *ngIf="imgRta" [src]="imgRta" alt="">
 </div> -->
+<!-- class="p-4 bg-white shadow-lg rounded-lg my-2 sm:my-0 hover:bg-gray-300 cursor-pointer" -->

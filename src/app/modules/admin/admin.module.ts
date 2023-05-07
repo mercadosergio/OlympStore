@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CmsRoutingModule } from './cms-routing.module';
-import { TasksComponent } from './pages/tasks/tasks.component';
-import { GridComponent } from './pages/grid/grid.component';
+import { AdminRoutingModule } from './admin-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MaterialModule } from '../shared/material/material.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
-import { MaterialModule } from '../shared/material/material.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GridComponent } from './pages/grid/grid.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 
 
 @NgModule({
@@ -19,9 +19,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    CmsRoutingModule,
+    AdminRoutingModule,
     MaterialModule,
     FontAwesomeModule
   ]
 })
-export class CmsModule { }
+export class AdminModule { }

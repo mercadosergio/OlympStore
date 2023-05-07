@@ -4,7 +4,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 @Component({
   selector: 'app-spinner',
   template: `
-    <div class="overlay" *ngIf="isLoading$ | async">
+    <div class="overlay z-40" *ngIf="isLoading$ | async">
       <div class="lds-roller">
         <div></div>
         <div></div>

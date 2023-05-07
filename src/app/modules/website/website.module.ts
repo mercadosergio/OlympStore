@@ -24,6 +24,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ImgComponent } from './components/img/img.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CategoryComponent } from './pages/category/category.component';
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
+    FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
