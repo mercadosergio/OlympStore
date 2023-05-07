@@ -1,8 +1,8 @@
 # OlympStore
 
-Aplicación web categoria E-COMMERCE de productos con API REST y LAZY LOADING
+Aplicación web categoria E-COMMERCE de productos con Autenticación Lazy Loading, Tailwindcss, FortAwesome, Angular Material.
 
-![olymp-logo](https://user-images.githubusercontent.com/71235288/202929889-cc1a2083-38d3-4d0b-a5e2-5c5ba0f29c51.png)
+![olymp-logo](https://raw.githubusercontent.com/Sergio1-Git/OlympStore/main/src/assets/images/olymp-logo.png)
 
 ## Instalación
 
@@ -14,7 +14,7 @@ Aplicación web categoria E-COMMERCE de productos con API REST y LAZY LOADING
 ## Información
 Puede mirar en tiempo real, el normal funcionamiento de esta aplicación en esta [demo][site].
 
-[site]: https://calm-mandazi-cb4160.netlify.app/home
+[site]: https://calm-mandazi-cb4160.netlify.app/
 
 
 ## Usuarios

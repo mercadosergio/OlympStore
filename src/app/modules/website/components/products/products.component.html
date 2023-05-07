@@ -17,7 +17,7 @@ py-5 px-7 lg:w-11/12 m-auto">
 </div>
 <aside [class.active]="showDetail"
 	class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0
-	flex flex-col justify-start shadow-xl">
+	flex flex-col justify-start shadow-xl z-50">
 	<div *ngIf="productChosen">
 		<button (click)="toggleDetail()">
 			<i class="bi bi-box-arrow-right"></i>
