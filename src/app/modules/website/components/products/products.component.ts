@@ -38,12 +38,12 @@ export class ProductsComponent implements OnInit {
   // @Input() productId: string | null = null;
 
   productChosen: Product = {
-    id: '',
+    id: 0,
     price: 0,
     images: [],
     title: '',
     category: {
-      id: '',
+      id: 0,
       name: '',
     },
     description: ''
@@ -69,7 +69,7 @@ export class ProductsComponent implements OnInit {
     if (!this.showDetail) {
       this.showDetail = true;
     }
-    this.productsService.getProduct(id).subscribe({
+    this.productsService.getProduct(Number(id)).subscribe({
       next: (data) => {
         this.productChosen = data;
         this.statusDetail = 'success';
@@ -87,11 +87,11 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  readAndUpdate(id: string) {
+  readAndUpdate(id: number) {
     this.productsService.getProduct(id)
       .pipe(
         switchMap((product) =>
-          this.productsService.update(product.id, { title: 'change' }),
+          this.productsService.update(Number(product.id), { title: 'change' }),
         )
       )
       .subscribe(data => {
@@ -136,7 +136,7 @@ export class ProductsComponent implements OnInit {
   // }
 
   deleteProduct() {
-    const id = this.productChosen.id;
+    const id = Number(this.productChosen.id);
     this.productsService.delete(id)
       .subscribe(() => {
         const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);

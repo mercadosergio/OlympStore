@@ -1,11 +1,13 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
+import { ModalDeleteProductComponent } from '../../components/modal-delete-product/modal-delete-product.component';
 
 export interface TableProducts {
   id: string;
@@ -21,7 +23,7 @@ export interface TableProducts {
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.scss']
 })
-export class AdminProductsComponent implements OnInit, AfterViewInit {
+export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
 
   displayedColumns: string[] = ['id', 'image', 'title', 'price', 'description', 'category', 'action'];
@@ -33,24 +35,31 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
 
-  constructor(private productService: ProductsService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(
+    private productService: ProductsService,
+    private _liveAnnouncer: LiveAnnouncer,
+    public dialog: MatDialog,
+  ) {
   }
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
     this.productService.getProducts()
-      .subscribe((data: any) => {
-        this.products = data;
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          this.dataSource = new MatTableDataSource(data);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: (error) => {
+          console.log(error);
+        }
       });
   }
-
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
-
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -60,21 +69,6 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // private getProducts(product: Product[]): TableProducts[] {
-  //   const dataTable = product.map<TableProducts>((element) => {
-  //     return {
-  //       id: element.id,
-  //       images: element.images[0],
-  //       title: element.title,
-  //       price: element.price,
-  //       description: element.description,
-  //       category: element.category.name,
-  //     };
-
-  //   });
-  //   return dataTable;
-  // }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -83,4 +77,19 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openDeleteModal(data: Product) {
+    const dialogRef = this.dialog.open(ModalDeleteProductComponent, {
+      disableClose: true,
+      minWidth: '300px',
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProducts();
+    })
+  }
+
+  
+
 }

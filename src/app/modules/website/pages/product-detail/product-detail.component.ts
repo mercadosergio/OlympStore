@@ -28,7 +28,7 @@ export class ProductDetailComponent implements OnInit {
 
   private pdf = new jsPDF();
 
-  productId: string | null = null;
+  productId: number | null = null;
   product: Product | null = null;
 
   @Output() addedProduct = new EventEmitter<Product>();
@@ -37,7 +37,7 @@ export class ProductDetailComponent implements OnInit {
     this.activatedRoute.paramMap
       .pipe(
         switchMap(params => {
-          this.productId = params.get('id');
+          this.productId = Number(params.get('id'));
           if (this.productId) {
             return this.productService
               .getProduct(this.productId);

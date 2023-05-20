@@ -13,27 +13,28 @@ export class ProductComponent {
   faShoppingCart = faShoppingCart;
 
   @Input() product: Product = {
-    id: '',
+    id: 0,
     title: '',
     price: 0,
     images: [],
     description: '',
     category: {
-      id: '',
+      id: 0,
       name: '',
     },
   };
+  productId: string = String(this.product.id);
 
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
 
-  constructor() {}
+  constructor() { }
 
   onAddToCart() {
     this.addedProduct.emit(this.product);
   }
 
   onShowDetail() {
-    this.showProduct.emit(this.product.id);
+    this.showProduct.emit(this.productId);
   }
 }

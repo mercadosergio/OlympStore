@@ -1,0 +1,99 @@
+<main class="justify-center px-20">
+  <h1>{{ title }}</h1>
+  <form [formGroup]="productForm" autocomplete="off" novalidate>
+    <div class="grid gap-5 grid-cols-2">
+      <div class="block items-center col-span-2">
+        <label class="font-medium text-base" for> Imagenes: </label>
+        <div class>
+          <div *ngIf="product">
+            <!-- <div *ngFor="let img of product.images">
+							<img [src]="img"
+								class="w-28 rounded-lg shadow-lg"
+								alt="Imagen del producto">
+						</div> -->
+            <div
+              (cdkDropListDropped)="drop($event)"
+              [cdkDropListData]="images"
+              cdkDropList
+              cdkDropListOrientation="horizontal"
+              class="example-list flex flex-row overflow-hidden rounded bg-white shadow-sm p-3 border border-solid border-gray-400"
+            >
+              <div
+                *ngFor="let image of images"
+                class="example-box mx-2 rounded-md text-black block items-center justify-center cursor-move bg-white text-sm flex-grow"
+                cdkDrag
+              >
+                <img [src]="image.imagePath" class="rounded-md" alt />
+                {{ image.position }}
+                <!-- {{image}} -->
+              </div>
+            </div>
+          </div>
+          <div>
+            <input (change)="captureFile($event)" type="file" multiple />
+          </div>
+          <div *ngIf="imgPreview">
+            <img [src]="imgPreview" class="w-28" alt />
+            img
+          </div>
+        </div>
+      </div>
+      <div class="block items-center justify-between col-span-2">
+        <label class="font-medium text-base" for> Título: </label>
+        <input
+          formControlName="title"
+          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
+          type="text"
+        />
+      </div>
+      <div class="block items-center justify-between col-span-2">
+        <label class="font-medium text-base" for> Descripción: </label>
+        <textarea
+          formControlName="description"
+          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded resize-none text-base font-light"
+        ></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <label class="font-medium text-base" for> Precio: </label>
+        <input
+          formControlName="price"
+          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
+          type="number"
+        />
+      </div>
+      <div class="flex items-center col-span-2">
+        <label class="font-medium text-base" for> Categoria: </label>
+        <mat-radio-group
+          [formControl]="controlCategory"
+          formControlName="categoryId"
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+        >
+          <mat-radio-button
+            *ngFor="let category of categories"
+            [value]="category.id"
+            [checked]="category.id == categoryIdChecked ? true : false"
+            class="example-radio-button"
+          >
+            {{ category.name }}
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <label for>
+          {{
+            controlCategory.value ? controlCategory.value : categoryIdChecked
+          }}
+        </label>
+      </div>
+      <div class="flex items-center justify-center col-span-2">
+        <button
+          (click)="action()"
+          class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md"
+          type="submit"
+        >
+          {{ actionButton }}
+        </button>
+      </div>
+    </div>
+  </form>
+</main>

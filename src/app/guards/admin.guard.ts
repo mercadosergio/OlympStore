@@ -17,12 +17,12 @@ export class AdminGuard {
     return this.authService.user$
       .pipe(
         map(() => {
-          if (this.authService.user$.value?.role === 'admin') {
-            console.log("Role: ", this.authService.user$.value?.role);
-          } else {
-            this.router.navigate(['/home']);
-            return false;
-          }
+          // if (this.authService.user$.value?.role === 'admin') {
+          //   console.log("Role: ", this.authService.user$.value?.role);
+          // } else {
+          //   this.router.navigate(['/home']);
+          //   return false;
+          // }
           return true;
         })
       )

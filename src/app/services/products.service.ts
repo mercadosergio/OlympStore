@@ -46,14 +46,14 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.apiUrl}`);
   }
 
-  fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {
+  fetchReadAndUpdate(id: number, dto: UpdateProductDTO) {
     return zip(
       this.getProduct(id),
       this.update(id, dto)
     )
   }
 
-  getProduct(id: string) {
+  getProduct(id: number) {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
       .pipe(
         catchError((error: HttpErrorResponse) => {
@@ -75,12 +75,12 @@ export class ProductsService {
     return this.http.post<Product>(this.apiUrl, dto);
   }
 
-  update(id: string, dto: UpdateProductDTO) {
+  update(id: number, dto: UpdateProductDTO) {
     return this.http.put<Product>(`${this.apiUrl}/${id}`, dto);
   }
 
-  delete(id: string) {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  delete(id: number) {
+    return this.http.delete<Product>(`${this.apiUrl}/${id}`);
   }
 
   getProductsByPage(limit: number, offset: number) {

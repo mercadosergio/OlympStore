@@ -96,3 +96,7 @@
         align-items: center;
         justify-content: center;
     }
+
+    ::ng-deep .success {
+        background: #16a34a;
+    }

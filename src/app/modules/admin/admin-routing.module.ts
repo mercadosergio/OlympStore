@@ -4,6 +4,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
+import { ProductFormComponent } from './pages/product-form/product-form.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,8 @@ const routes: Routes = [
       { path: 'grid', component: GridComponent },
       { path: 'tasks', component: TasksComponent },
       { path: 'products-cms', component: AdminProductsComponent },
+      { path: 'add-product', component: ProductFormComponent },
+      { path: 'edit-product/:id', component: ProductFormComponent },
     ]
   }
 ];

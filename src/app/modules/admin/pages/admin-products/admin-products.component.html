@@ -2,13 +2,11 @@
 	<h1>
 		Administrar productos
 	</h1>
+	<a routerLink="/admin/add-product">ADD</a>
 	<!-- <mat-form-field appearance="standard">
         <mat-label>Buscar</mat-label>
         <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="" #input />
     </mat-form-field> -->
-
-
-
 
 	<div class="mat-elevation-z8">
 		<table [dataSource]="dataSource"
@@ -27,13 +25,9 @@
 				<td *matCellDef="let element"
 					valign="middle"
 					mat-cell>
-					{{element.id}}
+					{{ element.id }}
 				</td>
 			</ng-container>
-
-
-
-
 
 			<!-- Image Column -->
 			<ng-container matColumnDef="image">
@@ -51,10 +45,6 @@
 				</td>
 			</ng-container>
 
-
-
-
-
 			<!-- Title Column -->
 			<ng-container matColumnDef="title">
 				<th *matHeaderCellDef
@@ -67,13 +57,9 @@
 				<td *matCellDef="let element"
 					valign="middle"
 					mat-cell>
-					{{element.title}}
+					{{ element.title }}
 				</td>
 			</ng-container>
-
-
-
-
 
 			<!-- Price Column -->
 			<ng-container matColumnDef="price">
@@ -87,11 +73,11 @@
 				<td *matCellDef="let element"
 					valign="middle"
 					mat-cell>
-					$ {{element.price}}
+					$ {{ element.price }}
 				</td>
 			</ng-container>
 			<!-- Description Column -->
-			<ng-container style="max-width: 500px;"
+			<ng-container style="max-width: 500px"
 				matColumnDef="description">
 				<th *matHeaderCellDef
 					valign="middle"
@@ -104,7 +90,7 @@
 					valign="middle"
 					class="overflow-auto"
 					mat-cell>
-					{{element.description}}
+					{{ element.description }}
 				</td>
 			</ng-container>
 			<!-- Category Column -->
@@ -119,7 +105,7 @@
 				<td *matCellDef="let element"
 					valign="middle"
 					mat-cell>
-					{{element.category.name}}
+					{{ element.category.name }}
 				</td>
 			</ng-container>
 			<!-- Action Column -->
@@ -133,32 +119,26 @@
 				<td *matCellDef="let element"
 					valign="middle"
 					mat-cell>
-					<a class="edit text-blue-700 mx-1">
+					<a [routerLink]="['/admin/edit-product', element.id]"
+						class="edit text-secondary mx-1 cursor-pointer">
 						<fa-icon [icon]="faPenToSquare"
 							class="text-2xl"></fa-icon>
 					</a>
-					<a class="delete text-red-500 mx-1">
+					<button (click)="openDeleteModal(element)"
+						class="text-red-500 mx-1">
 						<fa-icon [icon]="faTrashCan"
 							class="text-2xl"></fa-icon>
-					</a>
+					</button>
 				</td>
 			</ng-container>
-
-
-
-
 
 			<tbody>
 				<tr *matHeaderRowDef="displayedColumns"
 					mat-header-row></tr>
-				<tr *matRowDef="let row; columns: displayedColumns;"
+				<tr *matRowDef="let row; columns: displayedColumns"
 					mat-row></tr>
 			</tbody>
 		</table>
-
-
-
-
 
 		<mat-paginator [pageSizeOptions]="[5, 10, 20]"
 			showFirstLastButtons

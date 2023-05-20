@@ -1,0 +1,24 @@
+<div class="p-5 block">
+	<h1 class="m-auto">
+		Eliminar {{data.title}}
+	</h1>
+	<div class="flex justify-center">
+		<label>
+			Desea realizar esta acción?
+		</label>
+
+	</div>
+	<div class="flex justify-center">
+		<button (click)="deleteProduct()"
+			mat-dialog-close
+			class="text-white bg-red-500 p-3"
+			cdkFocusInitial>
+			Eliminar
+		</button>
+		<button (click)="dialogRef.close()"
+			class="text-black bg-gray-300 p-3">
+			Cancelar
+		</button>
+	</div>
+
+</div>

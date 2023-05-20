@@ -39,7 +39,7 @@
 	</ul>
 </aside>
 <!-- <header class="hidden md:block duration-200"> -->
-<nav class="hidden md:flex w-full bg-white desktop">
+<nav class="z-30 hidden md:flex w-full bg-white desktop">
 	<div class="w-11/12 m-auto flex justify-between text-black items-center">
 		<a routerLink="/"
 			class="mr-4 flex items-center">
@@ -74,7 +74,7 @@
 				</a>
 			</div>
 			<ng-container *ngIf="user$ | async as user">
-				<div class="relative inline-block text-left">
+				<div class="z-40 relative inline-block text-left">
 					<div class="relative ml-3">
 						<div>
 							<button (click)="toggleMenu()"
