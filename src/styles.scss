@@ -11,6 +11,7 @@
     :root {
         --color-primary: 50 50 50;
         --color-secondary: 247 149 26;
+        --color-secondary-hover: 238 161 68;
         --primary: rgb(50, 50, 50);
         --secondary: rgb(247, 149, 26);
         --default-bg: rgb(246, 249, 255);
@@ -84,6 +85,7 @@
 
     button {
         cursor: pointer;
+        transition: all 0.1s ease;
     }
 
     .overlay {

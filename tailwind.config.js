@@ -12,6 +12,7 @@ module.exports = {
         success: colors.green,
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)',
         danger: colors.red,
       },
       container: {

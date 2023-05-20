@@ -12,6 +12,8 @@ import { ViewEncapsulation, ViewChild } from "@angular/core";
 
 // import Swiper core and required modules
 import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
+import { faPrint } from '@fortawesome/free-solid-svg-icons';
+import { StoreService } from 'src/app/services/store.service';
 
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
@@ -23,17 +25,31 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailComponent implements OnInit {
-  thumbsSwiper: any;
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService, private location: Location) { }
 
+  faPrint = faPrint;
+  thumbsSwiper: any;
   private pdf = new jsPDF();
 
   productId: number | null = null;
   product: Product | null = null;
 
-  @Output() addedProduct = new EventEmitter<Product>();
+  newShoppingCart: Product[] = [];
+  total = 0;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductsService,
+    private storeService: StoreService,
+    private location: Location
+  ) {
+    this.newShoppingCart = this.storeService.getShoppingCart();
+  }
 
   ngOnInit(): void {
+    this.loadProduct();
+  }
+
+  loadProduct() {
     this.activatedRoute.paramMap
       .pipe(
         switchMap(params => {
@@ -47,12 +63,12 @@ export class ProductDetailComponent implements OnInit {
       )
       .subscribe((data) => {
         this.product = data;
-        console.log(data);
       });
   }
 
-  onAddToCart() {
-    this.addedProduct.emit(this.product!);
+  onAddShoppingCart(product: Product) {
+    this.storeService.addProduct(product);
+    this.total = this.storeService.getTotal();
   }
 
   goToBack() {

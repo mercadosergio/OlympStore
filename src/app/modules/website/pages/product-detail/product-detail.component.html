@@ -1,46 +1,59 @@
-<div class="page-product">
-    <button (click)="goToBack()" class="btn btn-secondary m-3">Back</button>
-    <div class="detail" *ngIf="product">
-        <div class="gallery">
-
-            <div class="container-slide">
-                <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
-                    thumbs-swiper=".mySwiper2" loop="true" space-between="10" navigation="true">
-                    <swiper-slide *ngFor="let img of product?.images">
-                        <img [src]="img" />
-                    </swiper-slide>
-                </swiper-container>
-            </div>
-            
-            <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="3" free-mode="true"
-            watch-slides-progress="true">
+<div class="bg-white rounded-lg shadow-lg p-8 m-auto w-11/12">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8" *ngIf="product">
+    <div class="md:col-span-1">
+      <div class="gallery">
+        <div class="container-slide">
+          <swiper-container
+            style="
+              --swiper-navigation-color: #fff;
+              --swiper-pagination-color: #fff;
+            "
+            class="mySwiper"
+            thumbs-swiper=".mySwiper2"
+            loop="true"
+            space-between="10"
+            navigation="true"
+          >
             <swiper-slide *ngFor="let img of product?.images">
-                    <img [src]="img" width="100"/>
-                </swiper-slide>
-            </swiper-container>
+              <img [src]="img" />
+            </swiper-slide>
+          </swiper-container>
+        </div>
 
-            <!-- <swiper style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff" [spaceBetween]="10"
-                [navigation]="true" [thumbs]="{ swiper: thumbsSwiper }" class="mySwiper2">
-                <ng-template swiperSlide *ngFor="let img of product?.images">
-                    <img class="imgZoom" [src]="img" alt="img" width="300">
-                    <img name="grande" class="imgOriginal" [src]="img" alt="img" width="648">
-                </ng-template>
-            </swiper>
-            <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="3" [freeMode]="true"
-                [watchSlidesProgress]="true" class="mySwiper">
-                <ng-template swiperSlide *ngFor="let img of product?.images">
-                    <img class="imgZoom" [src]="img" alt="img" width="300">
-                    <img name="grande" class="imgOriginal" [src]="img" alt="img" width="648">
-                </ng-template>
-            </swiper> -->
-        </div>
-        <div>
-            <h1>{{ product.title }}</h1>
-            <h2>{{ product.price | currency }}</h2>
-            <p>{{ product.description }}</p>
-            <button class="print btn btn-secondary imp" (click)="generarPdf()"><mat-icon>print</mat-icon> Print</button>
-            <button type="button" class="cart-button" (click)="onAddToCart()"><i class="bi bi-cart-plus-fill"></i> Add
-                to cart</button>
-        </div>
+        <swiper-container
+          class="mySwiper2"
+          loop="true"
+          space-between="10"
+          slides-per-view="3"
+          free-mode="true"
+          watch-slides-progress="true"
+        >
+          <swiper-slide *ngFor="let img of product?.images">
+            <img [src]="img" width="100" />
+          </swiper-slide>
+        </swiper-container>
+      </div>
     </div>
+    <div class="md:col-span-1">
+      <h1 class="font-bold mb-4 text-secondary text-4xl">
+        {{ product.title }}
+      </h1>
+      <p class="text-gray-600 mb-4">
+        {{ product.description }}
+      </p>
+      <p class="text-xl font-bold mb-4">{{ product.price | currency }}</p>
+      <button
+        class="bg-secondary hover:bg-secondary-hover text-white font-bold py-2 px-4 rounded text-base"
+        (click)="onAddShoppingCart(product)"
+      >
+        Agregar al carrito
+      </button>
+      <button
+        class="bg-primary text-white py-2 px-4 rounded"
+        (click)="generarPdf()"
+      >
+        <fa-icon [icon]="faPrint"></fa-icon> Print
+      </button>
+    </div>
+  </div>
 </div>
