@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faShopify } from '@fortawesome/free-brands-svg-icons';
-import { faBoxOpen, faTags, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faBoxOpen, faTags, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -16,6 +16,7 @@ export class GridComponent implements OnInit {
   faUsers = faUsers;
   faBoxOpen = faBoxOpen;
   faShopify = faShopify;
+  faBookMark = faBookmark;
 
   usersCount: number = 0;
   productsCount: number = 0;

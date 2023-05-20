@@ -5,6 +5,8 @@ import { AdminProductsComponent } from './pages/admin-products/admin-products.co
 import { GridComponent } from './pages/grid/grid.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProductFormComponent } from './pages/product-form/product-form.component';
+import { CategoryListComponent } from './pages/category-list/category-list.component';
+import { CategoryFormComponent } from './pages/category-form/category-form.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,9 @@ const routes: Routes = [
       { path: 'products-cms', component: AdminProductsComponent },
       { path: 'add-product', component: ProductFormComponent },
       { path: 'edit-product/:id', component: ProductFormComponent },
+      { path: 'categories', component: CategoryListComponent },
+      { path: 'add-category', component: CategoryFormComponent },
+      { path: 'edit-category/:id', component: CategoryFormComponent },
     ]
   }
 ];

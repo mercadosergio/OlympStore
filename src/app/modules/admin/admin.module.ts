@@ -14,6 +14,8 @@ import { ModalDeleteProductComponent } from './components/modal-delete-product/m
 import { ProductFormComponent } from './pages/product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CategoryListComponent } from './pages/category-list/category-list.component';
+import { CategoryFormComponent } from './pages/category-form/category-form.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     LayoutComponent,
     AdminProductsComponent,
     ModalDeleteProductComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CategoryListComponent,
+    CategoryFormComponent
   ],
   imports: [
     CommonModule,

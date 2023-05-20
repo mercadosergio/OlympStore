@@ -1,0 +1,67 @@
+<div class="mx-8">
+  <h1>Administrar categorias</h1>
+
+  <div class="mat-elevation-z8">
+    <table [dataSource]="categories" mat-table matSort>
+      <ng-container matColumnDef="id">
+        <th
+          *matHeaderCellDef
+          valign="middle"
+          mat-header-cell
+          mat-sort-header
+          sortActionDescription="Sort by number"
+        >
+          Id
+        </th>
+        <td *matCellDef="let row" valign="middle" mat-cell>
+          {{ row.id }}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th
+          *matHeaderCellDef
+          valign="middle"
+          mat-header-cell
+          mat-sort-header
+          sortActionDescription="Sort by name"
+        >
+          Title
+        </th>
+        <td *matCellDef="let row" valign="middle" mat-cell>
+          {{ row.name }}
+        </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th *matHeaderCellDef valign="middle" mat-header-cell mat-sort-header>
+          Action
+        </th>
+        <td *matCellDef="let row" valign="middle" mat-cell>
+          <a
+            [routerLink]="['/admin/edit-category', row.id]"
+            class="edit text-secondary mx-1 cursor-pointer"
+          >
+            <fa-icon [icon]="faPenToSquare" class="text-2xl"></fa-icon>
+          </a>
+          <button class="text-red-500 mx-1">
+            <fa-icon [icon]="faTrashCan" class="text-2xl"></fa-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tbody>
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+      </tbody>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of products elements"
+    >
+    </mat-paginator>
+  </div>
+</div>

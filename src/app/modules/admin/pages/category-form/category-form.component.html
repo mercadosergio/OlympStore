@@ -1,0 +1,28 @@
+<main class="justify-center px-20 m-auto w-4/5">
+  <h1>{{ title }}</h1>
+  <form [formGroup]="categoryForm" autocomplete="off" novalidate>
+    <div class="flex flex-col">
+      <div class="block items-center my-3">
+        <label class="font-medium text-base" for> Agregar una imagen: </label>
+        <input type="file" />
+      </div>
+      <div class="block items-center my-3">
+        <label class="font-medium text-base" for> Nombre: </label>
+        <input
+          formControlName="name"
+          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
+          type="text"
+        />
+      </div>
+      <div class="flex items-center justify-center my-3">
+        <button
+          (click)="action()"
+          class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md"
+          type="submit"
+        >
+          {{ actionButton }}
+        </button>
+      </div>
+    </div>
+  </form>
+</main>

@@ -140,7 +140,7 @@ export class ProductFormComponent implements OnInit {
     console.log(this.files);
   }
 
-  public get isUpdate(): boolean {
+  get isUpdate(): boolean {
     return this.router.url.includes('edit-product');
   }
 
