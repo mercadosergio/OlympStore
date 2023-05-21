@@ -6,7 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { StoreService } from 'src/app/services/store.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-nav',
@@ -25,6 +26,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
+
 export class NavComponent implements OnInit {
 
   isProfileDropdown = false;
@@ -37,6 +39,8 @@ export class NavComponent implements OnInit {
 
   navbarfixed: boolean = false;
   user$ = this.authService.user$;
+  shoppingCart: Product[] = [];
+  cartState: boolean = false;
 
   @HostListener('window:scroll', ['$event']) onScroll() {
     if (window.scrollY > 100) {
@@ -47,21 +51,39 @@ export class NavComponent implements OnInit {
   }
 
   constructor(
-    private storeService: StoreService,
+    public storeService: StoreService,
     private authService: AuthService,
     private categoryService: CategoriesService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.storeService.myCart$.subscribe(products => {
-      this.counter = products.length;
-    });
+    this.loadShoppingCart();
     this.getAllCategories();
     this.authService.user$
       .subscribe(data => {
         this.profile = data;
       });
     this.isProfileDropdown = false;
+    this.storeService.cartAnimation$.subscribe((shouldAnimate) => {
+      if (shouldAnimate) {
+        this.cartState = true;
+        console.log(this.cartState);
+
+
+        setTimeout(() => {
+          this.cartState = false;
+          console.log(this.cartState);
+        }, 500);
+      }
+    });
+
+  }
+
+  loadShoppingCart() {
+    this.storeService.myCart$.subscribe(products => {
+      this.counter = products.length;
+      this.shoppingCart = products;
+    });
   }
 
   toggleMobileSidebar() {

@@ -13,19 +13,18 @@ export class AdminGuard {
     private authService: AuthService,
     private router: Router
   ) { }
+
   canActivate(): Observable<boolean> {
     return this.authService.user$
       .pipe(
-        map(() => {
-          // if (this.authService.user$.value?.role === 'admin') {
-          //   console.log("Role: ", this.authService.user$.value?.role);
-          // } else {
-          //   this.router.navigate(['/home']);
-          //   return false;
-          // }
-          return true;
+        map(user => {
+          if (user?.role === 'admin') {
+            return true;
+          } else {
+            this.router.navigate(['/home']);
+            return false;
+          }
         })
       )
   }
-
 }

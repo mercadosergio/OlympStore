@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
+import { CreateProductDTO, Product } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { concat, switchMap, zip } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { FilesService } from 'src/app/services/files.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ProductsComponent implements OnInit {
     private storeService: StoreService,
     private productsService: ProductsService,
     private filesService: FilesService,
+    private alertService: AlertService,
   ) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
@@ -35,7 +37,6 @@ export class ProductsComponent implements OnInit {
       this.onShowDetail(id);
     }
   }
-  // @Input() productId: string | null = null;
 
   productChosen: Product = {
     id: 0,
@@ -52,11 +53,13 @@ export class ProductsComponent implements OnInit {
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   ngOnInit(): void {
+
   }
 
   onAddShoppingCart(product: Product) {
-    // this.newShoppingCart.push(product);
     this.storeService.addProduct(product);
+    this.storeService.animateCart();
+    this.alertService.showAlert('Agredado al carrito', 'Ok');
     this.total = this.storeService.getTotal();
   }
 
@@ -76,13 +79,6 @@ export class ProductsComponent implements OnInit {
       },
       error: (errorMsg) => {
         this.statusDetail = 'error';
-        // Swal.fire({
-        //   title: 'Error!',
-        //   text: errorMsg,
-        //   icon: 'error',
-        //   confirmButtonText: 'Ok',
-        // });
-        // window.alert(errorMsg);
       }
     });
   }

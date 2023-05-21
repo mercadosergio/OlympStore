@@ -11,6 +11,9 @@ export class StoreService {
   private myCart = new BehaviorSubject<Product[]>([]);
   myCart$ = this.myCart.asObservable();
 
+  private cartAnimationSource = new BehaviorSubject<boolean>(false);
+  cartAnimation$ = this.cartAnimationSource.asObservable();
+
   constructor() { }
 
   addProduct(product: Product) {
@@ -20,10 +23,13 @@ export class StoreService {
 
   getTotal() {
     return this.newShoppingCart.reduce((sum, item) => sum + item.price, 0);
-
   }
 
   getShoppingCart() {
     return this.newShoppingCart;
+  }
+
+  animateCart() {
+    this.cartAnimationSource.next(true);
   }
 }

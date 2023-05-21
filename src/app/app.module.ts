@@ -10,11 +10,12 @@ import { NotFoundComponent } from './modules/not-found/not-found.component';
 //Interceptors
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 //Angular Material
 import { MaterialModule } from './modules/shared/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { WebsiteModule } from './modules/website/website.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    WebsiteModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },

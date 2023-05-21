@@ -18,8 +18,9 @@ export class AppComponent implements OnInit {
 
   user$ = this.authService.user$;
   token = this.tokenService.getToken();
-  
+
   constructor(private authService: AuthService, private tokenService: TokenService) { }
+  
   ngOnInit() {
     if (this.user$) {
       this.authService.getProfile().subscribe();
