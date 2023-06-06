@@ -109,15 +109,17 @@ export class ProductFormComponent implements OnInit {
 
   addProduct() {
     if (this.productForm.valid) {
-      this.productService.create(this.Product).subscribe({
-        next: () => {
-          this.alertService.showAlert('Producto añadido', 'Listo');
-          this.router.navigate(['/admin/products-cms']);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+      this.productService.create(this.Product)
+        .subscribe({
+          next: (product) => {
+            console.log('Product no: ', product.id);
+            this.alertService.showAlert('Producto añadido', 'Listo');
+            this.router.navigate(['/admin/products-cms']);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
     } else {
       this.productForm.markAllAsTouched();
     }

@@ -3,3 +3,7 @@ export interface ProductImage {
     imagePath: string;
     position: number;
 }
+
+export interface CreateProductImageDTO extends Omit<ProductImage, 'id'> {
+    productId: number;
+}

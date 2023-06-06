@@ -4,6 +4,7 @@ import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.m
 import { catchError, retry, throwError, map, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { checkTime } from '../interceptors/time.interceptor';
+import { CreateProductImageDTO, ProductImage } from '../models/interfaces/product-image.model';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +74,10 @@ export class ProductsService {
 
   create(dto: CreateProductDTO) {
     return this.http.post<Product>(this.apiUrl, dto);
+  }
+
+  addImageToProduct(productId: number, imagePath: string, position: number) {
+    return this.http.post<ProductImage>(this.apiUrl, { productId, imagePath, position });
   }
 
   update(id: number, dto: UpdateProductDTO) {
