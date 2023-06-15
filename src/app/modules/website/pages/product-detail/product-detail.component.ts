@@ -83,7 +83,7 @@ export class ProductDetailComponent implements OnInit {
     this.pdf = new jsPDF('p', 'pt', 'letter');
 
     this.pdf.text("" + date.toLocaleString(), 550, 70, { align: 'right', });
-    this.pdf.text("" + this.product!.title, 70, 140, { align: 'justify', });
+    this.pdf.text("" + this.product!.name, 70, 140, { align: 'justify', });
 
     // const foto = new Image();
     // foto.src = this.product.images[0];

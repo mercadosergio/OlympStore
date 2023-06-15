@@ -20,14 +20,7 @@ export class AppComponent implements OnInit {
   token = this.tokenService.getToken();
 
   constructor(private authService: AuthService, private tokenService: TokenService) { }
-  
-  ngOnInit() {
-    if (this.user$) {
-      this.authService.getProfile().subscribe();
-    }
-  }
 
-  toggleImg() {
-    this.showImage = !this.showImage;
+  ngOnInit() {
   }
 }

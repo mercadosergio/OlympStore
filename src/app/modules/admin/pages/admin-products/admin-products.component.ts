@@ -11,7 +11,7 @@ import { ModalDeleteProductComponent } from '../../components/modal-delete-produ
 
 export interface TableProducts {
   id: string;
-  title: string;
+  name: string;
   price: number;
   images: string;
   description: string;
@@ -26,7 +26,7 @@ export interface TableProducts {
 export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
 
-  displayedColumns: string[] = ['id', 'image', 'title', 'price', 'description', 'category', 'action'];
+  displayedColumns: string[] = ['id', 'image', 'name', 'price', 'description', 'category', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -47,7 +47,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getProducts()
+    this.productService.getAllProducts()
       .subscribe({
         next: (data) => {
           this.products = data;

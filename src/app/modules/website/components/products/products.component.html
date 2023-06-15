@@ -1,64 +1,69 @@
-<div class="block sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4
-py-5 px-7 lg:w-11/12 m-auto">
-	<app-product
-	class="flex mx-auto"
-	*ngFor="let product of products"
-		[product]="product"
-		(addedProduct)="onAddShoppingCart($event)"
-		(showProduct)="onShowDetail($event)"
+<div
+  class="block sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 py-5 px-7 lg:w-11/12 m-auto"
 >
-	</app-product>
+  <app-product
+    [ngClass]="{ visible: showArticles }"
+    class="flex mx-auto article"
+    *ngFor="let product of products"
+    [product]="product"
+    (addedProduct)="onAddShoppingCart($event)"
+    (showProduct)="onShowDetail($event)"
+  >
+  </app-product>
 </div>
 <div class="flex mx-auto my-7 w-72">
-	<button (click)="onLoadMore()"
-		class="bg-white m-auto text-xl text-secondary border hover:border-secondary rounded-lg p-3">
-		Ver más
-	</button>
+  <button
+    (click)="onLoadMore()"
+    class="bg-white m-auto text-xl text-secondary border hover:border-secondary rounded-lg p-3"
+  >
+    Ver más
+  </button>
 </div>
-<aside [class.active]="showDetail"
-	class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0
-	flex flex-col justify-start shadow-xl z-50">
-	<div *ngIf="productChosen">
-		<button (click)="toggleDetail()">
-			<i class="bi bi-box-arrow-right"></i>
-		</button>
-		<h1 class="text-4xl">
-			Detalles del producto
-		</h1>
-		<div>
-			<swiper-container class="mySwiper"
-				navigation="true"
-				pagination="true"
-				keyboard="true"
-				mousewheel="true"
-				css-mode="true">
-				<swiper-slide *ngFor="let img of productChosen.images">
-					<img [src]="img"
-						class
-						alt="...">
-				</swiper-slide>
-			</swiper-container>
-		</div>
-		<div class="my-4">
-			<h1 class="text-3xl font-bold text-secondary">
-				{{productChosen.title}}
-			</h1>
-			<p class="text-base">
-				{{productChosen.description}}
-			</p>
-			<del class="text-red-600">
-				<p class="text-lg">
-					{{(productChosen.price + (productChosen.price*0.20)) | currency: 'COP'}}
-				</p>
-			</del>
-			<p class="text-2xl text-green-700 font-bold">
-				{{productChosen.price | currency: 'COP'}}
-			</p>
-			<!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
-			<!-- <button (click)="deleteProduct()" class="btn btn-danger">Delete</button> -->
-			<a [routerLink]="['/product',productChosen.id]">Ver</a>
-		</div>
-	</div>
+<aside
+  [class.active]="showDetail"
+  class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0 flex flex-col justify-start shadow-xl z-50"
+>
+  <div *ngIf="productChosen">
+    <button (click)="toggleDetail()">
+      <i class="bi bi-box-arrow-right"></i>
+    </button>
+    <h1 class="text-4xl">Detalles del producto</h1>
+    <div>
+      <swiper-container
+        class="mySwiper"
+        navigation="true"
+        pagination="true"
+        keyboard="true"
+        mousewheel="true"
+        css-mode="true"
+      >
+        <swiper-slide *ngFor="let img of productChosen.images">
+          <img [src]="img" class alt="..." />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    <div class="my-4">
+      <h1 class="text-3xl font-bold text-secondary">
+        {{ productChosen.name }}
+      </h1>
+      <p class="text-base">
+        {{ productChosen.description }}
+      </p>
+      <del class="text-red-600">
+        <p class="text-lg">
+          {{
+            productChosen.price + productChosen.price * 0.2 | currency : "COP"
+          }}
+        </p>
+      </del>
+      <p class="text-2xl text-green-700 font-bold">
+        {{ productChosen.price | currency : "COP" }}
+      </p>
+      <!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
+      <!-- <button (click)="deleteProduct()" class="btn btn-danger">Delete</button> -->
+      <a [routerLink]="['/product', productChosen.id]">Ver</a>
+    </div>
+  </div>
 </aside>
 <!-- <p>Productos añadidos: {{newShoppingCart.length}}</p> -->
 <!-- <p>Total: ${{total}}</p> -->

@@ -10,28 +10,28 @@ export class TokenService {
   constructor() { }
 
   saveToken(token: string) {
-    setCookie('token-olymp', token, { expires: 365, path: '/' });
+    setCookie('olymp-token', token, { expires: 365, path: '/' });
   }
 
   getToken() {
-    const token = getCookie('token-olymp');
+    const token = getCookie('olymp-token');
     return token;
   }
 
   removeToken() {
-    removeCookie('token-olymp');
+    removeCookie('olymp-token');
   }
 
   removeRefreshToken() {
-    removeCookie('refresh-token-olymp');
+    removeCookie('refresh-olymp-token');
   }
 
   saveRefreshToken(token: string) {
-    setCookie('refresh-token-olymp', token, { expires: 365, path: '/' });
+    setCookie('refresh-olymp-token', token, { expires: 365, path: '/' });
   }
 
   getRefreshToken() {
-    const token = getCookie('refresh-token-olymp');
+    const token = getCookie('refresh-olymp-token');
     return token;
   }
 

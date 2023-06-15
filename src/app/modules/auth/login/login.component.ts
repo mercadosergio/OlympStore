@@ -28,20 +28,20 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.loadForm();
+    this.buildForm();
   }
 
-  private loadForm() {
+  private buildForm() {
     this.formLogin = this.formBuilder.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
-  login() {
+  login(event: Event) {
+    event.preventDefault();
     if (this.formLogin.valid) {
-      this.status = 'loading';
-      this.authService.loginAndGet(this.formLogin.controls.email.value, this.formLogin.controls.password.value)
+      this.authService.login(this.formLogin.controls.email.value, this.formLogin.controls.password.value)
         .subscribe({
           next: () => {
             this.status = 'success';
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             this.status = 'failed';
+            console.log(error);
           }
         });
     } else {

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
 import { ExitGuard } from './guards/exit.guard';
-import { LoginComponent } from './modules/auth/login/login.component';
-import { RegisterComponent } from './modules/auth/register/register.component';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { CustomPreloadService } from './services/custom-preload.service';
 

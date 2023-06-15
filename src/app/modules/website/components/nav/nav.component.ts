@@ -1,20 +1,20 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { StoreService } from 'src/app/services/store.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Product } from 'src/app/models/product.model';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
   animations: [
-    trigger('AnimationTrigger0', [
+    trigger('opacityScale', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(.95)' }),
         animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
@@ -35,7 +35,6 @@ export class NavComponent implements OnInit {
   activeMenu = false;
   counter = 0;
   categories!: Category[];
-  profile: User | null = null;
 
   navbarfixed: boolean = false;
   user$ = this.authService.user$;
@@ -53,30 +52,37 @@ export class NavComponent implements OnInit {
   constructor(
     public storeService: StoreService,
     private authService: AuthService,
+    private tokenService: TokenService,
     private categoryService: CategoriesService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.loadShoppingCart();
     this.getAllCategories();
-    this.authService.user$
-      .subscribe(data => {
-        this.profile = data;
-      });
-    this.isProfileDropdown = false;
     this.storeService.cartAnimation$.subscribe((shouldAnimate) => {
       if (shouldAnimate) {
         this.cartState = true;
-        console.log(this.cartState);
-
 
         setTimeout(() => {
           this.cartState = false;
-          console.log(this.cartState);
         }, 500);
       }
     });
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.getProfile();
+    }
+  }
 
+  getProfile() {
+    this.authService.getProfile()
+      .subscribe({
+        next: () => {
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
   loadShoppingCart() {
@@ -98,15 +104,14 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    if (!this.profile) {
+    if (!this.user$) {
       this.router.navigate(['/login']);
     }
   }
 
   logout() {
     this.authService.logout();
-    this.profile = null;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home'], { skipLocationChange: true });
   }
 
   toggleMenu() {

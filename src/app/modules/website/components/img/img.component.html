@@ -1,7 +1,13 @@
-<div class="overflow-hidden rounded-tl-lg rounded-tr-lg">
-    <img class="duration-500 transition-all ease-in-out hover:scale-150" [src]="img" (load)="imgLoad()" (error)="imgError()" *ngIf="img; else elseImg">
+<div class="w-full h-full sm:h-96 overflow-hidden rounded-tl-lg rounded-tr-lg">
+  <img
+    class="duration-500 transition-all ease-in-out hover:scale-150 w-full h-full object-cover bg-center bg-cover bg-no-repeat"
+    [src]="img"
+    (load)="imgLoad()"
+    (error)="imgError()"
+    *ngIf="img; else elseImg"
+  />
 </div>
 <!-- <h1>{{counter}}</h1> -->
 <ng-template #elseImg>
-    <img width="200" [src]="imageDefault">
+  <img width="200" [src]="imageDefault" />
 </ng-template>

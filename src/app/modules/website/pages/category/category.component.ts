@@ -29,15 +29,13 @@ export class CategoryComponent implements OnInit {
         switchMap(params => {
           this.categoryId = params.get('id');
           if (this.categoryId) {
-            return this.productService
-              .getByCategory(this.categoryId, this.limit, this.offset);
+            return this.productService.getByCategory(this.categoryId, this.limit, this.offset);
           }
           return [];
         }),
       )
       .subscribe((data) => {
         this.products = data;
-        console.log(data);
       });
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.productId = params.get('product');

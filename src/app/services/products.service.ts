@@ -11,8 +11,8 @@ import { CreateProductImageDTO, ProductImage } from '../models/interfaces/produc
 })
 export class ProductsService {
 
-  private apiUrl = `${environment.API_URL}/api/products`;
-  private apiUrlCategory = `${environment.API_URL}/api/categories`;
+  private apiUrl = `${environment.API_URL}/products`;
+  private apiUrlCategory = `${environment.API_URL}/categories`;
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
-    return this.http.get<Product[]>(`${this.apiUrlCategory}/${categoryId}/products/`, { params })
+    return this.http.get<Product[]>(`${this.apiUrlCategory}/${categoryId}/products`, { params });
   }
 
   getAllProducts(limit?: number, offset?: number) {

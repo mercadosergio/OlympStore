@@ -20,7 +20,7 @@ const routes: Routes = [
       {
         path: 'category/:id', component: CategoryComponent,
       },
-      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'product/:id/:slug', component: ProductDetailComponent },
       {
         path: 'profile',
         canActivate: [AuthGuard],

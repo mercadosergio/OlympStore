@@ -70,7 +70,7 @@ export class ProductFormComponent implements OnInit {
         .subscribe((product) => {
           this.product = product;
           this.categoryIdChecked = product.category.id;
-          this.productForm.patchValue(product);
+          // this.productForm.patchValue(product);
         });
 
       this.title = 'Editar producto';
@@ -99,7 +99,7 @@ export class ProductFormComponent implements OnInit {
 
   private loadForm() {
     this.productForm = this.fb.nonNullable.group({
-      title: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       price: [0, [Validators.required]],
       description: ['', [Validators.required]],
       categoryId: [0, [Validators.required]],
@@ -114,7 +114,7 @@ export class ProductFormComponent implements OnInit {
           next: (product) => {
             console.log('Product no: ', product.id);
             this.alertService.showAlert('Producto añadido', 'Listo');
-            this.router.navigate(['/admin/products-cms']);
+            this.router.navigate(['/admin/products']);
           },
           error: (error) => {
             console.log(error);
@@ -148,10 +148,9 @@ export class ProductFormComponent implements OnInit {
 
   get Product(): CreateProductDTO {
     return {
-      title: this.productForm.controls.title.value,
+      name: this.productForm.controls.name.value,
       description: this.productForm.controls.description.value,
       price: this.productForm.controls.price.value,
-      images: ['https://placeimg.com/640/480/any?r=0.8178230965721403'],
       categoryId: this.productForm.controls.categoryId.value,
     };
   }

@@ -14,13 +14,15 @@ export class ProductComponent {
 
   @Input() product: Product = {
     id: 0,
-    title: '',
+    name: '',
     price: 0,
     images: [],
     description: '',
+    slug: '',
     category: {
       id: 0,
       name: '',
+      image: ''
     },
   };
   productId: string = String(this.product.id);

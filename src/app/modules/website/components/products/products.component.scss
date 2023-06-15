@@ -10,6 +10,15 @@
     }
 }
 
+.article {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.article.visible {
+    opacity: 1;
+}
+
 // Swiper
 swiper-container {
     width: 100%;

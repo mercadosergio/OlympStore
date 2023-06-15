@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'grid', pathMatch: 'full' },
       { path: 'grid', component: GridComponent },
       { path: 'tasks', component: TasksComponent },
-      { path: 'products-cms', component: AdminProductsComponent },
+      { path: 'products', component: AdminProductsComponent },
       { path: 'add-product', component: ProductFormComponent },
       { path: 'edit-product/:id', component: ProductFormComponent },
       { path: 'categories', component: CategoryListComponent },

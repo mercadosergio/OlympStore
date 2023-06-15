@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { checkToken } from '../interceptors/token.interceptor';
 import { Auth } from '../models/auth.model';
 import { User } from '../models/user.model';
 import { TokenService } from './token.service';
-import { checkToken } from '../interceptors/token.interceptor';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = `${environment.API_URL}/api`;
+  private apiUrl = `${environment.API_URL}`;
   user$ = new BehaviorSubject<User | null>(null);
-
 
   constructor(
     private http: HttpClient,
@@ -32,7 +32,6 @@ export class AuthService {
       .pipe(
         tap(response => {
           this.tokenService.saveToken(response.access_token);
-          // this.tokenService.saveRefreshToken(response.refresh_token);
         })
       );
   }
@@ -52,14 +51,8 @@ export class AuthService {
       );
   }
 
-  getMeProfile() {
-    return this.http.get<User>(`${this.apiUrl}/auth/profile`, {
-      context: checkToken(),
-    });
-  }
-
   getProfile() {
-    return this.getMeProfile()
+    return this.http.get<User>(`${this.apiUrl}/auth/profile`, { context: checkToken() })
       .pipe(
         tap(user => {
           this.user$.next(user);
@@ -76,5 +69,6 @@ export class AuthService {
 
   logout() {
     this.tokenService.removeToken();
+    this.user$.next(null);
   }
 }

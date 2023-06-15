@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/categories';
+  private apiUrl = `${environment.API_URL}/categories`;
 
   constructor(private http: HttpClient) { }
 

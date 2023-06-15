@@ -6,13 +6,14 @@ import { switchMap } from 'rxjs';
 import { FilesService } from 'src/app/services/files.service';
 import { AlertService } from 'src/app/services/alert.service';
 
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+
+  showArticles = false;
 
   constructor(
     private storeService: StoreService,
@@ -42,18 +43,22 @@ export class ProductsComponent implements OnInit {
     id: 0,
     price: 0,
     images: [],
-    title: '',
+    name: '',
     category: {
       id: 0,
       name: '',
+      image: ''
     },
-    description: ''
+    description: '',
+    slug: '',
   };
 
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   ngOnInit(): void {
-
+    setTimeout(() => {
+      this.showArticles = true;
+    }, 1000);
   }
 
   onAddShoppingCart(product: Product) {
@@ -87,14 +92,14 @@ export class ProductsComponent implements OnInit {
     this.productsService.getProduct(id)
       .pipe(
         switchMap((product) =>
-          this.productsService.update(Number(product.id), { title: 'change' }),
+          this.productsService.update(Number(product.id), { name: 'change' }),
         )
       )
       .subscribe(data => {
         console.log(data);
 
       });
-    this.productsService.fetchReadAndUpdate(id, { title: 'nuevo' })
+    this.productsService.fetchReadAndUpdate(id, { name: 'nuevo' })
       .subscribe(response => {
         const read = response[0];
         const update = response[1];
@@ -103,9 +108,8 @@ export class ProductsComponent implements OnInit {
 
   createNewProduct() {
     const product: CreateProductDTO = {
-      title: 'Nuevo',
+      name: 'Nuevo',
       description: 'asdasdsadas',
-      images: [''],
       price: 1000,
       categoryId: 2,
     }
@@ -118,7 +122,7 @@ export class ProductsComponent implements OnInit {
 
   // updateProduct() {
   //   const changes: UpdateProductDTO = {
-  //     title: 'changge title',
+  //     name: 'changge name',
   //   }
   //   const id = this.productChosen.id;
   //   this.productsService.update(id, changes)
