@@ -13,6 +13,7 @@ module.exports = {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
         'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)',
+        'primary-hover': 'rgb(var(--color-primary-hover) / <alpha-value>)',
         danger: colors.red,
       },
       container: {

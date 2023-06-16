@@ -25,6 +25,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ImgComponent } from './components/img/img.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProductDetailComponent,
     LayoutComponent,
     CategoryComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
