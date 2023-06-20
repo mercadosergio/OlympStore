@@ -1,0 +1,55 @@
+<section
+  class="bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center mx-auto my-6 w-3/4"
+>
+  <h1 class="text-xl font-semibold">Mi orden de compra</h1>
+  <form [formGroup]="orderForm" autocomplete="off" novalidate>
+    <table class="w-full my-4 border-separate border-spacing-y-4">
+      <thead>
+        <tr>
+          <th align="center">Imagen</th>
+          <th align="center">Nombre</th>
+          <th align="center">Cantidad</th>
+          <th align="center">Valor unitario</th>
+          <th align="center">Valor total</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of shoppingCart">
+        <tr class="">
+          <td class="items-center align-middle" align="center">
+            <img
+              class="my-auto"
+              width="60"
+              [src]="item.images[0].imagePath"
+              alt=""
+            />
+          </td>
+          <td class="items-center align-middle" align="center">
+            {{ item.name }}
+          </td>
+          <td class="items-center align-middle" align="center">
+            <input
+              type="number"
+              min="1"
+              formControlName="amount"
+              class="p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light grow basis-0"
+            />
+          </td>
+          <td class="items-center align-middle" align="center">
+            {{ item.price }}
+          </td>
+          <td class="items-center align-middle" align="center">
+            {{ item.price }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex items-center justify-center">
+      <button
+        (click)="toOrder()"
+        class="rounded-md py-3 px-6 bg-primary hover:bg-secondary text-white text-base"
+      >
+        Realizar compra
+      </button>
+    </div>
+  </form>
+</section>

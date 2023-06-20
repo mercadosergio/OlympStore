@@ -6,14 +6,16 @@ import { checkToken } from '../interceptors/token.interceptor';
 import { Auth } from '../models/auth.model';
 import { User } from '../models/user.model';
 import { TokenService } from './token.service';
+import { Customer } from '../models/interfaces/customer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = `${environment.API_URL}`;
+  private apiUrl = `${environment.API_URL}/api/v1`;
   user$ = new BehaviorSubject<User | null>(null);
+  customer$ = new BehaviorSubject<Customer | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -56,6 +58,15 @@ export class AuthService {
       .pipe(
         tap(user => {
           this.user$.next(user);
+        })
+      );
+  }
+
+  getCustomerByUserId() {
+    return this.http.get<Customer>(`${this.apiUrl}/auth/profile/customers`, { context: checkToken() })
+      .pipe(
+        tap(customer => {
+          this.customer$.next(customer);
         })
       );
   }

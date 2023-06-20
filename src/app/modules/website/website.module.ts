@@ -7,7 +7,7 @@ import { WebsiteRoutingModule } from './website-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './pages/home/home.component';
 
-import { MycartComponent } from './pages/mycart/mycart.component';
+import { MyOrderComponent } from './pages/my-order/my-order.component';
 
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -26,12 +26,13 @@ import { ImgComponent } from './components/img/img.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
+import { SlideCartComponent } from './components/slide-cart/slide-cart.component';
 
 @NgModule({
   declarations: [
     NavComponent,
     HomeComponent,
-    MycartComponent,
+    MyOrderComponent,
     ProductComponent,
     ProductsComponent,
     ImgComponent,
@@ -41,6 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LayoutComponent,
     CategoryComponent,
     FooterComponent,
+    SlideCartComponent,
   ],
   imports: [
     CommonModule,

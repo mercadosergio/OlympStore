@@ -33,7 +33,7 @@
       <ng-container matColumnDef="image">
         <th *matHeaderCellDef valign="middle" mat-header-cell>Image</th>
         <td *matCellDef="let element" valign="middle" mat-cell>
-          <img [src]="element.images[0].imagePath" class="w-20" alt />
+          <img [src]="element.images[0]?.imagePath" class="w-20" alt />
         </td>
       </ng-container>
 

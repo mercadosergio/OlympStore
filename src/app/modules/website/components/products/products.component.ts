@@ -2,9 +2,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CreateProductDTO, Product } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { switchMap } from 'rxjs';
+import { combineLatest, forkJoin, of, switchMap } from 'rxjs';
 import { FilesService } from 'src/app/services/files.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user.model';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/interfaces/customer.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +26,9 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     private filesService: FilesService,
     private alertService: AlertService,
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private customerService: CustomerService,
   ) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
@@ -54,6 +63,10 @@ export class ProductsComponent implements OnInit {
   };
 
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
+  myProfile!: User;
+  myCustomerProfile!: Customer;
+  userId!: number;
+  customer$ = this.authService.customer$;
 
   ngOnInit(): void {
     setTimeout(() => {

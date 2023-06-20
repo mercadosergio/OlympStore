@@ -9,7 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 import { CategoryComponent } from './pages/category/category.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { MycartComponent } from './pages/mycart/mycart.component';
+import { MyOrderComponent } from './pages/my-order/my-order.component';
 
 
 const routes: Routes = [
@@ -26,7 +26,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: ProfileComponent
       },
-      { path: 'my-cart', component: MycartComponent },
+      { path: 'my-order', component: MyOrderComponent },
     ]
   },
 

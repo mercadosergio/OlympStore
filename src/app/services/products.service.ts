@@ -5,14 +5,15 @@ import { catchError, retry, throwError, map, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { checkTime } from '../interceptors/time.interceptor';
 import { CreateProductImageDTO, ProductImage } from '../models/interfaces/product-image.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiUrl = `${environment.API_URL}/products`;
-  private apiUrlCategory = `${environment.API_URL}/categories`;
+  private apiUrl = `${environment.API_URL}/api/v1/products`;
+  private apiUrlCategory = `${environment.API_URL}/api/v1/categories`;
 
   constructor(private http: HttpClient) { }
 
@@ -73,7 +74,7 @@ export class ProductsService {
   }
 
   create(dto: CreateProductDTO) {
-    return this.http.post<Product>(this.apiUrl, dto);
+    return this.http.post<Product>(this.apiUrl, dto, { context: checkToken() });
   }
 
   addImageToProduct(productId: number, imagePath: string, position: number) {

@@ -27,7 +27,6 @@ import { ImageDropService } from 'src/app/services/image-drop.service';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
-  controlCategory: FormControl = new FormControl();
 
   imgPreview!: string;
   files: any = [];
@@ -112,7 +111,7 @@ export class ProductFormComponent implements OnInit {
       this.productService.create(this.Product)
         .subscribe({
           next: (product) => {
-            console.log('Product no: ', product.id);
+            // console.log('Product no: ', product.id);
             this.alertService.showAlert('Producto añadido', 'Listo');
             this.router.navigate(['/admin/products']);
           },
