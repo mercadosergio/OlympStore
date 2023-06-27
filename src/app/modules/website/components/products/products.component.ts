@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CreateProductDTO, Product } from 'src/app/models/product.model';
+import { CreateProductDTO, Product } from 'src/app/models/interfaces/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { combineLatest, forkJoin, of, switchMap } from 'rxjs';
@@ -7,7 +7,7 @@ import { FilesService } from 'src/app/services/files.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { TokenService } from 'src/app/services/token.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/interfaces/user.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/app/models/interfaces/customer.model';
 import { FormGroup } from '@angular/forms';
@@ -56,7 +56,8 @@ export class ProductsComponent implements OnInit {
     category: {
       id: 0,
       name: '',
-      image: ''
+      image: '',
+      slug: ''
     },
     description: '',
     slug: '',
@@ -168,17 +169,40 @@ export class ProductsComponent implements OnInit {
   }
 
   imgRta = '';
-
+  
   onUpload(event: Event) {
     const element = event.target as HTMLInputElement;
-    const file = element.files?.item(0);
+    const files = element.files;
+    console.log(files);
 
-    if (file) {
-
-      this.filesService.uploadFile(file)
-        .subscribe(rta => {
-          this.imgRta = rta.location;
-        });
+    if (files && files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        console.log(file);
+        this.filesService.addImageToProduct(40000, 1, files[i])
+          .subscribe({
+            next: (image) => {
+              console.log(image);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
+      }
     }
   }
+
+  // onUpload(event: Event) {
+  //   const element = event.target as HTMLInputElement;
+  //   const file = element.files?.item(0);
+  //   console.log(file);
+
+  //   if (file) {
+
+  //     this.filesService.uploadFile(file)
+  //       .subscribe(rta => {
+  //         this.imgRta = rta.location;
+  //       });
+  //   }
+  // }
 }

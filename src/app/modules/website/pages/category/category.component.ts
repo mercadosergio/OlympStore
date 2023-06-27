@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categoryId: string | null = null;
+  categoryId!: number;
   products: Product[] = [];
   limit = 10;
   offset = 0;
@@ -27,7 +27,7 @@ export class CategoryComponent implements OnInit {
     this.activatedRoute.paramMap
       .pipe(
         switchMap(params => {
-          this.categoryId = params.get('id');
+          this.categoryId = Number(params.get('id'));
           if (this.categoryId) {
             return this.productService.getByCategory(this.categoryId, this.limit, this.offset);
           }

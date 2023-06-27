@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/interfaces/category.model';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({

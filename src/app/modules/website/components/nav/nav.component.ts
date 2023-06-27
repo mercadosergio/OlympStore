@@ -1,12 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/interfaces/category.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { StoreService } from 'src/app/services/store.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/interfaces/product.model';
 import { TokenService } from 'src/app/services/token.service';
 import { Item, MyOrder } from 'src/app/models/interfaces/store.model';
 
@@ -132,8 +132,7 @@ export class NavComponent implements OnInit {
         next: (cart) => {
           this.myShoppingCarts = cart;
           this.currentlyShoppingCart = cart[0];
-          this.items = cart[0].items;
-          this.itemsCount = cart[0].items.reduce((total, item) => total + item.OrderProduct.amount, 0);
+          // this.itemsCount = cart[0].items.reduce((total, item) => total + item.OrderProduct.amount, 0);
         },
         error: (error) => {
           console.log(error);

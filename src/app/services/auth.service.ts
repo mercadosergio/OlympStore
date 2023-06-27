@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { checkToken } from '../interceptors/token.interceptor';
-import { Auth } from '../models/auth.model';
-import { User } from '../models/user.model';
+import { Auth } from '../models/interfaces/auth.model';
+import { User } from '../models/interfaces/user.model';
 import { TokenService } from './token.service';
 import { Customer } from '../models/interfaces/customer.model';
 

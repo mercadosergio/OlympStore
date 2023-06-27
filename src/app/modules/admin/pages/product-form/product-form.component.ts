@@ -1,19 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
-import { Category } from 'src/app/models/category.model';
-import {
-  CreateProductDTO,
-  IFormProduct,
-  Product,
-} from 'src/app/models/product.model';
+import { Observable, switchMap } from 'rxjs';
+import { Category } from 'src/app/models/interfaces/category.model';
+import { CreateProductDTO, IFormProduct, Product } from 'src/app/models/interfaces/product.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -28,21 +18,19 @@ import { ImageDropService } from 'src/app/services/image-drop.service';
 })
 export class ProductFormComponent implements OnInit {
 
-  imgPreview!: string;
-  files: any = [];
-
   productForm!: FormGroup<IFormProduct>;
 
   categories: Category[] = [];
-  productId: number | null = null;
+  productId: number = 0;
   product!: Product;
   categoryIdChecked: number = 0;
 
   title: string = '';
   actionButton: string = '';
 
-  // Images
   images: ProductImage[] = [];
+
+  selectedFiles: File[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,12 +39,11 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductsService,
     private alertService: AlertService,
     private fb: FormBuilder,
-    private sanitizer: DomSanitizer,
     private pImageService: ImageDropService
   ) { }
 
   ngOnInit(): void {
-    this.loadForm();
+    this.loadRegisterForm();
     this.getCategories();
     if (this.isUpdate) {
       this.activatedRoute.params
@@ -94,24 +81,42 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  loadEditForm(data: Product) { }
+  private loadEditForm(data: Product) { }
 
-  private loadForm() {
+  private loadRegisterForm() {
     this.productForm = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
       price: [0, [Validators.required]],
       description: ['', [Validators.required]],
       categoryId: [0, [Validators.required]],
-      images: [[''], Validators.required],
     });
   }
 
   addProduct() {
     if (this.productForm.valid) {
-      this.productService.create(this.Product)
+
+      this.productService.create(this.currentProduct)
         .subscribe({
           next: (product) => {
-            // console.log('Product no: ', product.id);
+
+            if (this.selectedFiles.length <= 0) {
+              //TODO: MAndar mensaje
+              //return
+            }
+            const files = this.selectedFiles;
+            let counter = 0;
+            for (let file of files) {
+              counter++;
+              const position = counter += 1000;
+              this.productService.addImageToProduct(position, product.id, file)
+                .subscribe({
+                  next: () => {
+                  },
+                  error: (error) => {
+                    console.log(error);
+                  },
+                });
+            }
             this.alertService.showAlert('Producto añadido', 'Listo');
             this.router.navigate(['/admin/products']);
           },
@@ -123,7 +128,6 @@ export class ProductFormComponent implements OnInit {
       this.productForm.markAllAsTouched();
     }
   }
-
   action() {
     if (this.isUpdate) {
     } else {
@@ -131,21 +135,34 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  captureFile(event: any) {
-    const file = event.target.files[0];
-    this.extractBase64(file).then((img: any) => {
-      this.imgPreview = img.base;
-      // console.log(img);
-    });
-    this.files.push(file);
-    console.log(this.files);
+  files: File[] = [];
+  filesSelected: (string | ArrayBuffer | null)[] = [];
+
+  captureFiles(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const files: File[] = Array.from(event.target.files);
+      this.files = files;
+      // const filesRaw = event.target.files;
+      // this.imageForm.get('images')?.setValue(filesRaw);
+      this.selectedFiles = event.target.files;
+
+      this.filesSelected = [];
+
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.filesSelected[i] = reader.result;
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
   }
 
   get isUpdate(): boolean {
     return this.router.url.includes('edit-product');
   }
 
-  get Product(): CreateProductDTO {
+  get currentProduct(): CreateProductDTO {
     return {
       name: this.productForm.controls.name.value,
       description: this.productForm.controls.description.value,
@@ -153,29 +170,6 @@ export class ProductFormComponent implements OnInit {
       categoryId: this.productForm.controls.categoryId.value,
     };
   }
-
-  extractBase64 = async ($event: any) =>
-    new Promise((resolve, reject) => {
-      try {
-        const unsafeImg = window.URL.createObjectURL($event);
-        const img = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-        const reader = new FileReader();
-        reader.readAsDataURL($event);
-        reader.onload = () => {
-          resolve({
-            base: reader.result,
-          });
-        };
-        reader.onerror = (error) => {
-          resolve({
-            base: null,
-          });
-        };
-      } catch (e) {
-        return null;
-      }
-      return $event;
-    });
 
   drop(event: CdkDragDrop<ProductImage[]>) {
     moveItemInArray(
@@ -190,4 +184,6 @@ export class ProductFormComponent implements OnInit {
 
     // this.updateCard(image, position, listId);
   }
+
+
 }

@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { Product } from 'src/app/models/product.model';
-import { User } from 'src/app/models/user.model';
+import { Product } from 'src/app/models/interfaces/product.model';
+import { User } from 'src/app/models/interfaces/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -25,7 +25,8 @@ export class ProductComponent implements OnInit {
     category: {
       id: 0,
       name: '',
-      image: ''
+      image: '',
+      slug: ''
     },
   };
   productId: string = String(this.product.id);
@@ -39,7 +40,7 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
   }
 
   onAddToCart() {

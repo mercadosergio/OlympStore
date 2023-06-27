@@ -1,6 +1,9 @@
 .mdc-radio__outer-circle,
 .mdc-radio__inner-circle {
-  border-color: red;
+  border-color: red !important;
+}
+.mat-radio-inner-circle {
+  background-color: red !important; /* Cambia el color del check a rojo */
 }
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {

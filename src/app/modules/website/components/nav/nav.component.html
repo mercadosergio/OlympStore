@@ -173,13 +173,13 @@
           Todos
         </a>
       </li>
-      <li *ngFor="let item of categories" class="mr-2.5 flex">
+      <li *ngFor="let category of categories" class="mr-2.5 flex">
         <a
-          [routerLink]="['/category', item.id]"
+          [routerLink]="['/category', category.id,category.slug]"
           class="text-base mx-1 flex items-center py-2 px-3 menu-item ease-out duration-200 hover:bg-secondary"
           routerLinkActive="active"
         >
-          {{ item.name }}
+          {{ category.name }}
         </a>
       </li>
     </ul>

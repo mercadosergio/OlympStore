@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { ModalDeleteProductComponent } from '../../components/modal-delete-product/modal-delete-product.component';
 

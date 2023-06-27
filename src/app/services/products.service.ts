@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.model';
-import { catchError, retry, throwError, map, zip } from 'rxjs';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode, HttpHeaders } from '@angular/common/http';
+import { CreateProductDTO, Product, UpdateProductDTO } from '../models/interfaces/product.model';
+import { catchError, retry, throwError, map, zip, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { checkTime } from '../interceptors/time.interceptor';
 import { CreateProductImageDTO, ProductImage } from '../models/interfaces/product-image.model';
@@ -13,11 +13,12 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class ProductsService {
 
   private apiUrl = `${environment.API_URL}/api/v1/products`;
+  private apiProductImageUrl = `${environment.API_URL}/api/v1/products/images`;
   private apiUrlCategory = `${environment.API_URL}/api/v1/categories`;
 
   constructor(private http: HttpClient) { }
 
-  getByCategory(categoryId: string, limit?: number, offset?: number) {
+  getByCategory(categoryId: number, limit?: number, offset?: number) {
     let params = new HttpParams();
     if (limit && offset != null) {
       params = params.set('limit', limit);
@@ -77,8 +78,13 @@ export class ProductsService {
     return this.http.post<Product>(this.apiUrl, dto, { context: checkToken() });
   }
 
-  addImageToProduct(productId: number, imagePath: string, position: number) {
-    return this.http.post<ProductImage>(this.apiUrl, { productId, imagePath, position });
+  addImageToProduct(position: number, productId: number, imageFile: Blob): Observable<ProductImage> {
+    let formData = new FormData();
+    formData.append('position', position.toString());
+    formData.append('productId', productId.toString());
+    formData.append('imageFile', imageFile);
+
+    return this.http.post<ProductImage>(`${this.apiProductImageUrl}/upload`, formData, {context: checkToken()});
   }
 
   update(id: number, dto: UpdateProductDTO) {

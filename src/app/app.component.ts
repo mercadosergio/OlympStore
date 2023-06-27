@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './models/product.model';
+import { Product } from './models/interfaces/product.model';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
 // Swiper

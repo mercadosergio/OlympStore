@@ -1,16 +1,23 @@
 <main class="justify-center px-20">
   <h1>{{ title }}</h1>
-  <form [formGroup]="productForm" autocomplete="off" novalidate>
+  <form
+    [formGroup]="productForm"
+  >
     <div class="grid gap-5 grid-cols-2">
+      <!-- <form
+        [formGroup]="imageForm"
+        autocomplete="off"
+        novalidate
+      > -->
       <div class="block items-center col-span-2">
-        <label class="font-medium text-base" for> Imagenes: </label>
+        <label class="font-medium text-base" for>Imagenes: </label>
         <div class>
           <div *ngIf="product">
             <!-- <div *ngFor="let img of product.images">
-							<img [src]="img"
-								class="w-28 rounded-lg shadow-lg"
-								alt="Imagen del producto">
-						</div> -->
+          <img [src]="img"
+            class="w-28 rounded-lg shadow-lg"
+            alt="Imagen del producto">
+        </div> -->
             <div
               (cdkDropListDropped)="drop($event)"
               [cdkDropListData]="images"
@@ -28,15 +35,44 @@
               </div>
             </div>
           </div>
-          <div>
-            <input (change)="captureFile($event)" type="file" multiple />
+          <div class="flex">
+            <input
+              (change)="captureFiles($event)"
+              type="file"
+              multiple
+              accept="image/*"
+              class="hidden"
+              #imginput
+            />
+            <img
+              *ngIf="filesSelected.length <= 0"
+              width="120"
+              class="cursor-pointer"
+              src="assets/images/placeholder-image.png"
+              alt="Preview"
+              (click)="imginput.click()"
+            />
+            <div *ngFor="let file of filesSelected">
+              <img
+                *ngIf="file"
+                width="120"
+                class="cursor-pointer"
+                [src]="file || 'assets/images/placeholder-image.png'"
+                alt="Preview"
+                (click)="imginput.click()"
+              />
+            </div>
+            <!-- <div class="flex" *ngFor="let preview of imageFiles">
+                <img [src]="preview" alt="" />
+              </div> -->
           </div>
-          <div *ngIf="imgPreview">
-            <img [src]="imgPreview" class="w-28" alt />
-            img
-          </div>
+
+          <!-- <div *ngFor="let img of imgPreview">
+              <img [src]="img" class="w-28" alt />
+            </div> -->
         </div>
       </div>
+      <!-- </form> -->
       <div class="block items-center justify-between col-span-2">
         <label class="font-medium text-base" for> Título: </label>
         <input
@@ -52,11 +88,11 @@
           class="w-full p-3 !outline-none border border-solid border-gray-400 rounded resize-none text-base font-light"
         ></textarea>
       </div>
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between space-x-4">
         <label class="font-medium text-base" for> Precio: </label>
         <input
           formControlName="price"
-          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
+          class="w-3/5 p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
           type="number"
         />
       </div>
@@ -79,10 +115,11 @@
       </div>
       <div class="flex items-center justify-center col-span-2">
         <button
+          [disabled]="productForm.invalid"
           (click)="action()"
           class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md"
-          type="submit"
-        >
+          >
+          <!-- type="submit" -->
           {{ actionButton }}
         </button>
       </div>

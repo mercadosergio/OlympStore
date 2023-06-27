@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CreateUserDTO, User } from '../models/user.model';
+import { CreateUserDTO, User } from '../models/interfaces/user.model';
 import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({

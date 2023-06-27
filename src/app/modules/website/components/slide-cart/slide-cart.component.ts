@@ -1,7 +1,7 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/interfaces/product.model';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({

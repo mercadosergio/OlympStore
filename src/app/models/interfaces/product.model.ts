@@ -1,6 +1,6 @@
 import { FormControl } from "@angular/forms";
 import { Category } from "./category.model";
-import { ProductImage } from "./interfaces/product-image.model";
+import { ProductImage } from "./product-image.model";
 
 export interface Product {
   id: number;
@@ -25,7 +25,5 @@ export interface IFormProduct {
   name: FormControl<string>;
   description: FormControl<string>;
   price: FormControl<number>;
-  images: FormControl<string[]>
   categoryId: FormControl<number>;
-
 }

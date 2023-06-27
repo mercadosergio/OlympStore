@@ -1,4 +1,4 @@
-import { Category } from "../category.model";
+import { Category } from "./category.model";
 import { Customer } from "./customer.model";
 import { ProductImage } from "./product-image.model";
 

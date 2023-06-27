@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faEye, faGrip } from '@fortawesome/free-solid-svg-icons';
 import { initDropdowns, initAccordions } from 'flowbite';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/interfaces/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

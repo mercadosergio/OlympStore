@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -14,6 +14,7 @@ import { ViewEncapsulation, ViewChild } from "@angular/core";
 import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
+import { environment } from 'src/environments/environment';
 
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
@@ -30,7 +31,7 @@ export class ProductDetailComponent implements OnInit {
   thumbsSwiper: any;
   private pdf = new jsPDF();
 
-  productId: number | null = null;
+  productId!: number;
   product: Product | null = null;
 
   newShoppingCart: Product[] = [];
@@ -62,6 +63,11 @@ export class ProductDetailComponent implements OnInit {
         }),
       )
       .subscribe((data) => {
+        data?.images.map(img => {
+          img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
+            ? img.imagePath
+            : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
+        });
         this.product = data;
       });
   }
