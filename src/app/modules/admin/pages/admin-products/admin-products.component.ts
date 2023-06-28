@@ -89,7 +89,4 @@ export class AdminProductsComponent implements OnInit {
       this.getProducts();
     })
   }
-
-
-
 }

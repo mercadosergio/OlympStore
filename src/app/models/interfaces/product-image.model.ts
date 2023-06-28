@@ -10,3 +10,7 @@ export interface CreateProductImageDTO extends Omit<ProductImage, 'id' | 'imageP
     productId: number;
     imageFile: File;
 }
+
+export interface UpdateProductImageDTO extends Partial<Omit<ProductImage, 'id' | 'imagePath' | 'filename' | 'originalname'>> {
+ 
+}

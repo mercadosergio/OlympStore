@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { Category } from 'src/app/models/interfaces/category.model';
 import { CreateProductDTO, IFormProduct, Product } from 'src/app/models/interfaces/product.model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -10,6 +10,8 @@ import { ProductsService } from 'src/app/services/products.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductImage } from 'src/app/models/interfaces/product-image.model';
 import { ImageDropService } from 'src/app/services/image-drop.service';
+import { environment } from 'src/environments/environment';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-form',
@@ -17,6 +19,8 @@ import { ImageDropService } from 'src/app/services/image-drop.service';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
+
+  faTrashCan = faTrashCan;
 
   productForm!: FormGroup<IFormProduct>;
 
@@ -31,6 +35,7 @@ export class ProductFormComponent implements OnInit {
   images: ProductImage[] = [];
 
   selectedFiles: File[] = [];
+  isImages: ProductImage[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,35 +44,42 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductsService,
     private alertService: AlertService,
     private fb: FormBuilder,
-    private pImageService: ImageDropService
+    private imageDropService: ImageDropService
   ) { }
 
   ngOnInit(): void {
     this.loadRegisterForm();
     this.getCategories();
     if (this.isUpdate) {
-      this.activatedRoute.params
-        .pipe(
-          switchMap(({ id }) => {
-            this.productId = +id;
-            return this.productService.getProduct(id);
-          })
-        )
-        .subscribe((product) => {
-          this.product = product;
-          this.categoryIdChecked = product.category.id;
-          // this.productForm.patchValue(product);
-        });
-
+      this.getProductToUpdate();
       this.title = 'Editar producto';
       this.actionButton = 'Actualizar';
-      // Imagenes quemadas
-      this.images = this.pImageService.getImages();
-
     } else {
       this.title = 'Agregar producto';
       this.actionButton = 'Guardar';
     }
+  }
+
+  getProductToUpdate() {
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => {
+          this.productId = +id;
+          return this.productService.getProduct(id);
+        })
+      )
+      .subscribe((product) => {
+        product?.images.map(img => {
+          img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
+            ? img.imagePath
+            : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
+        });
+
+        this.product = product;
+        this.categoryIdChecked = product.category.id;
+        this.images = product.images;
+        this.productForm.patchValue(product);
+      });
   }
 
   getCategories() {
@@ -81,8 +93,6 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  private loadEditForm(data: Product) { }
-
   private loadRegisterForm() {
     this.productForm = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
@@ -94,7 +104,6 @@ export class ProductFormComponent implements OnInit {
 
   addProduct() {
     if (this.productForm.valid) {
-
       this.productService.create(this.currentProduct)
         .subscribe({
           next: (product) => {
@@ -105,9 +114,12 @@ export class ProductFormComponent implements OnInit {
             }
             const files = this.selectedFiles;
             let counter = 0;
+
             for (let file of files) {
-              counter++;
-              const position = counter += 1000;
+
+              // const position = counter += 1000;
+              let position = counter += 65535;
+              console.log(position);
               this.productService.addImageToProduct(position, product.id, file)
                 .subscribe({
                   next: () => {
@@ -128,8 +140,24 @@ export class ProductFormComponent implements OnInit {
       this.productForm.markAllAsTouched();
     }
   }
+
+  editProduct() {
+    if (this.productForm.valid) {
+      this.productService.update(this.productId, this.currentProduct)
+        .subscribe({
+          next: () => {
+            this.alertService.showAlert('Producto actualizado', 'Listo');
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        })
+    }
+  }
+
   action() {
     if (this.isUpdate) {
+      this.editProduct();
     } else {
       this.addProduct();
     }
@@ -171,19 +199,40 @@ export class ProductFormComponent implements OnInit {
     };
   }
 
+  private updateImage(id: ProductImage, position: number) {
+    this.productService.updateImageOrder(id.id, position)
+      .subscribe((imgUpdate) => {
+        console.log(imgUpdate);
+      });
+  }
+
   drop(event: CdkDragDrop<ProductImage[]>) {
     moveItemInArray(
       event.container.data,
       event.previousIndex,
       event.currentIndex);
 
-    const position = this.pImageService.getPosition(event.container.data, event.currentIndex);
+    const position = this.imageDropService.getPosition(event.container.data, event.currentIndex);
     const image = event.container.data[event.currentIndex];
-    const listId = event.container.id;
-    console.log('IMAGE PSITION: ', position);
+    // const listId = event.container.id;
+    console.log(position, 'position');
 
-    // this.updateCard(image, position, listId);
+    this.updateImage(image, position);
   }
 
-
+  deleteImage(id: number, path: string) {
+    if (path.startsWith("http://") || path.startsWith("https://")) {
+      this.alertService.showAlert('Este archivo no se puede borrar', 'Listo');
+    } else {
+      this.productService.deleteFile(id)
+        .subscribe({
+          next: () => {
+            this.alertService.showAlert('Archivo borrado', 'Listo');
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    }
+  }
 }

@@ -84,15 +84,23 @@ export class ProductsService {
     formData.append('productId', productId.toString());
     formData.append('imageFile', imageFile);
 
-    return this.http.post<ProductImage>(`${this.apiProductImageUrl}/upload`, formData, {context: checkToken()});
+    return this.http.post<ProductImage>(`${this.apiProductImageUrl}/upload`, formData, { context: checkToken() });
   }
 
   update(id: number, dto: UpdateProductDTO) {
     return this.http.put<Product>(`${this.apiUrl}/${id}`, dto);
   }
 
+  updateImageOrder(id: ProductImage['id'], position: number) {
+    return this.http.patch<ProductImage>(`${this.apiProductImageUrl}/${id}`, { position }, { context: checkToken() });
+  }
+
   delete(id: number) {
     return this.http.delete<Product>(`${this.apiUrl}/${id}`);
+  }
+
+  deleteFile(id: number) {
+    return this.http.delete<ProductImage>(`${this.apiProductImageUrl}/${id}`);
   }
 
   getProductsByPage(limit: number, offset: number) {

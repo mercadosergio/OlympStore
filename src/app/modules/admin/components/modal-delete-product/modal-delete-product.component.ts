@@ -19,6 +19,17 @@ export class ModalDeleteProductComponent {
   ) { }
 
   deleteProduct() {
+    const images = this.data.images;
+    for (let img of images) {
+      this.productService.deleteFile(img.id)
+        .subscribe({
+          next: () => {
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    }
     const id = this.data.id;
     this.productService.delete(id)
       .subscribe({
