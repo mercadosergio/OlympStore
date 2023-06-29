@@ -2,9 +2,33 @@
   <h1>{{ title }}</h1>
   <form [formGroup]="categoryForm" autocomplete="off" novalidate>
     <div class="flex flex-col">
-      <div class="block items-center my-3">
-        <label class="font-medium text-base" for> Agregar una imagen: </label>
-        <input type="file" />
+      <div class="flex flex-col my-3">
+        <label *ngIf="!isUpdate" class="font-medium text-base mb-2" for>
+          Agregar una imagen:
+        </label>
+        <input
+          (change)="onUpload($event)"
+          type="file"
+          multiple
+          accept="image/*"
+          class="hidden"
+          #imginput
+        />
+        <img
+          width="150"
+          class="cursor-pointer bg-white border border-solid border-gray-400"
+          [src]="
+            filePreview ? filePreview : 'assets/images/placeholder-image.png'
+          "
+          [alt]="filePreview ? 'Preview' : 'Agregar imagen'"
+          (click)="imginput.click()"
+        />
+        <!-- <img
+          *ngIf="filePreview"
+          [src]="filePreview"
+          alt="Preview"
+          (click)="imginput.click()"
+        /> -->
       </div>
       <div class="block items-center my-3">
         <label class="font-medium text-base" for> Nombre: </label>

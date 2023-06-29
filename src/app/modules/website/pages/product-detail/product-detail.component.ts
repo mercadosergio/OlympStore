@@ -63,11 +63,6 @@ export class ProductDetailComponent implements OnInit {
         }),
       )
       .subscribe((data) => {
-        data?.images.map(img => {
-          img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
-            ? img.imagePath
-            : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
-        });
         this.product = data;
       });
   }

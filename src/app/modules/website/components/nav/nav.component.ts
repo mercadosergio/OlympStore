@@ -107,7 +107,7 @@ export class NavComponent implements OnInit {
   getAllCategories() {
     this.categoryService.getAll()
       .subscribe(data => {
-        this.categories = data;
+        this.categories = data;        
       });
   }
 

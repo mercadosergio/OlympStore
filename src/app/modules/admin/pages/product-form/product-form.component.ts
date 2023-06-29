@@ -55,7 +55,7 @@ export class ProductFormComponent implements OnInit {
       this.title = 'Editar producto';
       this.actionButton = 'Actualizar';
     } else {
-      this.title = 'Agregar producto';
+      this.title = 'Agregar nuevo producto';
       this.actionButton = 'Guardar';
     }
   }
@@ -69,12 +69,6 @@ export class ProductFormComponent implements OnInit {
         })
       )
       .subscribe((product) => {
-        product?.images.map(img => {
-          img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
-            ? img.imagePath
-            : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
-        });
-
         this.product = product;
         this.categoryIdChecked = product.category.id;
         this.images = product.images;
@@ -170,8 +164,6 @@ export class ProductFormComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const files: File[] = Array.from(event.target.files);
       this.files = files;
-      // const filesRaw = event.target.files;
-      // this.imageForm.get('images')?.setValue(filesRaw);
       this.selectedFiles = event.target.files;
 
       this.filesSelected = [];
@@ -214,9 +206,6 @@ export class ProductFormComponent implements OnInit {
 
     const position = this.imageDropService.getPosition(event.container.data, event.currentIndex);
     const image = event.container.data[event.currentIndex];
-    // const listId = event.container.id;
-    console.log(position, 'position');
-
     this.updateImage(image, position);
   }
 

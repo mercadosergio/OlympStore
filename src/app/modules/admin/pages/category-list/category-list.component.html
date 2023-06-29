@@ -1,6 +1,10 @@
-<div class="mx-8">
+<div class="mx-20 flex flex-col">
   <h1>Administrar categorias</h1>
-
+  <a
+    routerLink="/admin/add-category"
+    class="rounded-md py-2 px-6 bg-green-600 hover:bg-green-500 text-white text-base ml-auto my-4"
+    >Agregar</a
+  >
   <div class="mat-elevation-z8">
     <table [dataSource]="categories" mat-table matSort>
       <ng-container matColumnDef="id">
@@ -15,6 +19,22 @@
         </th>
         <td *matCellDef="let row" valign="middle" mat-cell>
           {{ row.id }}
+        </td>
+      </ng-container>
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th
+          *matHeaderCellDef
+          valign="middle"
+          mat-header-cell
+          mat-sort-header
+          sortActionDescription="Sort by image"
+        >
+          Image
+        </th>
+        <td *matCellDef="let row" valign="middle" mat-cell>
+          <img [src]="row.image" width="60" alt="" />
         </td>
       </ng-container>
 
@@ -45,7 +65,7 @@
           >
             <fa-icon [icon]="faPenToSquare" class="text-2xl"></fa-icon>
           </a>
-          <button class="text-red-500 mx-1">
+          <button class="text-red-500 mx-1" (click)="onDeleteCategory(row)">
             <fa-icon [icon]="faTrashCan" class="text-2xl"></fa-icon>
           </button>
         </td>

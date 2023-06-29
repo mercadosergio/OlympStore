@@ -24,7 +24,20 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
-    return this.http.get<Product[]>(`${this.apiUrlCategory}/${categoryId}/products`, { params });
+    return this.http.get<Product[]>(`${this.apiUrlCategory}/${categoryId}/products`, { params })
+      .pipe(
+        map(products => products.map(item => {
+          item.images.map(img => {
+            img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
+              ? img.imagePath
+              : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
+          })
+          return {
+            ...item,
+            taxes: 0.19 * item.price
+          }
+        }))
+      );;
   }
 
   getAllProducts(limit?: number, offset?: number) {
@@ -37,6 +50,11 @@ export class ProductsService {
       .pipe(
         retry(3),
         map(products => products.map(item => {
+          item.images.map(img => {
+            img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
+              ? img.imagePath
+              : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
+          })
           return {
             ...item,
             taxes: 0.19 * item.price
@@ -59,6 +77,14 @@ export class ProductsService {
   getProduct(id: number) {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
       .pipe(
+        map(product => {
+          product.images.map(img => {
+            img.imagePath = img.imagePath.startsWith("http://") || img.imagePath.startsWith("https://")
+              ? img.imagePath
+              : `${environment.API_URL}\\api\\v1\\` + img.imagePath;
+          });
+          return product;
+        }),
         catchError((error: HttpErrorResponse) => {
           if (error.status === HttpStatusCode.Conflict) {
             return throwError('Algo esta fallando en el server');

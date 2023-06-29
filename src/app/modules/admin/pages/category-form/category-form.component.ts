@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CreateCategoryDTO } from 'src/app/models/interfaces/category.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -20,9 +22,11 @@ export class CategoryFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
+    this.loadForm();
     if (this.isUpdate) {
       this.title = 'Editar categoria';
       this.actionButton = 'Actualizar';
@@ -41,7 +45,15 @@ export class CategoryFormComponent implements OnInit {
   }
 
   addCategory() {
-
+    this.categoryService.create(this.currentCategory)
+      .subscribe({
+        next: () => {
+          this.alertService.showAlert('Categoria creada', 'Listo');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      })
   }
 
   editCategory() {
@@ -51,6 +63,7 @@ export class CategoryFormComponent implements OnInit {
   loadForm() {
     this.categoryForm = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
+      image: [null]
     });
   }
 
@@ -60,5 +73,29 @@ export class CategoryFormComponent implements OnInit {
 
   get isUpdate(): boolean {
     return this.router.url.includes('edit-category');
+  }
+
+  get currentCategory(): CreateCategoryDTO {
+    return {
+      name: this.categoryForm.controls['name'].value,
+      image: this.categoryForm.controls['image'].value,
+    };
+  }
+  file!: File;
+  filePreview!: (string | ArrayBuffer | null);
+
+  onUpload(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file: File = event.target.files[0];
+      this.file = file;
+
+      this.filePreview = null;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.filePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
