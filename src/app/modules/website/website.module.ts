@@ -15,8 +15,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 
 import { LayoutComponent } from './components/layout/layout.component';
 // Material
-import { MaterialModule } from '../shared/material/material.module';
-import { SharedModule } from '../shared/shared.module';
+
+
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProductComponent } from './components/product/product.component';
@@ -29,26 +29,24 @@ import { SlideCartComponent } from './components/slide-cart/slide-cart.component
 
 @NgModule({
     imports: [
-        CommonModule,
-        WebsiteRoutingModule,
-        MaterialModule,
-        SharedModule,
-        ReactiveFormsModule,
-        FontAwesomeModule,
-        NavComponent,
-        HomeComponent,
-        MyOrderComponent,
-        ProductComponent,
-        ProductsComponent,
-        ImgComponent,
-        RecoveryComponent,
-        ProfileComponent,
-        ProductDetailComponent,
-        LayoutComponent,
-        CategoryComponent,
-        FooterComponent,
-        SlideCartComponent
-    ],
+    CommonModule,
+    WebsiteRoutingModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    NavComponent,
+    HomeComponent,
+    MyOrderComponent,
+    ProductComponent,
+    ProductsComponent,
+    ImgComponent,
+    RecoveryComponent,
+    ProfileComponent,
+    ProductDetailComponent,
+    LayoutComponent,
+    CategoryComponent,
+    FooterComponent,
+    SlideCartComponent
+],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WebsiteModule {}

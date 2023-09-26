@@ -12,26 +12,24 @@ import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 //Angular Material
-import { MaterialModule } from './modules/shared/material/material.module';
-import { SharedModule } from './modules/shared/shared.module';
+
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WebsiteModule } from './modules/website/website.module';
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        FormsModule,
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MaterialModule,
-        SharedModule,
-        FontAwesomeModule,
-        WebsiteModule,
-        NotFoundComponent
-    ],
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    WebsiteModule,
+    NotFoundComponent
+],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },

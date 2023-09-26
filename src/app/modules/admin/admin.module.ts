@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MaterialModule } from '../shared/material/material.module';
+
 import { DialogModule } from '@angular/cdk/dialog';
 
 import { LayoutComponent } from './components/layout/layout.component';
@@ -20,23 +20,22 @@ import { ModalDeleteCategoryComponent } from './components/modal-delete-category
 
 @NgModule({
     imports: [
-        CommonModule,
-        AdminRoutingModule,
-        MaterialModule,
-        FontAwesomeModule,
-        DialogModule,
-        ReactiveFormsModule,
-        FormsModule,
-        DragDropModule,
-        TasksComponent,
-        GridComponent,
-        LayoutComponent,
-        AdminProductsComponent,
-        ModalDeleteProductComponent,
-        ProductFormComponent,
-        CategoryListComponent,
-        CategoryFormComponent,
-        ModalDeleteCategoryComponent
-    ]
+    CommonModule,
+    AdminRoutingModule,
+    FontAwesomeModule,
+    DialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DragDropModule,
+    TasksComponent,
+    GridComponent,
+    LayoutComponent,
+    AdminProductsComponent,
+    ModalDeleteProductComponent,
+    ProductFormComponent,
+    CategoryListComponent,
+    CategoryFormComponent,
+    ModalDeleteCategoryComponent
+]
 })
 export class AdminModule {}
