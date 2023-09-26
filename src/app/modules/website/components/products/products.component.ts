@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import {
   CreateProductDTO,
   Product,
@@ -21,17 +28,14 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  private productsService = inject(ProductsService);
+  private filesService = inject(FilesService);
+  private alertService = inject(AlertService);
+  private authService = inject(AuthService);
+
   showArticles = false;
 
-  constructor(
-    private storeService: StoreService,
-    private productsService: ProductsService,
-    private filesService: FilesService,
-    private alertService: AlertService,
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private customerService: CustomerService
-  ) {
+  constructor(private storeService: StoreService) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
 

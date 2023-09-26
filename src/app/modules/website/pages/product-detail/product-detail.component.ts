@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/models/interfaces/product.model';
@@ -26,6 +26,10 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductDetailComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private productService = inject(ProductsService);
+  private location = inject(Location);
+
   faPrint = faPrint;
   thumbsSwiper: any;
   private pdf = new jsPDF();
@@ -36,12 +40,7 @@ export class ProductDetailComponent implements OnInit {
   newShoppingCart: Product[] = [];
   total = 0;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private productService: ProductsService,
-    private storeService: StoreService,
-    private location: Location
-  ) {
+  constructor(private storeService: StoreService) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
 

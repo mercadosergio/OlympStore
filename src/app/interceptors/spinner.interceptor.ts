@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -11,8 +11,7 @@ import { SpinnerService } from '../services/spinner.service';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
-  constructor(private spinnerService: SpinnerService) {}
-
+  private spinnerService = inject(SpinnerService);
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler

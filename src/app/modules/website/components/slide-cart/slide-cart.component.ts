@@ -1,5 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { StoreService } from 'src/app/services/store.service';
@@ -39,7 +39,7 @@ export class SlideCartComponent implements OnInit {
 
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private storeService: StoreService) {}
+  private storeService = inject(StoreService);
 
   ngOnInit() {
     this.loadShoppingCart();

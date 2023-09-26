@@ -7,7 +7,6 @@ import { ProductImage } from '../models/interfaces/product-image.model';
 export class ImageDropService {
   bufferSpace: number = 65535;
 
-  constructor() {}
 
   getPosition(cards: ProductImage[], currentIndex: number) {
     if (cards.length === 1) {

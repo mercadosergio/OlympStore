@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap, of } from 'rxjs';
@@ -14,17 +14,15 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./my-order.component.scss'],
 })
 export class MyOrderComponent implements OnInit {
+  private storeService = inject(StoreService);
+  private tokenService = inject(TokenService);
+  private authService = inject(AuthService);
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+
   orderForm!: FormGroup;
   shoppingCart: Product[] = [];
   myCustomerProfile!: Customer;
-
-  constructor(
-    private storeService: StoreService,
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {}
 
   ngOnInit() {
     this.loadShoppingCart();

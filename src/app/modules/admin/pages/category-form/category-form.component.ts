@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateCategoryDTO } from 'src/app/models/interfaces/category.model';
@@ -11,18 +11,15 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent implements OnInit {
+  private categoryService = inject(CategoriesService);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+  private alertService = inject(AlertService);
+
   title: string = '';
   actionButton: string = '';
   categoryId: number = 0;
   categoryForm!: FormGroup;
-
-  constructor(
-    private categoryService: CategoriesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder,
-    private alertService: AlertService
-  ) {}
 
   ngOnInit(): void {
     this.loadForm();

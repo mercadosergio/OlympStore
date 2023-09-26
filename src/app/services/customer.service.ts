@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { checkToken } from '../interceptors/token.interceptor';
 import { Customer } from '../models/interfaces/customer.model';
@@ -10,7 +10,7 @@ import { Customer } from '../models/interfaces/customer.model';
 export class CustomerService {
   private apiUrl = `${environment.API_URL}/api/v1/customers`;
 
-  constructor(private http: HttpClient) {}
+  private http =inject(HttpClient);
 
   getAll() {
     return this.http.get<Customer[]>(this.apiUrl, { context: checkToken() });

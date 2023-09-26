@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -18,7 +18,7 @@ export function checkToken() {
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenService) {}
+  private tokenService = inject(TokenService);
 
   intercept(
     request: HttpRequest<unknown>,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -23,6 +23,14 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private categoryService = inject(CategoriesService);
+  private productService = inject(ProductsService);
+  private alertService = inject(AlertService);
+  private fb = inject(FormBuilder);
+  private imageDropService = inject(ImageDropService);
+
   faTrashCan = faTrashCan;
 
   productForm!: FormGroup<IFormProduct>;
@@ -39,16 +47,6 @@ export class ProductFormComponent implements OnInit {
 
   selectedFiles: File[] = [];
   isImages: ProductImage[] = [];
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private categoryService: CategoriesService,
-    private productService: ProductsService,
-    private alertService: AlertService,
-    private fb: FormBuilder,
-    private imageDropService: ImageDropService
-  ) {}
 
   ngOnInit(): void {
     this.loadRegisterForm();

@@ -1,5 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { faBars, faEye, faGrip } from '@fortawesome/free-solid-svg-icons';
 import { initDropdowns, initAccordions } from 'flowbite';
@@ -24,17 +24,15 @@ import { AuthService } from 'src/app/services/auth.service';
   ],
 })
 export class LayoutComponent implements OnInit {
+  private router = inject(Router);
+  private authService = inject(AuthService);
+
   isProfileDropdown = false;
   faEye = faEye;
   faGrip = faGrip;
   faBars = faBars;
 
   user$ = this.authService.user$;
-
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
 
   ngOnInit(): void {
     initDropdowns();

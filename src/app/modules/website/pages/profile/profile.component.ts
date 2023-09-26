@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { User } from 'src/app/models/interfaces/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,8 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  private authService = inject(AuthService);
   user: User | null = null;
-  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe((data) => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Router,
@@ -12,10 +12,8 @@ import { TokenService } from '../services/token.service';
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(
-    private tokenService: TokenService,
-    private router: Router
-  ) {}
+    private tokenService= inject(TokenService)
+    private router= inject(Router)
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

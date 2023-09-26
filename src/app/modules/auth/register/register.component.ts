@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/utils/validators';
@@ -18,6 +18,10 @@ interface UserRole {
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  private authService = inject(AuthService);
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+
   hide: boolean = true;
   hideConfirm: boolean = true;
   visibilityIcon: string = '';
@@ -45,12 +49,6 @@ export class RegisterComponent implements OnInit {
 
   faEye = faEye;
   faEyeSlash = faEyeSlash;
-
-  constructor(
-    private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.loadForm();

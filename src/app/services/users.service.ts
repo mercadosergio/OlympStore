@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateUserDTO, User } from '../models/interfaces/user.model';
@@ -11,7 +11,7 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class UsersService {
   private apiUrl = `${environment.API_URL}/api/v1/users`;
 
-  constructor(private http: HttpClient) {}
+  private http =inject(HttpClient);
 
   create(dto: CreateUserDTO): Observable<User> {
     return this.http.post<User>(this.apiUrl, dto);

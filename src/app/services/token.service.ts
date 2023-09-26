@@ -6,7 +6,6 @@ import jwt_decode, { JwtPayload } from 'jwt-decode';
   providedIn: 'root',
 })
 export class TokenService {
-  constructor() {}
 
   saveToken(token: string) {
     setCookie('olymp-token', token, { expires: 365, path: '/' });

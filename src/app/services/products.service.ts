@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   HttpClient,
   HttpParams,
@@ -24,7 +24,7 @@ export class ProductsService {
   private apiProductImageUrl = `${environment.API_URL}/api/v1/products/images`;
   private apiUrlCategory = `${environment.API_URL}/api/v1/categories`;
 
-  constructor(private http: HttpClient) {}
+  private http =inject(HttpClient);
 
   getByCategory(categoryId: number, limit?: number, offset?: number) {
     let params = new HttpParams();

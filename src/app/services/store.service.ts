@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/interfaces/product.model';
 
@@ -20,7 +20,7 @@ export class StoreService {
   private cartAnimationSource = new BehaviorSubject<boolean>(false);
   cartAnimation$ = this.cartAnimationSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private http =inject(HttpClient);
 
   createOrder(customerId: number) {
     const orderData = { customerId: customerId };

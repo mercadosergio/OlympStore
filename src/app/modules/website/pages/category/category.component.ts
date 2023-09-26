@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/models/interfaces/product.model';
@@ -10,17 +10,15 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private productService = inject(ProductsService);
+
   categoryId!: number;
   products: Product[] = [];
   limit = 10;
   offset = 0;
 
   productId: string | null = null;
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private productService: ProductsService
-  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap

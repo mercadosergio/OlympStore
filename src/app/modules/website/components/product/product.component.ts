@@ -33,11 +33,6 @@ export class ProductComponent {
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() showProduct = new EventEmitter<string>();
 
-  constructor(
-    private tokenService: TokenService,
-    private authService: AuthService
-  ) {}
-
   onAddToCart() {
     this.addedProduct.emit(this.product);
   }

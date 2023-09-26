@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export class FilesService {
   private apiUrl = `http://localhost:8000/api/v1/products/images`;
   // private apiUrl = ` https://young-sands-07814.herokuapp.com/api/files`;
 
-  constructor(private http: HttpClient) {}
+  private http =inject(HttpClient);
 
   getFile(name: string, url: string, type: string) {
     return this.http.get(url, { responseType: 'blob' }).pipe(

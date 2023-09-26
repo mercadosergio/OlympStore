@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
@@ -9,15 +9,14 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  private productsService = inject(ProductsService);
+  private activatedRoute = inject(ActivatedRoute);
+
   products: Product[] = [];
   limit = 10;
   offset = 0;
   productId: string | null = null;
 
-  constructor(
-    private productsService: ProductsService,
-    private activatedRoute: ActivatedRoute
-  ) {}
 
   ngOnInit(): void {
     this.productsService.getProductsByPage(10, 0).subscribe((data) => {

@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   Category,
   CreateCategoryDTO,
@@ -14,7 +14,7 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class CategoriesService {
   private apiUrl = `${environment.API_URL}/api/v1/categories`;
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   create(dto: CreateCategoryDTO): Observable<Category> {
     let formData = new FormData();

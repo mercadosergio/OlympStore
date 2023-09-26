@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { checkToken } from '../interceptors/token.interceptor';
@@ -12,14 +12,12 @@ import { Customer } from '../models/interfaces/customer.model';
   providedIn: 'root',
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private tokenService = inject(TokenService);
+
   private apiUrl = `${environment.API_URL}/api/v1`;
   user$ = new BehaviorSubject<User | null>(null);
   customer$ = new BehaviorSubject<Customer | null>(null);
-
-  constructor(
-    private http: HttpClient,
-    private tokenService: TokenService
-  ) {}
 
   getDataUser() {
     return this.user$.getValue();

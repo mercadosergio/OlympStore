@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { faShopify } from '@fortawesome/free-brands-svg-icons';
 import {
   faBookmark,
@@ -16,6 +16,10 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent implements OnInit {
+  private usersService = inject(UsersService);
+  private categoriesService = inject(CategoriesService);
+  private productsService = inject(ProductsService);
+
   faTags = faTags;
   faUsers = faUsers;
   faBoxOpen = faBoxOpen;
@@ -25,12 +29,6 @@ export class GridComponent implements OnInit {
   usersCount: number = 0;
   productsCount: number = 0;
   categoriesCount: number = 0;
-
-  constructor(
-    private usersService: UsersService,
-    private categoriesService: CategoriesService,
-    private productsService: ProductsService
-  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();

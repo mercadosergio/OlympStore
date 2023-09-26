@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
@@ -8,10 +8,8 @@ import { TokenService } from '../services/token.service';
   providedIn: 'root',
 })
 export class AdminGuard {
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   canActivate(): Observable<boolean> {
     return this.authService.user$.pipe(

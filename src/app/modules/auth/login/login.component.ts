@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private formBuilder = inject(FormBuilder);
+
   token = '';
   hide = true;
   status: RequestStatus = 'init';
@@ -20,12 +24,6 @@ export class LoginComponent implements OnInit {
 
   faEye = faEye;
   faEyeSlash = faEyeSlash;
-
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
 
   ngOnInit(): void {
     this.buildForm();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -12,16 +12,14 @@ import { ModalDeleteCategoryComponent } from '../../components/modal-delete-cate
   styleUrls: ['./category-list.component.scss'],
 })
 export class CategoryListComponent implements OnInit {
+  private cateoriesService = inject(CategoriesService);
+  public dialog = inject(MatDialog);
+
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
 
   displayedColumns: string[] = ['id', 'image', 'name', 'action'];
   categories!: MatTableDataSource<Category>;
-
-  constructor(
-    private cateoriesService: CategoriesService,
-    public dialog: MatDialog
-  ) {}
 
   ngOnInit(): void {
     this.getCategories();

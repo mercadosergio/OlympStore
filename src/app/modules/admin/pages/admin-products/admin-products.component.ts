@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,6 +24,10 @@ export interface TableProducts {
   styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent implements OnInit {
+  private productService = inject(ProductsService);
+  private _liveAnnouncer = inject(LiveAnnouncer);
+  public dialog = inject(MatDialog);
+
   products: Product[] = [];
 
   displayedColumns: string[] = [
@@ -42,12 +46,6 @@ export class AdminProductsComponent implements OnInit {
 
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
-
-  constructor(
-    private productService: ProductsService,
-    private _liveAnnouncer: LiveAnnouncer,
-    public dialog: MatDialog
-  ) {}
 
   ngOnInit(): void {
     this.getProducts();

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/interfaces/category.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -28,6 +28,12 @@ import { Item, MyOrder } from 'src/app/models/interfaces/store.model';
   ],
 })
 export class NavComponent implements OnInit {
+  public storeService = inject(StoreService);
+  private authService = inject(AuthService);
+  private tokenService = inject(TokenService);
+  private categoryService = inject(CategoriesService);
+  private router = inject(Router);
+
   isSlideoverVisible = false;
   isProfileDropdown = false;
   faShoppingCart = faShoppingCart;
@@ -54,14 +60,6 @@ export class NavComponent implements OnInit {
       this.navbarfixed = false;
     }
   }
-
-  constructor(
-    public storeService: StoreService,
-    private authService: AuthService,
-    private tokenService: TokenService,
-    private categoryService: CategoriesService,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.loadShoppingCart();

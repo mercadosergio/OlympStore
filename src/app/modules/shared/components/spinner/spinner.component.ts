@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
@@ -20,7 +20,6 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent {
+  private spinnerservice = inject(SpinnerService);
   isLoading$ = this.spinnerservice.isLoading$;
-
-  constructor(private spinnerservice: SpinnerService) {}
 }

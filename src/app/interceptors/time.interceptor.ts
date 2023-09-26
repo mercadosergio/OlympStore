@@ -17,8 +17,6 @@ export function checkTime() {
 
 @Injectable()
 export class TimeInterceptor implements HttpInterceptor {
-  constructor() {}
-
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
