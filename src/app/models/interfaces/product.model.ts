@@ -1,6 +1,6 @@
-import { FormControl } from "@angular/forms";
-import { Category } from "./category.model";
-import { ProductImage } from "./product-image.model";
+import { FormControl } from '@angular/forms';
+import { Category } from './category.model';
+import { ProductImage } from './product-image.model';
 
 export interface Product {
   id: number;
@@ -13,13 +13,12 @@ export interface Product {
   taxes?: number;
 }
 
-export interface CreateProductDTO extends Omit<Product, 'id' | 'category' | 'images' | 'slug'> {
+export interface CreateProductDTO
+  extends Omit<Product, 'id' | 'category' | 'images' | 'slug'> {
   categoryId: number;
 }
 
-export interface UpdateProductDTO extends Partial<CreateProductDTO> {
-
-}
+export interface UpdateProductDTO extends Partial<CreateProductDTO> {}
 
 export interface IFormProduct {
   name: FormControl<string>;

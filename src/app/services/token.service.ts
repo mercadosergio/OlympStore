@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
-import jwt_decode, { JwtPayload } from "jwt-decode";
+import jwt_decode, { JwtPayload } from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
-
-  constructor() { }
+  constructor() {}
 
   saveToken(token: string) {
     setCookie('olymp-token', token, { expires: 365, path: '/' });
@@ -65,5 +64,3 @@ export class TokenService {
     return false;
   }
 }
-
-

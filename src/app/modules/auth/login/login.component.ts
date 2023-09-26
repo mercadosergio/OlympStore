@@ -9,10 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   token = '';
   hide = true;
   status: RequestStatus = 'init';
@@ -25,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
   login(event: Event) {
     event.preventDefault();
     if (this.formLogin.valid) {
-      this.authService.login(this.formLogin.controls.email.value, this.formLogin.controls.password.value)
+      this.authService
+        .login(
+          this.formLogin.controls.email.value,
+          this.formLogin.controls.password.value
+        )
         .subscribe({
           next: () => {
             this.status = 'success';
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
           error: (error) => {
             this.status = 'failed';
             console.log(error);
-          }
+          },
         });
     } else {
       this.formLogin.markAsUntouched();
@@ -61,6 +65,6 @@ export class LoginComponent implements OnInit {
     return {
       email: this.formLogin.controls.email.value,
       password: this.formLogin.controls.password.value,
-    }
+    };
   }
 }

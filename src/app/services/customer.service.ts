@@ -5,13 +5,12 @@ import { checkToken } from '../interceptors/token.interceptor';
 import { Customer } from '../models/interfaces/customer.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService {
-
   private apiUrl = `${environment.API_URL}/api/v1/customers`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll() {
     return this.http.get<Customer[]>(this.apiUrl, { context: checkToken() });

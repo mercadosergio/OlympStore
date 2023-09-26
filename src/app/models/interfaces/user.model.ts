@@ -7,6 +7,4 @@ export interface User {
   updatedAt: string;
 }
 
-export interface CreateUserDTO extends Omit<User, 'id'> {
-
-}
+export interface CreateUserDTO extends Omit<User, 'id'> {}

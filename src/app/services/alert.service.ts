@@ -2,18 +2,15 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-
-  constructor(
-    private _snackBar: MatSnackBar
-  ) { }
+  constructor(private _snackBar: MatSnackBar) {}
 
   showAlert(msg: string, action: string) {
     this._snackBar.open(msg, action, {
       duration: 3000,
-      panelClass: ['success']
+      panelClass: ['success'],
     });
   }
 }

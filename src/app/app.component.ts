@@ -9,9 +9,9 @@ register();
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   imgParent = './assets/images/imagen.png';
   showImage = true;
   products: Product[] = [];
@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   user$ = this.authService.user$;
   token = this.tokenService.getToken();
 
-  constructor(private authService: AuthService, private tokenService: TokenService) { }
-
-  ngOnInit() {
-  }
+  constructor(
+    private authService: AuthService,
+    private tokenService: TokenService
+  ) {}
 }

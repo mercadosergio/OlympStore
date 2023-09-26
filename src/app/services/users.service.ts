@@ -6,12 +6,12 @@ import { CreateUserDTO, User } from '../models/interfaces/user.model';
 import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private apiUrl = `${environment.API_URL}/api/v1/users`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   create(dto: CreateUserDTO): Observable<User> {
     return this.http.post<User>(this.apiUrl, dto);

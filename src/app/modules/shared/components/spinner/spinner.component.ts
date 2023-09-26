@@ -17,15 +17,10 @@ import { SpinnerService } from 'src/app/services/spinner.service';
       </div>
     </div>
   `,
-  styleUrls: ['./spinner.component.scss']
+  styleUrls: ['./spinner.component.scss'],
 })
-
 export class SpinnerComponent {
-
   isLoading$ = this.spinnerservice.isLoading$;
 
-  constructor(private spinnerservice: SpinnerService) { }
-
-
-
+  constructor(private spinnerservice: SpinnerService) {}
 }

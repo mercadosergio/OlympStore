@@ -18,16 +18,15 @@ import { Item, MyOrder } from 'src/app/models/interfaces/store.model';
     trigger('opacityScale', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(.95)' }),
-        animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+        animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
       ]),
       transition(':leave', [
         style({ opacity: 1, transform: 'scale(1)' }),
-        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' }))
-      ])
+        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' })),
+      ]),
     ]),
-  ]
+  ],
 })
-
 export class NavComponent implements OnInit {
   isSlideoverVisible = false;
   isProfileDropdown = false;
@@ -61,7 +60,8 @@ export class NavComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenService,
     private categoryService: CategoriesService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadShoppingCart();
@@ -83,18 +83,16 @@ export class NavComponent implements OnInit {
   }
 
   getProfile() {
-    this.authService.getProfile()
-      .subscribe({
-        next: () => {
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+    this.authService.getProfile().subscribe({
+      next: () => {},
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   loadShoppingCart() {
-    this.storeService.myCart$.subscribe(products => {
+    this.storeService.myCart$.subscribe((products) => {
       this.counter = products.length;
       this.shoppingCart = products;
     });
@@ -105,10 +103,9 @@ export class NavComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.categoryService.getAll()
-      .subscribe(data => {
-        this.categories = data;        
-      });
+    this.categoryService.getAll().subscribe((data) => {
+      this.categories = data;
+    });
   }
 
   login() {
@@ -127,17 +124,16 @@ export class NavComponent implements OnInit {
   }
 
   getMyShoppingCarts() {
-    this.storeService.getMyOrder()
-      .subscribe({
-        next: (cart) => {
-          this.myShoppingCarts = cart;
-          this.currentlyShoppingCart = cart[0];
-          // this.itemsCount = cart[0].items.reduce((total, item) => total + item.OrderProduct.amount, 0);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+    this.storeService.getMyOrder().subscribe({
+      next: (cart) => {
+        this.myShoppingCarts = cart;
+        this.currentlyShoppingCart = cart[0];
+        // this.itemsCount = cart[0].items.reduce((total, item) => total + item.OrderProduct.amount, 0);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   toggleSlideOver() {

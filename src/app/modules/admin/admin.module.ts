@@ -18,7 +18,6 @@ import { CategoryListComponent } from './pages/category-list/category-list.compo
 import { CategoryFormComponent } from './pages/category-form/category-form.component';
 import { ModalDeleteCategoryComponent } from './components/modal-delete-category/modal-delete-category.component';
 
-
 @NgModule({
   declarations: [
     TasksComponent,
@@ -29,7 +28,7 @@ import { ModalDeleteCategoryComponent } from './components/modal-delete-category
     ProductFormComponent,
     CategoryListComponent,
     CategoryFormComponent,
-    ModalDeleteCategoryComponent
+    ModalDeleteCategoryComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +38,7 @@ import { ModalDeleteCategoryComponent } from './components/modal-delete-category
     DialogModule,
     ReactiveFormsModule,
     FormsModule,
-    DragDropModule
-  ]
+    DragDropModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

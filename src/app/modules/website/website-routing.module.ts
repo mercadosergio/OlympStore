@@ -11,29 +11,30 @@ import { CategoryComponent } from './pages/category/category.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { MyOrderComponent } from './pages/my-order/my-order.component';
 
-
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent, children: [
+    path: '',
+    component: LayoutComponent,
+    children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       {
-        path: 'category/:id/:slug', component: CategoryComponent,
+        path: 'category/:id/:slug',
+        component: CategoryComponent,
       },
       { path: 'product/:id/:slug', component: ProductDetailComponent },
       {
         path: 'profile',
         canActivate: [AuthGuard],
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       { path: 'my-order', component: MyOrderComponent },
-    ]
+    ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class WebsiteRoutingModule { }
+export class WebsiteRoutingModule {}

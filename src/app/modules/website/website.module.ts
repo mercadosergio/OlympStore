@@ -13,7 +13,6 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
-
 import { LayoutComponent } from './components/layout/layout.component';
 // Material
 import { MaterialModule } from '../shared/material/material.module';
@@ -50,8 +49,8 @@ import { SlideCartComponent } from './components/slide-cart/slide-cart.component
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class WebsiteModule { }
+export class WebsiteModule {}

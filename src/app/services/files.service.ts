@@ -11,26 +11,23 @@ interface File {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilesService {
-
   private apiUrl = `http://localhost:8000/api/v1/products/images`;
   // private apiUrl = ` https://young-sands-07814.herokuapp.com/api/files`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getFile(name: string, url: string, type: string) {
-    return this.http.get(url, { responseType: 'blob' })
-      .pipe(
-        tap(content => {
-          const blob = new Blob([content], { type });
-          saveAs(blob, name);
-        }),
-        map(() => true)
-      );
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      tap((content) => {
+        const blob = new Blob([content], { type });
+        saveAs(blob, name);
+      }),
+      map(() => true)
+    );
   }
-
 
   addImageToProduct(position: number, productId: number, imageFile: Blob) {
     const dto = new FormData();

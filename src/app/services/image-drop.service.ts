@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { ProductImage } from '../models/interfaces/product-image.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImageDropService {
   bufferSpace: number = 65535;
 
-  constructor() { }
+  constructor() {}
 
   getPosition(cards: ProductImage[], currentIndex: number) {
     if (cards.length === 1) {
       return this.bufferSpace;
     }
     if (cards.length > 1 && currentIndex === 0) {
-      const onTopPosition = cards[1].position;//anterior card
+      const onTopPosition = cards[1].position; //anterior card
       return onTopPosition / 2;
     }
 
@@ -26,7 +26,7 @@ export class ImageDropService {
     }
     if (cards.length > 1 && currentIndex === lastIndex) {
       const onBottomPosition = cards[lastIndex - 1].position;
-      return (onBottomPosition + this.bufferSpace);
+      return onBottomPosition + this.bufferSpace;
     }
     return 0;
     // console.log(cards, ' index: ', currentIndex);
@@ -38,7 +38,6 @@ export class ImageDropService {
     }
     const lastIndex = elements.length - 1;
     const onBottomPosition = elements[lastIndex].position;
-    return (onBottomPosition + this.bufferSpace);
+    return onBottomPosition + this.bufferSpace;
   }
-
 }

@@ -6,7 +6,7 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
@@ -16,24 +16,24 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private activatedRoute: ActivatedRoute,
-  ) { }
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.productsService.getProductsByPage(10, 0)
-      .subscribe(data => {
-        this.products = data;
-        this.offset += this.limit;
-      });
+    this.productsService.getProductsByPage(10, 0).subscribe((data) => {
+      this.products = data;
+      this.offset += this.limit;
+    });
 
-    this.activatedRoute.queryParamMap.subscribe(params => {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
       this.productId = params.get('product');
     });
   }
 
   onLoadMore() {
-    this.productsService.getProductsByPage(this.limit, this.offset)
-      .subscribe(data => {
+    this.productsService
+      .getProductsByPage(this.limit, this.offset)
+      .subscribe((data) => {
         this.products = this.products.concat(data);
         this.offset += this.limit;
       });

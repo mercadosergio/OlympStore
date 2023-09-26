@@ -9,10 +9,9 @@ import { TokenService } from './token.service';
 import { Customer } from '../models/interfaces/customer.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private apiUrl = `${environment.API_URL}/api/v1`;
   user$ = new BehaviorSubject<User | null>(null);
   customer$ = new BehaviorSubject<Customer | null>(null);
@@ -20,19 +19,20 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
-  ) { }
+  ) {}
 
   getDataUser() {
     return this.user$.getValue();
   }
 
   login(email: string, password: string) {
-    return this.http.post<Auth>(`${this.apiUrl}/auth/login`, {
-      email,
-      password
-    })
+    return this.http
+      .post<Auth>(`${this.apiUrl}/auth/login`, {
+        email,
+        password,
+      })
       .pipe(
-        tap(response => {
+        tap((response) => {
           this.tokenService.saveToken(response.access_token);
         })
       );
@@ -42,40 +42,40 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/users`, {
       name,
       email,
-      password
+      password,
     });
   }
 
   registerAndLogin(name: string, email: string, password: string) {
-    return this.register(name, email, password)
-      .pipe(
-        switchMap(() => this.loginAndGet(email, password))
-      );
+    return this.register(name, email, password).pipe(
+      switchMap(() => this.loginAndGet(email, password))
+    );
   }
 
   getProfile() {
-    return this.http.get<User>(`${this.apiUrl}/auth/profile`, { context: checkToken() })
+    return this.http
+      .get<User>(`${this.apiUrl}/auth/profile`, { context: checkToken() })
       .pipe(
-        tap(user => {
+        tap((user) => {
           this.user$.next(user);
         })
       );
   }
 
   getCustomerByUserId() {
-    return this.http.get<Customer>(`${this.apiUrl}/auth/profile/customers`, { context: checkToken() })
+    return this.http
+      .get<Customer>(`${this.apiUrl}/auth/profile/customers`, {
+        context: checkToken(),
+      })
       .pipe(
-        tap(customer => {
+        tap((customer) => {
           this.customer$.next(customer);
         })
       );
   }
 
   loginAndGet(email: string, password: string) {
-    return this.login(email, password)
-      .pipe(
-        switchMap(() => this.getProfile()),
-      )
+    return this.login(email, password).pipe(switchMap(() => this.getProfile()));
   }
 
   logout() {

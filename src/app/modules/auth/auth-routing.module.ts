@@ -8,18 +8,18 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   { path: 'login', component: LoginComponent },
   {
     path: 'register',
     canDeactivate: [ExitGuard],
-    component: RegisterComponent
+    component: RegisterComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

@@ -5,6 +5,7 @@ export interface Category {
   slug: string;
 }
 
-export interface CreateCategoryDTO extends Omit<Category, 'id' | 'image' | 'slug'> {
+export interface CreateCategoryDTO
+  extends Omit<Category, 'id' | 'image' | 'slug'> {
   image: File;
 }

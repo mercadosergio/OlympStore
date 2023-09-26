@@ -21,12 +21,20 @@ export interface TableProducts {
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.scss']
+  styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
 
-  displayedColumns: string[] = ['id', 'image', 'name', 'price', 'description', 'category', 'action'];
+  displayedColumns: string[] = [
+    'id',
+    'image',
+    'name',
+    'price',
+    'description',
+    'category',
+    'action',
+  ];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -38,27 +46,25 @@ export class AdminProductsComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private _liveAnnouncer: LiveAnnouncer,
-    public dialog: MatDialog,
-  ) {
-  }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts() {
-    this.productService.getAllProducts()
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-          this.dataSource = new MatTableDataSource(data);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+    this.productService.getAllProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   announceSortChange(sortState: Sort) {
@@ -87,6 +93,6 @@ export class AdminProductsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.getProducts();
-    })
+    });
   }
 }

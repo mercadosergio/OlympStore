@@ -10,7 +10,9 @@ import { CategoryFormComponent } from './pages/category-form/category-form.compo
 
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent, children: [
+    path: '',
+    component: LayoutComponent,
+    children: [
       { path: '', redirectTo: 'grid', pathMatch: 'full' },
       { path: 'grid', component: GridComponent },
       { path: 'tasks', component: TasksComponent },
@@ -20,12 +22,12 @@ const routes: Routes = [
       { path: 'categories', component: CategoryListComponent },
       { path: 'add-category', component: CategoryFormComponent },
       { path: 'edit-category/:id', component: CategoryFormComponent },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

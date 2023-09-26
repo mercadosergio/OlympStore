@@ -1,113 +1,127 @@
-<div class="w-screen h-screen bg-white sm:bg-gray-100 
-relative flex flex-col items-center pt-20">
-	<app-logo class></app-logo>
-	<form [formGroup]="formRegister"
-		class="flex w-11/12 sm:w-96">
-		<div class="flex flex-col py-5 px-4 bg-gray-50 w-full items-center shadow-none sm:shadow-lg">
-			<h1 class="font-medium">Registro de usuario</h1>
-			<mat-form-field class="w-full"
-				appearance="outline">
-				<mat-label>Nombre</mat-label>
-				<input matInput
-					formControlName="name">
-			</mat-form-field>
-			<div *ngIf="formRegister.controls.name.touched && formRegister.controls.name.invalid">
-				<p *ngIf="formRegister.controls.name.hasError('required')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field is mandatory
-				</p>
-			</div>
-			<mat-form-field class="w-full"
-				appearance="outline">
-				<mat-label>Email</mat-label>
-				<input matInput
-					formControlName="email">
-			</mat-form-field>
-			<div *ngIf="formRegister.controls.email.touched && formRegister.controls.email.invalid">
-				<p *ngIf="formRegister.controls.email.hasError('required')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field is mandatory
-				</p>
-				<p *ngIf="formRegister.controls.email.hasError('email')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field should be a email
-				</p>
-			</div>
-			<mat-form-field class="w-full"
-				appearance="outline">
-				<mat-label>Password</mat-label>
-				<input [type]="hide ? 'password' : 'text'"
-					matInput
-					formControlName="password">
-				<button [attr.aria-label]="'Hide password'"
-					[attr.aria-pressed]="hide"
-					(click)="hide = !hide"
-					mat-icon-button
-					matSuffix>
-					<fa-icon [icon]="hide ? faEyeSlash : faEye"></fa-icon>
-				</button>
-			</mat-form-field>
-			<div *ngIf="formRegister.controls.password.touched && formRegister.controls.password.invalid">
-				<p *ngIf="formRegister.controls.password.hasError('required')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field is mandatory
-				</p>
-				<p *ngIf="formRegister.controls.password.hasError('minlength')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field should be greater than 8 characters
-				</p>
-			</div>
+<div
+  class="w-screen h-screen bg-white sm:bg-gray-100 relative flex flex-col items-center pt-20">
+  <app-logo class></app-logo>
+  <form [formGroup]="formRegister" class="flex w-11/12 sm:w-96">
+    <div
+      class="flex flex-col py-5 px-4 bg-gray-50 w-full items-center shadow-none sm:shadow-lg">
+      <h1 class="font-medium">Registro de usuario</h1>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <div
+        *ngIf="
+          formRegister.controls.name.touched &&
+          formRegister.controls.name.invalid
+        ">
+        <p
+          *ngIf="formRegister.controls.name.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field is mandatory
+        </p>
+      </div>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+      <div
+        *ngIf="
+          formRegister.controls.email.touched &&
+          formRegister.controls.email.invalid
+        ">
+        <p
+          *ngIf="formRegister.controls.email.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field is mandatory
+        </p>
+        <p
+          *ngIf="formRegister.controls.email.hasError('email')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field should be a email
+        </p>
+      </div>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="password" />
+        <button
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          (click)="hide = !hide"
+          mat-icon-button
+          matSuffix>
+          <fa-icon [icon]="hide ? faEyeSlash : faEye"></fa-icon>
+        </button>
+      </mat-form-field>
+      <div
+        *ngIf="
+          formRegister.controls.password.touched &&
+          formRegister.controls.password.invalid
+        ">
+        <p
+          *ngIf="formRegister.controls.password.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field is mandatory
+        </p>
+        <p
+          *ngIf="formRegister.controls.password.hasError('minlength')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field should be greater than 8 characters
+        </p>
+      </div>
 
-
-			<mat-form-field class="w-full"
-				appearance="outline">
-				<mat-label>Password</mat-label>
-				<input [type]="hideConfirm ? 'password' : 'text'"
-					matInput
-					formControlName="confirmPassword">
-				<button [attr.aria-label]="'Hide password'"
-					[attr.aria-pressed]="hideConfirm"
-					(click)="hideConfirm = !hideConfirm"
-					mat-icon-button
-					matSuffix>
-					<fa-icon [icon]="hideConfirm ? faEyeSlash : faEye"></fa-icon>
-				</button>
-			</mat-form-field>
-			<div *ngIf="
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          [type]="hideConfirm ? 'password' : 'text'"
+          matInput
+          formControlName="confirmPassword" />
+        <button
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hideConfirm"
+          (click)="hideConfirm = !hideConfirm"
+          mat-icon-button
+          matSuffix>
+          <fa-icon [icon]="hideConfirm ? faEyeSlash : faEye"></fa-icon>
+        </button>
+      </mat-form-field>
+      <div
+        *ngIf="
           formRegister.controls.confirmPassword.touched &&
           formRegister.controls.confirmPassword.invalid
         ">
-				<p *ngIf="formRegister.controls.confirmPassword.hasError('required')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field is mandatory
-				</p>
-				<p *ngIf="formRegister.controls.confirmPassword.hasError('minlength')"
-					class="font-medium text-red-500 text-xs mt-1 ml-1">
-					This field should be greater than 6 characters
-				</p>
-			</div>
-			<mat-form-field class="w-full"
-				appearance="fill">
-				<mat-label>Rol</mat-label>
-				<mat-select formControlName="role">
-					<mat-option *ngFor="let rol of userRole"
-						[value]="rol.role">
-						{{rol.name}}
-					</mat-option>
-				</mat-select>
-			</mat-form-field>
-			<button [disabled]="formRegister.invalid"
-				(click)="register()"
-				class="bg-primary w-full text-white p-1 text-lg font-medium">
-				Registrarme
-			</button>
-			<hr class="my-4 border-b-1 border-r-gray-300">
-			<div class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
-				<a routerLink="/login"
-					class="text-blue-600">
-					Iniciar sesión
-				</a>
-			</div>
-		</div>
-	</form>
+        <p
+          *ngIf="formRegister.controls.confirmPassword.hasError('required')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field is mandatory
+        </p>
+        <p
+          *ngIf="formRegister.controls.confirmPassword.hasError('minlength')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1">
+          This field should be greater than 6 characters
+        </p>
+      </div>
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let rol of userRole" [value]="rol.role">
+            {{ rol.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        [disabled]="formRegister.invalid"
+        (click)="register()"
+        class="bg-primary w-full text-white p-1 text-lg font-medium">
+        Registrarme
+      </button>
+      <hr class="my-4 border-b-1 border-r-gray-300" />
+      <div
+        class="flex justify-center items-center space-x-0 space-y-2 md:space-x-2 md:space-y-0 flex-col md:flex-row">
+        <a routerLink="/login" class="text-blue-600"> Iniciar sesión </a>
+      </div>
+    </div>
+  </form>
 </div>

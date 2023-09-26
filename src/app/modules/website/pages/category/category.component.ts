@@ -7,10 +7,9 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-
   categoryId!: number;
   products: Product[] = [];
   limit = 10;
@@ -21,18 +20,22 @@ export class CategoryComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           this.categoryId = Number(params.get('id'));
           if (this.categoryId) {
-            return this.productService.getByCategory(this.categoryId, this.limit, this.offset);
+            return this.productService.getByCategory(
+              this.categoryId,
+              this.limit,
+              this.offset
+            );
           }
           return [];
-        }),
+        })
       )
       .subscribe((data) => {
         this.products = data;
@@ -43,8 +46,9 @@ export class CategoryComponent implements OnInit {
   }
 
   onLoadMore() {
-    this.productService.getProductsByPage(this.limit, this.offset)
-      .subscribe(data => {
+    this.productService
+      .getProductsByPage(this.limit, this.offset)
+      .subscribe((data) => {
         this.products = this.products.concat(data);
         this.offset += this.limit;
       });

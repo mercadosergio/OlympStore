@@ -1,6 +1,5 @@
 <section
-  class="bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center mx-auto my-6 w-3/4"
->
+  class="bg-white rounded-lg shadow-lg p-8 flex flex-col justify-center mx-auto my-6 w-3/4">
   <h1 class="text-xl font-semibold">Mi orden de compra</h1>
   <form [formGroup]="orderForm" autocomplete="off" novalidate>
     <table class="w-full my-4 border-separate border-spacing-y-4">
@@ -20,8 +19,7 @@
               class="my-auto"
               width="60"
               [src]="item.images[0].imagePath"
-              alt=""
-            />
+              alt="" />
           </td>
           <td class="items-center align-middle" align="center">
             {{ item.name }}
@@ -31,8 +29,7 @@
               type="number"
               min="1"
               formControlName="amount"
-              class="p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light grow basis-0"
-            />
+              class="p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light grow basis-0" />
           </td>
           <td class="items-center align-middle" align="center">
             {{ item.price }}
@@ -46,8 +43,7 @@
     <div class="flex items-center justify-center">
       <button
         (click)="toOrder()"
-        class="rounded-md py-3 px-6 bg-primary hover:bg-secondary text-white text-base"
-      >
+        class="rounded-md py-3 px-6 bg-primary hover:bg-secondary text-white text-base">
         Realizar compra
       </button>
     </div>

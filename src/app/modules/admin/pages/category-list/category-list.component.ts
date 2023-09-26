@@ -9,10 +9,9 @@ import { ModalDeleteCategoryComponent } from '../../components/modal-delete-cate
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  styleUrls: ['./category-list.component.scss'],
 })
 export class CategoryListComponent implements OnInit {
-
   faTrashCan = faTrashCan;
   faPenToSquare = faPenToSquare;
 
@@ -21,21 +20,20 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     private cateoriesService: CategoriesService,
-    public dialog: MatDialog,
-  ) { }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
   }
 
   getCategories() {
-    this.cateoriesService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.categories = new MatTableDataSource(data);
-        },
-        error: (error) => { }
-      });
+    this.cateoriesService.getAll().subscribe({
+      next: (data) => {
+        this.categories = new MatTableDataSource(data);
+      },
+      error: (error) => {},
+    });
   }
 
   onDeleteCategory(data: Category) {
@@ -47,6 +45,6 @@ export class CategoryListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.getCategories();
-    })
+    });
   }
 }

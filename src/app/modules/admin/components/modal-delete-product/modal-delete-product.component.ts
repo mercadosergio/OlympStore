@@ -7,39 +7,35 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-modal-delete-product',
   templateUrl: './modal-delete-product.component.html',
-  styleUrls: ['./modal-delete-product.component.scss']
+  styleUrls: ['./modal-delete-product.component.scss'],
 })
 export class ModalDeleteProductComponent {
-
   constructor(
     public dialogRef: MatDialogRef<ModalDeleteProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product,
     private productService: ProductsService,
-    private alertService: AlertService,
-  ) { }
+    private alertService: AlertService
+  ) {}
 
   deleteProduct() {
     const images = this.data.images;
     for (let img of images) {
-      this.productService.deleteFile(img.id)
-        .subscribe({
-          next: () => {
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
-    }
-    const id = this.data.id;
-    this.productService.delete(id)
-      .subscribe({
-        next: () => {
-          this.alertService.showAlert('Producto eliminado con éxito', 'Listo');
-        },
+      this.productService.deleteFile(img.id).subscribe({
+        next: () => {},
         error: (error) => {
           console.log(error);
         },
       });
+    }
+    const id = this.data.id;
+    this.productService.delete(id).subscribe({
+      next: () => {
+        this.alertService.showAlert('Producto eliminado con éxito', 'Listo');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   onClickNo(): void {

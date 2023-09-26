@@ -9,11 +9,9 @@ import { checkToken } from '../interceptors/token.interceptor';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class StoreService {
-
   private apiUrl = `${environment.API_URL}/api/v1`;
   private newShoppingCart: Product[] = [];
   private myCart = new BehaviorSubject<Product[]>([]);
@@ -22,17 +20,21 @@ export class StoreService {
   private cartAnimationSource = new BehaviorSubject<boolean>(false);
   cartAnimation$ = this.cartAnimationSource.asObservable();
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient) {}
 
   createOrder(customerId: number) {
     const orderData = { customerId: customerId };
-    return this.http.post<MyOrder>(`${this.apiUrl}/orders`, orderData, { context: checkToken() });
+    return this.http.post<MyOrder>(`${this.apiUrl}/orders`, orderData, {
+      context: checkToken(),
+    });
   }
 
   addItem(orderId: number, productId: number, amount: number) {
-    return this.http.post(`${this.apiUrl}/orders/add-item`, { orderId, productId, amount }, { context: checkToken() });
+    return this.http.post(
+      `${this.apiUrl}/orders/add-item`,
+      { orderId, productId, amount },
+      { context: checkToken() }
+    );
   }
 
   addProduct(product: Product) {
@@ -41,7 +43,9 @@ export class StoreService {
   }
 
   getMyOrder() {
-    return this.http.get<MyOrder[]>(`${this.apiUrl}/profile/my-orders`, { context: checkToken() });
+    return this.http.get<MyOrder[]>(`${this.apiUrl}/profile/my-orders`, {
+      context: checkToken(),
+    });
   }
 
   getTotal() {

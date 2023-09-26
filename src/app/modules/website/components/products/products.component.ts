@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CreateProductDTO, Product } from 'src/app/models/interfaces/product.model';
+import {
+  CreateProductDTO,
+  Product,
+} from 'src/app/models/interfaces/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { combineLatest, forkJoin, of, switchMap } from 'rxjs';
@@ -18,7 +21,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-
   showArticles = false;
 
   constructor(
@@ -28,7 +30,7 @@ export class ProductsComponent implements OnInit {
     private alertService: AlertService,
     private tokenService: TokenService,
     private authService: AuthService,
-    private customerService: CustomerService,
+    private customerService: CustomerService
   ) {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
@@ -57,7 +59,7 @@ export class ProductsComponent implements OnInit {
       id: 0,
       name: '',
       image: '',
-      slug: ''
+      slug: '',
     },
     description: '',
     slug: '',
@@ -98,26 +100,27 @@ export class ProductsComponent implements OnInit {
       },
       error: (errorMsg) => {
         this.statusDetail = 'error';
-      }
+      },
     });
   }
 
   readAndUpdate(id: number) {
-    this.productsService.getProduct(id)
+    this.productsService
+      .getProduct(id)
       .pipe(
         switchMap((product) =>
-          this.productsService.update(Number(product.id), { name: 'change' }),
+          this.productsService.update(Number(product.id), { name: 'change' })
         )
       )
-      .subscribe(data => {
+      .subscribe((data) => {
         console.log(data);
-
       });
-    this.productsService.fetchReadAndUpdate(id, { name: 'nuevo' })
-      .subscribe(response => {
+    this.productsService
+      .fetchReadAndUpdate(id, { name: 'nuevo' })
+      .subscribe((response) => {
         const read = response[0];
         const update = response[1];
-      })
+      });
   }
 
   createNewProduct() {
@@ -126,12 +129,11 @@ export class ProductsComponent implements OnInit {
       description: 'asdasdsadas',
       price: 1000,
       categoryId: 2,
-    }
-    this.productsService.create(product)
-      .subscribe(data => {
-        // console.log('created',data);
-        this.products.unshift(data);
-      });
+    };
+    this.productsService.create(product).subscribe((data) => {
+      // console.log('created',data);
+      this.products.unshift(data);
+    });
   }
 
   // updateProduct() {
@@ -151,12 +153,13 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct() {
     const id = Number(this.productChosen.id);
-    this.productsService.delete(id)
-      .subscribe(() => {
-        const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
-        this.products.splice(productIndex, 1);
-        this.showDetail = false;
-      });
+    this.productsService.delete(id).subscribe(() => {
+      const productIndex = this.products.findIndex(
+        (item) => item.id === this.productChosen.id
+      );
+      this.products.splice(productIndex, 1);
+      this.showDetail = false;
+    });
   }
 
   onLoadMore() {
@@ -164,12 +167,17 @@ export class ProductsComponent implements OnInit {
   }
 
   download() {
-    this.filesService.getFile('miArchivo', 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf', 'application/pdf')
+    this.filesService
+      .getFile(
+        'miArchivo',
+        'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
+        'application/pdf'
+      )
       .subscribe();
   }
 
   imgRta = '';
-  
+
   onUpload(event: Event) {
     const element = event.target as HTMLInputElement;
     const files = element.files;
@@ -179,15 +187,14 @@ export class ProductsComponent implements OnInit {
       for (let i = 0; i < files.length; i++) {
         const file = files.item(i);
         console.log(file);
-        this.filesService.addImageToProduct(40000, 1, files[i])
-          .subscribe({
-            next: (image) => {
-              console.log(image);
-            },
-            error: (error) => {
-              console.log(error);
-            },
-          });
+        this.filesService.addImageToProduct(40000, 1, files[i]).subscribe({
+          next: (image) => {
+            console.log(image);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
       }
     }
   }

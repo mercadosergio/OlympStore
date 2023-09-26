@@ -15,9 +15,8 @@ interface UserRole {
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
-
 export class RegisterComponent implements OnInit {
   hide: boolean = true;
   hideConfirm: boolean = true;
@@ -33,7 +32,7 @@ export class RegisterComponent implements OnInit {
     {
       name: 'Admin',
       role: 'admin',
-    }
+    },
   ];
 
   // public mensajeConfirm: string = '';
@@ -50,43 +49,47 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadForm();
-    this.visibilityIcon = (this.hide ? 'visibility_off' : 'visibility');
+    this.visibilityIcon = this.hide ? 'visibility_off' : 'visibility';
   }
 
   register() {
     if (this.formRegister.valid) {
       this.status = 'loading';
       const { name, email, password } = this.formRegister.getRawValue();
-      this.authService.registerAndLogin(name, email, password)
-        .subscribe({
-          next: () => {
-            this.status = 'success';
-            this.router.navigate(['/home']);
-          },
-          error: (error) => {
-            this.status = 'failed';
-            console.log(error);
-          }
-        });
+      this.authService.registerAndLogin(name, email, password).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
     } else {
       this.formRegister.markAllAsTouched();
     }
     console.log(this.formRegister);
-    
   }
   private loadForm() {
-    this.formRegister = this.formBuilder.nonNullable.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]],
-      role: 'customer',
-    }, {
-      validators: [CustomValidators.MatchValidator('password', 'confirmPassword')]
-    });
+    this.formRegister = this.formBuilder.nonNullable.group(
+      {
+        name: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required]],
+        role: 'customer',
+      },
+      {
+        validators: [
+          CustomValidators.MatchValidator('password', 'confirmPassword'),
+        ],
+      }
+    );
   }
 }

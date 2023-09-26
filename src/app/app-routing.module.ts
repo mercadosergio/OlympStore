@@ -7,20 +7,33 @@ import { CustomPreloadService } from './services/custom-preload.service';
 
 const routes: Routes = [
   {
-    path: '', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule),
+    path: '',
+    loadChildren: () =>
+      import('./modules/website/website.module').then((m) => m.WebsiteModule),
     data: {
       preload: true,
-    }
+    },
   },
-  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'admin', canActivate: [AdminGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: CustomPreloadService
-  })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: CustomPreloadService,
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -12,8 +12,7 @@
           multiple
           accept="image/*"
           class="hidden"
-          #imginput
-        />
+          #imginput />
         <img
           width="150"
           class="cursor-pointer bg-white border border-solid border-gray-400"
@@ -21,8 +20,7 @@
             filePreview ? filePreview : 'assets/images/placeholder-image.png'
           "
           [alt]="filePreview ? 'Preview' : 'Agregar imagen'"
-          (click)="imginput.click()"
-        />
+          (click)="imginput.click()" />
         <!-- <img
           *ngIf="filePreview"
           [src]="filePreview"
@@ -35,15 +33,13 @@
         <input
           formControlName="name"
           class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
-          type="text"
-        />
+          type="text" />
       </div>
       <div class="flex items-center justify-center my-3">
         <button
           (click)="action()"
           class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md"
-          type="submit"
-        >
+          type="submit">
           {{ actionButton }}
         </button>
       </div>

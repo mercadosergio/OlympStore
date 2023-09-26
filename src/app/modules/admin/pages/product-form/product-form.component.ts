@@ -3,7 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Category } from 'src/app/models/interfaces/category.model';
-import { CreateProductDTO, IFormProduct, Product } from 'src/app/models/interfaces/product.model';
+import {
+  CreateProductDTO,
+  IFormProduct,
+  Product,
+} from 'src/app/models/interfaces/product.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -19,7 +23,6 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
-
   faTrashCan = faTrashCan;
 
   productForm!: FormGroup<IFormProduct>;
@@ -45,7 +48,7 @@ export class ProductFormComponent implements OnInit {
     private alertService: AlertService,
     private fb: FormBuilder,
     private imageDropService: ImageDropService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadRegisterForm();
@@ -98,38 +101,35 @@ export class ProductFormComponent implements OnInit {
 
   addProduct() {
     if (this.productForm.valid) {
-      this.productService.create(this.currentProduct)
-        .subscribe({
-          next: (product) => {
+      this.productService.create(this.currentProduct).subscribe({
+        next: (product) => {
+          if (this.selectedFiles.length <= 0) {
+            //TODO: MAndar mensaje
+            //return
+          }
+          const files = this.selectedFiles;
+          let counter = 0;
 
-            if (this.selectedFiles.length <= 0) {
-              //TODO: MAndar mensaje
-              //return
-            }
-            const files = this.selectedFiles;
-            let counter = 0;
-
-            for (let file of files) {
-
-              // const position = counter += 1000;
-              let position = counter += 65535;
-              console.log(position);
-              this.productService.addImageToProduct(position, product.id, file)
-                .subscribe({
-                  next: () => {
-                  },
-                  error: (error) => {
-                    console.log(error);
-                  },
-                });
-            }
-            this.alertService.showAlert('Producto añadido', 'Listo');
-            this.router.navigate(['/admin/products']);
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+          for (let file of files) {
+            // const position = counter += 1000;
+            let position = (counter += 65535);
+            console.log(position);
+            this.productService
+              .addImageToProduct(position, product.id, file)
+              .subscribe({
+                next: () => {},
+                error: (error) => {
+                  console.log(error);
+                },
+              });
+          }
+          this.alertService.showAlert('Producto añadido', 'Listo');
+          this.router.navigate(['/admin/products']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     } else {
       this.productForm.markAllAsTouched();
     }
@@ -137,7 +137,8 @@ export class ProductFormComponent implements OnInit {
 
   editProduct() {
     if (this.productForm.valid) {
-      this.productService.update(this.productId, this.currentProduct)
+      this.productService
+        .update(this.productId, this.currentProduct)
         .subscribe({
           next: () => {
             this.alertService.showAlert('Producto actualizado', 'Listo');
@@ -145,7 +146,7 @@ export class ProductFormComponent implements OnInit {
           error: (error) => {
             console.log(error);
           },
-        })
+        });
     }
   }
 
@@ -192,7 +193,8 @@ export class ProductFormComponent implements OnInit {
   }
 
   private updateImage(id: ProductImage, position: number) {
-    this.productService.updateImageOrder(id.id, position)
+    this.productService
+      .updateImageOrder(id.id, position)
       .subscribe((imgUpdate) => {
         console.log(imgUpdate);
       });
@@ -202,26 +204,29 @@ export class ProductFormComponent implements OnInit {
     moveItemInArray(
       event.container.data,
       event.previousIndex,
-      event.currentIndex);
+      event.currentIndex
+    );
 
-    const position = this.imageDropService.getPosition(event.container.data, event.currentIndex);
+    const position = this.imageDropService.getPosition(
+      event.container.data,
+      event.currentIndex
+    );
     const image = event.container.data[event.currentIndex];
     this.updateImage(image, position);
   }
 
   deleteImage(id: number, path: string) {
-    if (path.startsWith("http://") || path.startsWith("https://")) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
       this.alertService.showAlert('Este archivo no se puede borrar', 'Listo');
     } else {
-      this.productService.deleteFile(id)
-        .subscribe({
-          next: () => {
-            this.alertService.showAlert('Archivo borrado', 'Listo');
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+      this.productService.deleteFile(id).subscribe({
+        next: () => {
+          this.alertService.showAlert('Archivo borrado', 'Listo');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
   }
 }

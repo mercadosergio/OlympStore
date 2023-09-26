@@ -1,7 +1,7 @@
 <div *ngIf="user">
-    <h1>My profile</h1>
-    <p>Nombre: {{ user.email }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Rol: {{ user.role }}</p>
-    <a *ngIf="user.role == 'admin'" routerLink="/admin">Administración</a>
+  <h1>My profile</h1>
+  <p>Nombre: {{ user.email }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Rol: {{ user.role }}</p>
+  <a *ngIf="user.role === 'admin'" routerLink="/admin">Administración</a>
 </div>

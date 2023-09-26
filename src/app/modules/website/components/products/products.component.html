@@ -1,28 +1,24 @@
 <div
-  class="block sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 py-5 px-7 lg:w-11/12 m-auto"
->
+  class="block sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 py-5 px-7 lg:w-11/12 m-auto">
   <app-product
     [ngClass]="{ visible: showArticles }"
     class="flex mx-auto article"
     *ngFor="let product of products"
     [product]="product"
     (addedProduct)="onAddShoppingCart($event)"
-    (showProduct)="onShowDetail($event)"
-  >
+    (showProduct)="onShowDetail($event)">
   </app-product>
 </div>
 <div class="flex mx-auto my-7 w-72">
   <button
     (click)="onLoadMore()"
-    class="bg-white m-auto text-xl text-secondary border hover:border-secondary rounded-lg p-3"
-  >
+    class="bg-white m-auto text-xl text-secondary border hover:border-secondary rounded-lg p-3">
     Ver más
   </button>
 </div>
 <aside
   [class.active]="showDetail"
-  class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0 flex flex-col justify-start shadow-xl z-50"
->
+  class="product-detail bg-white p-4 fixed top-0 left-0 bottom-0 right-0 flex flex-col justify-start shadow-xl z-50">
   <div *ngIf="productChosen">
     <button (click)="toggleDetail()">
       <i class="bi bi-box-arrow-right"></i>
@@ -35,8 +31,7 @@
         pagination="true"
         keyboard="true"
         mousewheel="true"
-        css-mode="true"
-      >
+        css-mode="true">
         <swiper-slide *ngFor="let img of productChosen.images">
           <img [src]="img" class alt="..." />
         </swiper-slide>
@@ -52,12 +47,12 @@
       <del class="text-red-600">
         <p class="text-lg">
           {{
-            productChosen.price + productChosen.price * 0.2 | currency : "COP"
+            productChosen.price + productChosen.price * 0.2 | currency: 'COP'
           }}
         </p>
       </del>
       <p class="text-2xl text-green-700 font-bold">
-        {{ productChosen.price | currency : "COP" }}
+        {{ productChosen.price | currency: 'COP' }}
       </p>
       <!-- <button (click)="updateProduct()" class="btn btn-primary">Edit</button> -->
       <!-- <button (click)="deleteProduct()" class="btn btn-danger">Delete</button> -->

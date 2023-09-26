@@ -1,8 +1,7 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/interfaces/product.model';
-import { User } from 'src/app/models/interfaces/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -11,7 +10,7 @@ import { TokenService } from 'src/app/services/token.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   faEye = faEye;
   faShoppingCart = faShoppingCart;
 
@@ -26,7 +25,7 @@ export class ProductComponent implements OnInit {
       id: 0,
       name: '',
       image: '',
-      slug: ''
+      slug: '',
     },
   };
   productId: string = String(this.product.id);
@@ -36,12 +35,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private tokenService: TokenService,
-    private authService: AuthService,
-  ) { }
-
-  ngOnInit(): void {
-
-  }
+    private authService: AuthService
+  ) {}
 
   onAddToCart() {
     this.addedProduct.emit(this.product);

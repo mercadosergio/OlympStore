@@ -12,8 +12,7 @@
             thumbs-swiper=".mySwiper2"
             loop="true"
             space-between="10"
-            navigation="true"
-          >
+            navigation="true">
             <swiper-slide *ngFor="let img of product?.images">
               <img class="max-h-96" [src]="img.imagePath" />
             </swiper-slide>
@@ -26,8 +25,7 @@
           space-between="10"
           slides-per-view="3"
           free-mode="true"
-          watch-slides-progress="true"
-        >
+          watch-slides-progress="true">
           <swiper-slide *ngFor="let img of product?.images">
             <img [src]="img.imagePath" width="100" />
           </swiper-slide>
@@ -44,14 +42,12 @@
       <p class="text-xl font-bold mb-4">{{ product.price | currency }}</p>
       <button
         class="bg-secondary hover:bg-secondary-hover text-white font-bold py-2 px-4 rounded text-base"
-        (click)="onAddShoppingCart(product)"
-      >
+        (click)="onAddShoppingCart(product)">
         Agregar al carrito
       </button>
       <button
         class="bg-primary text-white py-2 px-4 rounded"
-        (click)="generarPdf()"
-      >
+        (click)="generarPdf()">
         <fa-icon [icon]="faPrint"></fa-icon> Print
       </button>
     </div>

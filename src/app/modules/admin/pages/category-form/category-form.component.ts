@@ -8,10 +8,9 @@ import { CategoriesService } from 'src/app/services/categories.service';
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss']
+  styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent implements OnInit {
-
   title: string = '';
   actionButton: string = '';
   categoryId: number = 0;
@@ -22,8 +21,8 @@ export class CategoryFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private alertService: AlertService,
-  ) { }
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.loadForm();
@@ -45,31 +44,26 @@ export class CategoryFormComponent implements OnInit {
   }
 
   addCategory() {
-    this.categoryService.create(this.currentCategory)
-      .subscribe({
-        next: () => {
-          this.alertService.showAlert('Categoria creada', 'Listo');
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      })
+    this.categoryService.create(this.currentCategory).subscribe({
+      next: () => {
+        this.alertService.showAlert('Categoria creada', 'Listo');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
-  editCategory() {
-
-  }
+  editCategory() {}
 
   loadForm() {
     this.categoryForm = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
-      image: [null]
+      image: [null],
     });
   }
 
-  loadEditForm() {
-
-  }
+  loadEditForm() {}
 
   get isUpdate(): boolean {
     return this.router.url.includes('edit-category');
@@ -82,7 +76,7 @@ export class CategoryFormComponent implements OnInit {
     };
   }
   file!: File;
-  filePreview!: (string | ArrayBuffer | null);
+  filePreview!: string | ArrayBuffer | null;
 
   onUpload(event: any) {
     if (event.target.files && event.target.files.length > 0) {

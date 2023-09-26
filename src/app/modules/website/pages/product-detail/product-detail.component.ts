@@ -7,11 +7,11 @@ import { ProductsService } from 'src/app/services/products.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-import { ViewEncapsulation, ViewChild } from "@angular/core";
+import { ViewEncapsulation, ViewChild } from '@angular/core';
 // import { SwiperComponent } from "swiper/angular";
 
 // import Swiper core and required modules
-import SwiperCore, { FreeMode, Navigation, Thumbs } from "swiper";
+import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
 import { environment } from 'src/environments/environment';
@@ -23,10 +23,9 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductDetailComponent implements OnInit {
-
   faPrint = faPrint;
   thumbsSwiper: any;
   private pdf = new jsPDF();
@@ -53,14 +52,13 @@ export class ProductDetailComponent implements OnInit {
   loadProduct() {
     this.activatedRoute.paramMap
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           this.productId = Number(params.get('id'));
           if (this.productId) {
-            return this.productService
-              .getProduct(this.productId);
+            return this.productService.getProduct(this.productId);
           }
           return [null];
-        }),
+        })
       )
       .subscribe((data) => {
         this.product = data;
@@ -83,24 +81,26 @@ export class ProductDetailComponent implements OnInit {
 
     this.pdf = new jsPDF('p', 'pt', 'letter');
 
-    this.pdf.text("" + date.toLocaleString(), 550, 70, { align: 'right', });
-    this.pdf.text("" + this.product!.name, 70, 140, { align: 'justify', });
+    this.pdf.text('' + date.toLocaleString(), 550, 70, { align: 'right' });
+    this.pdf.text('' + this.product!.name, 70, 140, { align: 'justify' });
 
     // const foto = new Image();
     // foto.src = this.product.images[0];
     // this.pdf.addImage(foto, this.product.images+"", 80, 82, 125, 50);
 
     const pr = String(this.product!.price);
-    const precio = this.pdf.splitTextToSize("Precio: $" + pr, 450);
-    this.pdf.text("" + precio, 70, 180);
+    const precio = this.pdf.splitTextToSize('Precio: $' + pr, 450);
+    this.pdf.text('' + precio, 70, 180);
 
-
-    const categoria = this.pdf.splitTextToSize("Categoria: " + this.product!.category.name, 450);
-    this.pdf.text("" + categoria, 70, 210);
+    const categoria = this.pdf.splitTextToSize(
+      'Categoria: ' + this.product!.category.name,
+      450
+    );
+    this.pdf.text('' + categoria, 70, 210);
 
     const desc = this.product!.description;
     const description = this.pdf.splitTextToSize(desc, 450);
-    this.pdf.text("" + desc, 70, 250, {
+    this.pdf.text('' + desc, 70, 250, {
       lineHeightFactor: 1.5,
       align: 'justify',
       maxWidth: 470,

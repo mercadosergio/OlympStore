@@ -18,10 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WebsiteModule } from './modules/website/website.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     FormsModule,
     BrowserModule,
@@ -32,13 +29,13 @@ import { WebsiteModule } from './modules/website/website.module';
     MaterialModule,
     SharedModule,
     FontAwesomeModule,
-    WebsiteModule
+    WebsiteModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

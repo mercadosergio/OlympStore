@@ -12,16 +12,14 @@
               multiple
               accept="image/*"
               class="hidden"
-              #imginput
-            />
+              #imginput />
             <img
               *ngIf="filesSelected.length <= 0"
               width="120"
               class="cursor-pointer rounded bg-white border border-solid border-gray-400"
               src="assets/images/placeholder-image.png"
               alt="Preview"
-              (click)="imginput.click()"
-            />
+              (click)="imginput.click()" />
             <div *ngFor="let file of filesSelected">
               <img
                 *ngIf="file"
@@ -29,8 +27,7 @@
                 class="cursor-pointer"
                 [src]="file || 'assets/images/placeholder-image.png'"
                 alt="Preview"
-                (click)="imginput.click()"
-              />
+                (click)="imginput.click()" />
             </div>
           </div>
           <div *ngIf="product">
@@ -39,18 +36,15 @@
               [cdkDropListData]="images"
               cdkDropList
               cdkDropListOrientation="horizontal"
-              class="example-list flex flex-row overflow-hidden rounded bg-white shadow-sm p-3 border border-solid border-gray-400"
-            >
+              class="example-list flex flex-row overflow-hidden rounded bg-white shadow-sm p-3 border border-solid border-gray-400">
               <div
                 *ngFor="let image of images"
                 class="relative example-box mx-2 rounded-md text-black block items-center justify-center cursor-move bg-white text-sm flex-grow"
-                cdkDrag
-              >
+                cdkDrag>
                 <img [src]="image.imagePath" class="rounded-md" alt />
                 <button
                   (click)="deleteImage(image.id, image.imagePath)"
-                  class="absolute top-1 right-1 py-1 px-2 text-lg rounded bg-transparent text-red-500 hover:bg-red-500 hover:text-white border border-solid border-red-500 hover:border-transparent"
-                >
+                  class="absolute top-1 right-1 py-1 px-2 text-lg rounded bg-transparent text-red-500 hover:bg-red-500 hover:text-white border border-solid border-red-500 hover:border-transparent">
                   <fa-icon [icon]="faTrashCan"></fa-icon>
                 </button>
               </div>
@@ -63,37 +57,32 @@
         <input
           formControlName="name"
           class="w-full p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
-          type="text"
-        />
+          type="text" />
       </div>
       <div class="block items-center justify-between col-span-2">
         <label class="font-medium text-base" for> Descripción: </label>
         <textarea
           formControlName="description"
-          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded resize-none text-base font-light"
-        ></textarea>
+          class="w-full p-3 !outline-none border border-solid border-gray-400 rounded resize-none text-base font-light"></textarea>
       </div>
       <div class="flex flex-col">
         <label class="font-medium text-base" for> Precio: </label>
         <input
           formControlName="price"
           class="w-3/5 p-3 !outline-none border border-solid border-gray-400 rounded text-base font-light"
-          type="number"
-        />
+          type="number" />
       </div>
       <div class="flex items-center col-span-2">
         <label class="font-medium text-base" for> Categoria: </label>
         <mat-radio-group
           formControlName="categoryId"
           aria-labelledby="example-radio-group-label"
-          class="example-radio-group"
-        >
+          class="example-radio-group">
           <mat-radio-button
             *ngFor="let category of categories"
             [value]="category.id"
-            [checked]="category.id == categoryIdChecked ? true : false"
-            class="example-radio-button"
-          >
+            [checked]="category.id === categoryIdChecked ? true : false"
+            class="example-radio-button">
             {{ category.name }}
           </mat-radio-button>
         </mat-radio-group>
@@ -102,8 +91,7 @@
         <button
           [disabled]="productForm.invalid"
           (click)="action()"
-          class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md"
-        >
+          class="bg-secondary rounded text-black py-3 px-5 text-base font-medium shadow-md">
           {{ actionButton }}
         </button>
       </div>

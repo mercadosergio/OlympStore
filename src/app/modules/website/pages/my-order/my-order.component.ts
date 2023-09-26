@@ -11,10 +11,9 @@ import { TokenService } from 'src/app/services/token.service';
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
-  styleUrls: ['./my-order.component.scss']
+  styleUrls: ['./my-order.component.scss'],
 })
 export class MyOrderComponent implements OnInit {
-
   orderForm!: FormGroup;
   shoppingCart: Product[] = [];
   myCustomerProfile!: Customer;
@@ -25,8 +24,7 @@ export class MyOrderComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.loadShoppingCart();
@@ -35,7 +33,7 @@ export class MyOrderComponent implements OnInit {
   }
 
   loadShoppingCart() {
-    this.storeService.myCart$.subscribe(products => {
+    this.storeService.myCart$.subscribe((products) => {
       this.shoppingCart = products;
     });
   }
@@ -43,45 +41,49 @@ export class MyOrderComponent implements OnInit {
   toOrder() {
     const token = this.tokenService.getToken();
     if (token) {
-      this.authService.getProfile().pipe(
-        switchMap((user) => {
-          if (user.role === 'customer') {
-            return this.authService.getCustomerByUserId();
-          } else {
-            return of(null);
-          }
-        })
-      ).subscribe({
-        next: (customer) => {
-          if (customer) {
-            this.myCustomerProfile = customer;
-            this.storeService.createOrder(this.myCustomerProfile.id)
-              .subscribe({
-                next: (order) => {
-                  console.log('Creado exitosamente', order);
-                  for (let item of this.shoppingCart) {
-                    this.storeService.addItem(order.id, item.id, 2)
-                      .subscribe({
-                        next: (items) => {
-                          console.log(items);
-                        },
-                        error: (error) => {
-                          console.log(error);
-
-                        },
-                      });
-                  }
-                },
-                error: (error) => {
-                  console.log(error);
-                },
-              });
-          }
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+      this.authService
+        .getProfile()
+        .pipe(
+          switchMap((user) => {
+            if (user.role === 'customer') {
+              return this.authService.getCustomerByUserId();
+            } else {
+              return of(null);
+            }
+          })
+        )
+        .subscribe({
+          next: (customer) => {
+            if (customer) {
+              this.myCustomerProfile = customer;
+              this.storeService
+                .createOrder(this.myCustomerProfile.id)
+                .subscribe({
+                  next: (order) => {
+                    console.log('Creado exitosamente', order);
+                    for (let item of this.shoppingCart) {
+                      this.storeService
+                        .addItem(order.id, item.id, 2)
+                        .subscribe({
+                          next: (items) => {
+                            console.log(items);
+                          },
+                          error: (error) => {
+                            console.log(error);
+                          },
+                        });
+                    }
+                  },
+                  error: (error) => {
+                    console.log(error);
+                  },
+                });
+            }
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
     }
   }
 

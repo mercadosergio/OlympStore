@@ -10,14 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from '../shared/components/logo/logo.component';
 
-
-
 @NgModule({
-  declarations: [
-    RegisterComponent,
-    LoginComponent,
-    LogoComponent
-  ],
+  declarations: [RegisterComponent, LoginComponent, LogoComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -25,7 +19,7 @@ import { LogoComponent } from '../shared/components/logo/logo.component';
     FontAwesomeModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}
