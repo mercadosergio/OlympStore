@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap, of } from 'rxjs';
 import { Customer } from 'src/app/models/interfaces/customer.model';
@@ -7,11 +7,14 @@ import { Product } from 'src/app/models/interfaces/product.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { StoreService } from 'src/app/services/store.service';
 import { TokenService } from 'src/app/services/token.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-my-order',
-  templateUrl: './my-order.component.html',
-  styleUrls: ['./my-order.component.scss'],
+    selector: 'app-my-order',
+    templateUrl: './my-order.component.html',
+    styleUrls: ['./my-order.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgFor]
 })
 export class MyOrderComponent implements OnInit {
   private storeService = inject(StoreService);

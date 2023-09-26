@@ -1,14 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateCategoryDTO } from 'src/app/models/interfaces/category.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-category-form',
-  templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss'],
+    selector: 'app-category-form',
+    templateUrl: './category-form.component.html',
+    styleUrls: ['./category-form.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf]
 })
 export class CategoryFormComponent implements OnInit {
   private categoryService = inject(CategoriesService);

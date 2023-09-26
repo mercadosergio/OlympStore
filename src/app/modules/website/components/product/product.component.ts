@@ -4,11 +4,17 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ImgComponent } from '../img/img.component';
+import { NgIf, CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss'],
+    standalone: true,
+    imports: [RouterLink, NgIf, ImgComponent, FontAwesomeModule, CurrencyPipe]
 })
 export class ProductComponent {
   faEye = faEye;

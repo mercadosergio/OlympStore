@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
+import { ProductsComponent } from '../../components/products/products.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'],
+    selector: 'app-category',
+    templateUrl: './category.component.html',
+    styleUrls: ['./category.component.scss'],
+    standalone: true,
+    imports: [ProductsComponent]
 })
 export class CategoryComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

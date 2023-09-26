@@ -1,13 +1,15 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'app-modal-delete-product',
-  templateUrl: './modal-delete-product.component.html',
-  styleUrls: ['./modal-delete-product.component.scss'],
+    selector: 'app-modal-delete-product',
+    templateUrl: './modal-delete-product.component.html',
+    styleUrls: ['./modal-delete-product.component.scss'],
+    standalone: true,
+    imports: [MatDialogModule]
 })
 export class ModalDeleteProductComponent {
   constructor(

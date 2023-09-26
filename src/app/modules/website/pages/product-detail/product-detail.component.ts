@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { Location, NgIf, NgFor, CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -15,15 +15,18 @@ import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
 import { environment } from 'src/environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-product-detail',
+    templateUrl: './product-detail.component.html',
+    styleUrls: ['./product-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, NgFor, FontAwesomeModule, CurrencyPipe]
 })
 export class ProductDetailComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

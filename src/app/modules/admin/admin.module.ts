@@ -19,26 +19,24 @@ import { CategoryFormComponent } from './pages/category-form/category-form.compo
 import { ModalDeleteCategoryComponent } from './components/modal-delete-category/modal-delete-category.component';
 
 @NgModule({
-  declarations: [
-    TasksComponent,
-    GridComponent,
-    LayoutComponent,
-    AdminProductsComponent,
-    ModalDeleteProductComponent,
-    ProductFormComponent,
-    CategoryListComponent,
-    CategoryFormComponent,
-    ModalDeleteCategoryComponent,
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    MaterialModule,
-    FontAwesomeModule,
-    DialogModule,
-    ReactiveFormsModule,
-    FormsModule,
-    DragDropModule,
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        MaterialModule,
+        FontAwesomeModule,
+        DialogModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DragDropModule,
+        TasksComponent,
+        GridComponent,
+        LayoutComponent,
+        AdminProductsComponent,
+        ModalDeleteProductComponent,
+        ProductFormComponent,
+        CategoryListComponent,
+        CategoryFormComponent,
+        ModalDeleteCategoryComponent
+    ]
 })
 export class AdminModule {}

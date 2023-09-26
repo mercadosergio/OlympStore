@@ -1,13 +1,15 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { ModalDeleteProductComponent } from '../../components/modal-delete-product/modal-delete-product.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterLink } from '@angular/router';
 
 export interface TableProducts {
   id: string;
@@ -19,9 +21,11 @@ export interface TableProducts {
 }
 
 @Component({
-  selector: 'app-admin-products',
-  templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.scss'],
+    selector: 'app-admin-products',
+    templateUrl: './admin-products.component.html',
+    styleUrls: ['./admin-products.component.scss'],
+    standalone: true,
+    imports: [RouterLink, MatTableModule, MatSortModule, FontAwesomeModule, MatPaginatorModule]
 })
 export class AdminProductsComponent implements OnInit {
   private productService = inject(ProductsService);

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Category } from 'src/app/models/interfaces/category.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -9,23 +9,29 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { TokenService } from 'src/app/services/token.service';
 import { Item, MyOrder } from 'src/app/models/interfaces/store.model';
+import { SlideCartComponent } from '../slide-cart/slide-cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
-  animations: [
-    trigger('opacityScale', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(.95)' }),
-        animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1, transform: 'scale(1)' }),
-        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' })),
-      ]),
-    ]),
-  ],
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.scss'],
+    animations: [
+        trigger('opacityScale', [
+            transition(':enter', [
+                style({ opacity: 0, transform: 'scale(.95)' }),
+                animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+            ]),
+            transition(':leave', [
+                style({ opacity: 1, transform: 'scale(1)' }),
+                animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' })),
+            ]),
+        ]),
+    ],
+    standalone: true,
+    imports: [RouterLink, NgFor, ReactiveFormsModule, NgIf, NgClass, RouterLinkActive, FontAwesomeModule, SlideCartComponent, AsyncPipe]
 })
 export class NavComponent implements OnInit {
   public storeService = inject(StoreService);

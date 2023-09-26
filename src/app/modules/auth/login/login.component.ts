@@ -1,15 +1,23 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { IFormLogin, ILogin } from 'src/app/models/interfaces/login.model';
 import { RequestStatus } from 'src/app/models/types/request-status.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LogoComponent } from '../../shared/components/logo/logo.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: true,
+    imports: [LogoComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatButtonModule, FontAwesomeModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
   private authService = inject(AuthService);

@@ -11,15 +11,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from '../shared/components/logo/logo.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, LogoComponent],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MaterialModule,
-    FontAwesomeModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        MaterialModule,
+        FontAwesomeModule,
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RegisterComponent, LoginComponent, LogoComponent
+    ]
 })
 export class AuthModule {}

@@ -21,11 +21,16 @@ import { User } from 'src/app/models/interfaces/user.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/app/models/interfaces/customer.model';
 import { FormGroup } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { ProductComponent } from '../product/product.component';
+import { NgFor, NgClass, NgIf, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+    selector: 'app-products',
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.scss'],
+    standalone: true,
+    imports: [NgFor, ProductComponent, NgClass, NgIf, RouterLink, CurrencyPipe]
 })
 export class ProductsComponent implements OnInit {
   private productsService = inject(ProductsService);

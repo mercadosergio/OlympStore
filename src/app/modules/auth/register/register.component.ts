@@ -1,11 +1,19 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { CustomValidators } from 'src/app/utils/validators';
 import { RequestStatus } from 'src/app/models/types/request-status.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { IFormRegister } from 'src/app/models/interfaces/register.model';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf, NgFor } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LogoComponent } from '../../shared/components/logo/logo.component';
 
 interface UserRole {
   name: string;
@@ -13,9 +21,11 @@ interface UserRole {
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: true,
+    imports: [LogoComponent, ReactiveFormsModule, MatFormFieldModule, MatInputModule, NgIf, MatButtonModule, FontAwesomeModule, MatSelectModule, NgFor, MatOptionModule, RouterLink]
 })
 export class RegisterComponent implements OnInit {
   private authService = inject(AuthService);

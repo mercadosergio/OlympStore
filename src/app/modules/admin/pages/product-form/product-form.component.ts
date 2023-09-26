@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Category } from 'src/app/models/interfaces/category.model';
@@ -11,16 +11,21 @@ import {
 import { AlertService } from 'src/app/services/alert.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { ProductImage } from 'src/app/models/interfaces/product-image.model';
 import { ImageDropService } from 'src/app/services/image-drop.service';
 import { environment } from 'src/environments/environment';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { MatRadioModule } from '@angular/material/radio';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss'],
+    selector: 'app-product-form',
+    templateUrl: './product-form.component.html',
+    styleUrls: ['./product-form.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf, NgFor, CdkDropList, CdkDrag, FontAwesomeModule, MatRadioModule]
 })
 export class ProductFormComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

@@ -28,29 +28,27 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SlideCartComponent } from './components/slide-cart/slide-cart.component';
 
 @NgModule({
-  declarations: [
-    NavComponent,
-    HomeComponent,
-    MyOrderComponent,
-    ProductComponent,
-    ProductsComponent,
-    ImgComponent,
-    RecoveryComponent,
-    ProfileComponent,
-    ProductDetailComponent,
-    LayoutComponent,
-    CategoryComponent,
-    FooterComponent,
-    SlideCartComponent,
-  ],
-  imports: [
-    CommonModule,
-    WebsiteRoutingModule,
-    MaterialModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FontAwesomeModule,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    imports: [
+        CommonModule,
+        WebsiteRoutingModule,
+        MaterialModule,
+        SharedModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        NavComponent,
+        HomeComponent,
+        MyOrderComponent,
+        ProductComponent,
+        ProductsComponent,
+        ImgComponent,
+        RecoveryComponent,
+        ProfileComponent,
+        ProductDetailComponent,
+        LayoutComponent,
+        CategoryComponent,
+        FooterComponent,
+        SlideCartComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WebsiteModule {}

@@ -1,14 +1,16 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { AlertService } from 'src/app/services/alert.service';
 import { ModalDeleteProductComponent } from '../modal-delete-product/modal-delete-product.component';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Category } from 'src/app/models/interfaces/category.model';
 
 @Component({
-  selector: 'app-modal-delete-category',
-  templateUrl: './modal-delete-category.component.html',
-  styleUrls: ['./modal-delete-category.component.scss'],
+    selector: 'app-modal-delete-category',
+    templateUrl: './modal-delete-category.component.html',
+    styleUrls: ['./modal-delete-category.component.scss'],
+    standalone: true,
+    imports: [MatDialogModule]
 })
 export class ModalDeleteCategoryComponent {
   constructor(
