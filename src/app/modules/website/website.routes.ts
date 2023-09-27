@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
@@ -11,7 +10,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { MyOrderComponent } from './pages/my-order/my-order.component';
 
-const routes: Routes = [
+export const websiteRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
@@ -32,9 +31,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class WebsiteRoutingModule {}

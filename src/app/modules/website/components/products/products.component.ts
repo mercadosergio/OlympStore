@@ -1,4 +1,5 @@
 import {
+  CUSTOM_ELEMENTS_SCHEMA,
   Component,
   EventEmitter,
   Input,
@@ -24,23 +25,27 @@ import { FormGroup } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ProductComponent } from '../product/product.component';
 import { NgFor, NgClass, NgIf, CurrencyPipe } from '@angular/common';
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
-    selector: 'app-products',
-    templateUrl: './products.component.html',
-    styleUrls: ['./products.component.scss'],
-    standalone: true,
-    imports: [NgFor, ProductComponent, NgClass, NgIf, RouterLink, CurrencyPipe]
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
+  standalone: true,
+  imports: [NgFor, ProductComponent, NgClass, NgIf, RouterLink, CurrencyPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductsComponent implements OnInit {
   private productsService = inject(ProductsService);
   private filesService = inject(FilesService);
   private alertService = inject(AlertService);
   private authService = inject(AuthService);
+  private storeService = inject(StoreService);
 
   showArticles = false;
 
-  constructor(private storeService: StoreService) {
+  constructor() {
     this.newShoppingCart = this.storeService.getShoppingCart();
   }
 

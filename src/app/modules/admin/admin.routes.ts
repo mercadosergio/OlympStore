@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
 import { GridComponent } from './pages/grid/grid.component';
@@ -8,7 +7,7 @@ import { ProductFormComponent } from './pages/product-form/product-form.componen
 import { CategoryListComponent } from './pages/category-list/category-list.component';
 import { CategoryFormComponent } from './pages/category-form/category-form.component';
 
-const routes: Routes = [
+export const adminRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
@@ -25,9 +24,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class AdminRoutingModule {}

@@ -1,5 +1,12 @@
 import { Location, NgIf, NgFor, CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/models/interfaces/product.model';
@@ -21,12 +28,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 
 @Component({
-    selector: 'app-product-detail',
-    templateUrl: './product-detail.component.html',
-    styleUrls: ['./product-detail.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: true,
-    imports: [NgIf, NgFor, FontAwesomeModule, CurrencyPipe]
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [NgIf, NgFor, FontAwesomeModule, CurrencyPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductDetailComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

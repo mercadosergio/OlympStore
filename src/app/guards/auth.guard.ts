@@ -12,8 +12,9 @@ import { TokenService } from '../services/token.service';
   providedIn: 'root',
 })
 export class AuthGuard {
-    private tokenService= inject(TokenService)
-    private router= inject(Router)
+  private tokenService = inject(TokenService);
+  private router = inject(Router);
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

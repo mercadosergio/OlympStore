@@ -2,15 +2,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-img',
-    templateUrl: './img.component.html',
-    styleUrls: ['./img.component.scss'],
-    standalone: true,
-    imports: [NgIf]
+  selector: 'app-img',
+  templateUrl: './img.component.html',
+  styleUrls: ['./img.component.scss'],
+  standalone: true,
+  imports: [NgIf],
 })
 export class ImgComponent {
   img: string = '';
 
+  @Input('img')
   set changeImg(newImg: string) {
     this.img = newImg;
   }
