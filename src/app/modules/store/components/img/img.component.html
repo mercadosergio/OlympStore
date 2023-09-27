@@ -1,10 +1,11 @@
 <div class="w-full h-full sm:h-96 overflow-hidden rounded-tl-lg rounded-tr-lg">
   <img
     class="duration-500 transition-all ease-in-out hover:scale-150 w-full h-full object-cover bg-center bg-cover bg-no-repeat"
-    [src]="img"
+    [ngSrc]="img"
     (load)="imgLoad()"
     (error)="imgError()"
-    *ngIf="img; else elseImg" />
+    *ngIf="img; else elseImg"
+    fill />
 </div>
 <ng-template #elseImg>
   <img width="200" [src]="imageDefault" />

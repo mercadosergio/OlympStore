@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/website/website.routes').then((m) => m.websiteRoutes),
+      import('./modules/store/store.routes').then((m) => m.storeRoutes),
     data: {
       preload: true,
     },
@@ -23,5 +23,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/admin/admin.routes').then((m) => m.adminRoutes),
   },
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Olymp - Página no encontrada',
+  },
 ];

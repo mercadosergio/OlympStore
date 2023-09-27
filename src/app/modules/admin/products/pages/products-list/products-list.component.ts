@@ -7,7 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
-import { ModalDeleteProductComponent } from '../../components/modal-delete-product/modal-delete-product.component';
+import { ModalDeleteProductComponent } from '../../../components/modal-delete-product/modal-delete-product.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 
@@ -21,13 +21,13 @@ export interface TableProducts {
 }
 
 @Component({
-    selector: 'app-admin-products',
-    templateUrl: './admin-products.component.html',
-    styleUrls: ['./admin-products.component.scss'],
+    selector: 'app-products-list',
+    templateUrl: './products-list.component.html',
+    styleUrls: ['./products-list.component.scss'],
     standalone: true,
     imports: [RouterLink, MatTableModule, MatSortModule, FontAwesomeModule, MatPaginatorModule]
 })
-export class AdminProductsComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
   private productService = inject(ProductsService);
   private _liveAnnouncer = inject(LiveAnnouncer);
   public dialog = inject(MatDialog);

@@ -1,11 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
-import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
-import { ProductFormComponent } from './pages/product-form/product-form.component';
-import { CategoryListComponent } from './pages/category-list/category-list.component';
-import { CategoryFormComponent } from './pages/category-form/category-form.component';
 
 export const adminRoutes: Routes = [
   {
@@ -13,14 +9,22 @@ export const adminRoutes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'grid', pathMatch: 'full' },
-      { path: 'grid', component: GridComponent },
-      { path: 'tasks', component: TasksComponent },
-      { path: 'products', component: AdminProductsComponent },
-      { path: 'add-product', component: ProductFormComponent },
-      { path: 'edit-product/:id', component: ProductFormComponent },
-      { path: 'categories', component: CategoryListComponent },
-      { path: 'add-category', component: CategoryFormComponent },
-      { path: 'edit-category/:id', component: CategoryFormComponent },
+      { path: 'grid', title: 'Administrador - ', component: GridComponent },
+      { path: 'tasks', title: 'Administrador - ', component: TasksComponent },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./products/admin-products.routes').then(
+            (r) => r.productRoutes
+          ),
+      },
+      {
+        path: 'categories',
+        loadChildren: () =>
+          import('./categories/admin-categories.routes').then(
+            (r) => r.categoriesRoutes
+          ),
+      },
     ],
   },
 ];

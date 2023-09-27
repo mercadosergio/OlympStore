@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss'],
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgOptimizedImage],
 })
 export class ImgComponent {
   img: string = '';
