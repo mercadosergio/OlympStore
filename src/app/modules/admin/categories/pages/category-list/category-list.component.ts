@@ -4,11 +4,11 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/models/interfaces/category.model';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { ModalDeleteCategoryComponent } from '../../components/modal-delete-category/modal-delete-category.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSortModule } from '@angular/material/sort';
 import { RouterLink } from '@angular/router';
+import { ModalDeleteCategoryComponent } from '../../../components/modal-delete-category/modal-delete-category.component';
 
 @Component({
     selector: 'app-category-list',

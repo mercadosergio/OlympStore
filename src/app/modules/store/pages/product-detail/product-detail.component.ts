@@ -15,14 +15,12 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 import { ViewEncapsulation, ViewChild } from '@angular/core';
-// import { SwiperComponent } from "swiper/angular";
 
-// import Swiper core and required modules
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { StoreService } from 'src/app/services/store.service';
-import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Title } from '@angular/platform-browser';
 
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
@@ -37,6 +35,7 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductDetailComponent implements OnInit {
+  private title = inject(Title);
   private activatedRoute = inject(ActivatedRoute);
   private productService = inject(ProductsService);
   private location = inject(Location);
@@ -72,6 +71,7 @@ export class ProductDetailComponent implements OnInit {
       )
       .subscribe((data) => {
         this.product = data;
+        this.title.setTitle('Olymp: ' + this.product?.name);
       });
   }
 

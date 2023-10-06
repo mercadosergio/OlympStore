@@ -13,7 +13,6 @@ import { checkToken } from '../interceptors/token.interceptor';
 })
 export class CategoriesService {
   private apiUrl = `${environment.API_URL}/api/v1/categories`;
-
   private http = inject(HttpClient);
 
   create(dto: CreateCategoryDTO): Observable<Category> {
