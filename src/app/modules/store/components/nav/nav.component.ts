@@ -15,23 +15,33 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgFor, NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-nav',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss'],
-    animations: [
-        trigger('opacityScale', [
-            transition(':enter', [
-                style({ opacity: 0, transform: 'scale(.95)' }),
-                animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
-            ]),
-            transition(':leave', [
-                style({ opacity: 1, transform: 'scale(1)' }),
-                animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' })),
-            ]),
-        ]),
-    ],
-    standalone: true,
-    imports: [RouterLink, NgFor, ReactiveFormsModule, NgIf, NgClass, RouterLinkActive, FontAwesomeModule, SlideCartComponent, AsyncPipe]
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
+  animations: [
+    trigger('opacityScale', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(.95)' }),
+        animate('100ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'scale(1)' }),
+        animate('75ms ease-in', style({ opacity: 0, transform: 'scale(.95)' })),
+      ]),
+    ]),
+  ],
+  standalone: true,
+  imports: [
+    RouterLink,
+    NgFor,
+    ReactiveFormsModule,
+    NgIf,
+    NgClass,
+    RouterLinkActive,
+    FontAwesomeModule,
+    SlideCartComponent,
+    AsyncPipe,
+  ],
 })
 export class NavComponent implements OnInit {
   public storeService = inject(StoreService);
@@ -40,8 +50,8 @@ export class NavComponent implements OnInit {
   private categoryService = inject(CategoriesService);
   private router = inject(Router);
 
-  isSlideoverVisible = false;
-  isProfileDropdown = false;
+  isSlideoverVisible: boolean = false;
+  isProfileDropdown: boolean = false;
   faShoppingCart = faShoppingCart;
 
   activeMenu = false;
@@ -49,6 +59,7 @@ export class NavComponent implements OnInit {
   categories!: Category[];
 
   navbarfixed: boolean = false;
+
   user$ = this.authService.user$;
   shoppingCart: Product[] = [];
 

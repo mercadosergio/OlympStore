@@ -1,0 +1,23 @@
+<div
+  class="flex flex-col border-r border-solid border-r-gray-300 p-5 min-w-[250px]">
+  <div>
+    <span class="font-semibold text-lg">Precio</span>
+    <div>
+      <div *ngFor="let option of pricesRange" class="flex items-center my-2">
+        <input
+          type="radio"
+          class="cursor-pointer"
+          [checked]="
+            selectedMinPrice === option.minPrice &&
+            selectedMaxPrice === option.maxPrice
+          "
+          (change)="loadParams(option.minPrice, option.maxPrice)" />
+        <label class="ml-3"
+          >${{ option.minPrice | parseFloats }} - ${{
+            option.maxPrice | parseFloats
+          }}</label
+        >
+      </div>
+    </div>
+  </div>
+</div>

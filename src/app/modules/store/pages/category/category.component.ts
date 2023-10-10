@@ -4,13 +4,14 @@ import { switchMap } from 'rxjs';
 import { Product } from 'src/app/models/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProductsComponent } from '../../components/products/products.component';
+import { FilterBarComponent } from '../../components/filter-bar/filter-bar.component';
 
 @Component({
-    selector: 'app-category',
-    templateUrl: './category.component.html',
-    styleUrls: ['./category.component.scss'],
-    standalone: true,
-    imports: [ProductsComponent]
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
+  standalone: true,
+  imports: [ProductsComponent, FilterBarComponent],
 })
 export class CategoryComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);

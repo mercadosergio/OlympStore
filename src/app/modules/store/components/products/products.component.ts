@@ -26,6 +26,10 @@ import { RouterLink } from '@angular/router';
 import { ProductComponent } from '../product/product.component';
 import { NgFor, NgClass, NgIf, CurrencyPipe } from '@angular/common';
 import { register } from 'swiper/element/bundle';
+import {
+  FilterBarComponent,
+  PriceRanges,
+} from '../filter-bar/filter-bar.component';
 register();
 
 @Component({
@@ -33,8 +37,16 @@ register();
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   standalone: true,
-  imports: [NgFor, ProductComponent, NgClass, NgIf, RouterLink, CurrencyPipe],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [
+    NgFor,
+    ProductComponent,
+    NgClass,
+    NgIf,
+    RouterLink,
+    CurrencyPipe,
+    FilterBarComponent,
+  ],
 })
 export class ProductsComponent implements OnInit {
   private productsService = inject(ProductsService);

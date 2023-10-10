@@ -24,7 +24,7 @@ export class ProductsService {
   private apiProductImageUrl = `${environment.API_URL}/api/v1/products/images`;
   private apiUrlCategory = `${environment.API_URL}/api/v1/categories`;
 
-  private http =inject(HttpClient);
+  private http = inject(HttpClient);
 
   getByCategory(categoryId: number, limit?: number, offset?: number) {
     let params = new HttpParams();
@@ -55,12 +55,23 @@ export class ProductsService {
       );
   }
 
-  getAllProducts(limit?: number, offset?: number) {
+  getAllProducts(
+    limit?: number,
+    offset?: number,
+    minPrice?: number,
+    maxPrice?: number
+  ) {
     let params = new HttpParams();
     if (limit && offset) {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
+
+    if (minPrice && maxPrice) {
+      params = params.set('minPrice', minPrice);
+      params = params.set('maxPrice', maxPrice);
+    }
+
     return this.http
       .get<Product[]>(this.apiUrl, { params, context: checkTime() })
       .pipe(
@@ -159,9 +170,23 @@ export class ProductsService {
     return this.http.delete<ProductImage>(`${this.apiProductImageUrl}/${id}`);
   }
 
-  getProductsByPage(limit: number, offset: number) {
-    return this.http.get<Product[]>(`${this.apiUrl}`, {
-      params: { limit, offset },
-    });
+  getProductsByPage(
+    limit: number,
+    offset: number,
+    minPrice?: number,
+    maxPrice?: number
+  ) {
+    let params = new HttpParams();
+    if (limit && offset) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+
+    if (minPrice && maxPrice) {
+      params = params.set('minPrice', minPrice);
+      params = params.set('maxPrice', maxPrice);
+    }
+
+    return this.http.get<Product[]>(`${this.apiUrl}`, { params });
   }
 }

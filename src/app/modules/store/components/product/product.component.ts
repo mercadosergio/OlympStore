@@ -10,11 +10,11 @@ import { NgIf, CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-product',
-    templateUrl: './product.component.html',
-    styleUrls: ['./product.component.scss'],
-    standalone: true,
-    imports: [RouterLink, NgIf, ImgComponent, FontAwesomeModule, CurrencyPipe]
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss'],
+  standalone: true,
+  imports: [RouterLink, NgIf, ImgComponent, FontAwesomeModule, CurrencyPipe],
 })
 export class ProductComponent {
   faEye = faEye;
@@ -37,13 +37,8 @@ export class ProductComponent {
   productId: string = String(this.product.id);
 
   @Output() addedProduct = new EventEmitter<Product>();
-  @Output() showProduct = new EventEmitter<string>();
 
   onAddToCart() {
     this.addedProduct.emit(this.product);
-  }
-
-  onShowDetail() {
-    this.showProduct.emit(this.productId);
   }
 }

@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { MyOrderComponent } from './pages/my-order/my-order.component';
+import { AllProductsComponent } from './pages/all-products/all-products.component';
 
 export const storeRoutes: Routes = [
   {
@@ -17,6 +18,11 @@ export const storeRoutes: Routes = [
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', title: 'Olymp: Home', component: HomeComponent },
+      {
+        path: 'products/all',
+        title: 'Olymp: Todos los productos',
+        component: AllProductsComponent,
+      },
       {
         path: 'category/:id/:slug',
         title: 'Olymp: Categoría',

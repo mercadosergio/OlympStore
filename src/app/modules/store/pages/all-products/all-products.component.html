@@ -1,6 +1,7 @@
 <main class="flex flex-row w-full mx-auto pt-9">
-  <app-filter-bar></app-filter-bar>
+  <app-filter-bar (sendParams)="onLoadProducts($event)"></app-filter-bar>
   <app-products
+    class="w-full"
     [productId]="productId"
     [products]="products"
     (loadMore)="onLoadMore()">

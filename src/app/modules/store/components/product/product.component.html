@@ -1,7 +1,7 @@
 <div
-  class="h-full w-full object-cover max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl dark:bg-gray-800 dark:border-gray-700">
+  class="w-full object-cover max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden">
   <div
-    class="marco relative flex w-full justify-center items-center overflow-hidden">
+    class="marco relative flex w-full max-h-[350px] justify-center items-center overflow-hidden">
     <a [routerLink]="['/product', product.id, product.slug]" class="w-full">
       <app-img
         class="w-full h-full transition-all duration-500 ease-out"
@@ -12,20 +12,19 @@
     <div
       class="emerg z-40 absolute bottom-0 w-full flex h-8 text-black bg-white items-center justify-center transition-all duration-300 ease-out">
       <button
-        class="text-black hover:text-secondary text-2xl px-5 py-2.5 text-center items-center"
-        (click)="onShowDetail()">
+        class="text-black hover:text-secondary text-2xl px-5 py-2.5 text-center items-center">
         <fa-icon [icon]="faEye"></fa-icon>
       </button>
     </div>
   </div>
-  <div class="px-5 pb-5">
+  <div class="px-5">
     <a routerLink class="flex justify-between">
-      <h4
-        class="!font-normal tracking-tight text-gray-900 dark:text-white !text-lg !my-0">
+      <span
+        class="tracking-tight text-gray-900 dark:text-white !font-semibold !text-base !my-0">
         {{ product.name }}
-      </h4>
+      </span>
     </a>
-    <div class="flex items-center mt-2.5 mb-5">
+    <div class="flex items-center mt-3">
       <svg
         aria-hidden="true"
         class="w-5 h-5 text-yellow-300"
@@ -82,16 +81,14 @@
       >
     </div>
     <div class="flex items-center justify-between">
-      <span class="text-xl font-bold text-gray-900 dark:text-white">{{
-        product.price | currency: '$'
-      }}</span>
-      <a
-        routerLink
-        class="text-white bg-primary hover:bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      <span class="text-base font-normal text-gray-900">
+        {{ product.price | currency: '$' }}
+      </span>
+      <button
+        class="text-primary bg-transparent hover:text-secondary font-medium rounded-lg text-xl px-5 py-2.5 text-center"
         (click)="onAddToCart()">
-        Add to cart
         <fa-icon [icon]="faShoppingCart"></fa-icon>
-      </a>
+      </button>
     </div>
   </div>
 </div>

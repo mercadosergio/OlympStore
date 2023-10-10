@@ -15,9 +15,8 @@ interface File {
 })
 export class FilesService {
   private apiUrl = `http://localhost:8000/api/v1/products/images`;
-  // private apiUrl = ` https://young-sands-07814.herokuapp.com/api/files`;
 
-  private http =inject(HttpClient);
+  private http = inject(HttpClient);
 
   getFile(name: string, url: string, type: string) {
     return this.http.get(url, { responseType: 'blob' }).pipe(
@@ -37,14 +36,4 @@ export class FilesService {
     dto.append('productId', productId.toString());
     return this.http.post<File>(`${this.apiUrl}/upload`, dto);
   }
-  // uploadFile(file: Blob) {
-  //   const dto = new FormData();
-  //   const position = 20000;
-  //   const productId = 1;
-
-  //   dto.append('imageFile', file);
-  //   dto.append('position', position.toString());
-  //   dto.append('productId', productId.toString());
-  //   return this.http.post<File>(`${this.apiUrl}/upload`, dto);
-  // }
 }

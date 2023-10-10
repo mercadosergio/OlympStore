@@ -1,20 +1,43 @@
 <div class="w-11/12 mx-auto flex items-center section-home">
-  <img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt />
+  <swiper-container>
+    <swiper-slide
+      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+    /></swiper-slide>
+    <swiper-slide
+      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+    /></swiper-slide>
+    <swiper-slide
+      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+    /></swiper-slide>
+    ...
+  </swiper-container>
 </div>
 <section class="flex flex-col w-full mx-auto pt-9">
   <h2 class="fancy text-lg">Destacados</h2>
-  <app-products
-    [productId]="productId"
-    [products]="products"
-    (loadMore)="onLoadMore()">
-  </app-products>
+  <div class="slide-display space-x-20">
+    <div class="products-slide space-x-20 py-10">
+      <app-product
+        class="inline-block min-w-[250px]"
+        *ngFor="let product of featuredProducts"
+        [product]="product">
+      </app-product>
+    </div>
+    <div class="products-slide space-x-20 py-10">
+      <app-product
+        class="inline-block min-w-[250px]"
+        *ngFor="let product of featuredProducts"
+        [product]="product">
+      </app-product>
+    </div>
+  </div>
   <span></span>
   <span></span>
   <span></span>
   <span></span>
 </section>
 
-<section class="flex justify-center items-center bg-secondary px-44">
+<section
+  class="back-pattern flex justify-center items-center bg-secondary px-44">
   <div class="w-3/4 text-white">
     <h3 class="!text-xl font-semibold">Oferta de tiempo limitado</h3>
     <h1 class="!text-4xl font-bold">Edición especial</h1>
