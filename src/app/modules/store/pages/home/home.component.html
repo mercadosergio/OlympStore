@@ -1,16 +1,23 @@
-<div class="w-11/12 mx-auto flex items-center section-home">
-  <swiper-container>
-    <swiper-slide
-      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
-    /></swiper-slide>
-    <swiper-slide
-      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
-    /></swiper-slide>
-    <swiper-slide
-      ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
-    /></swiper-slide>
-    ...
-  </swiper-container>
+<div class="w-11/12 max-w-full mx-auto flex items-center section-home">
+  <div class="max-w-full">
+    <swiper-container
+      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+      class="mySwiper"
+      thumbs-swiper=".mySwiper2"
+      loop="true"
+      space-between="10"
+      navigation="true">
+      <swiper-slide
+        ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+      /></swiper-slide>
+      <swiper-slide
+        ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+      /></swiper-slide>
+      <swiper-slide
+        ><img class="m-auto w-3/4" src="../assets/images/banner-1.png" alt
+      /></swiper-slide>
+    </swiper-container>
+  </div>
 </div>
 <section class="flex flex-col w-full mx-auto pt-9">
   <h2 class="fancy text-lg">Destacados</h2>

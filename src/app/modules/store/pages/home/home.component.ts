@@ -11,8 +11,6 @@ import { ProductsService } from 'src/app/services/products.service';
 import { ProductsComponent } from '../../components/products/products.component';
 import { ProductComponent } from '../../components/product/product.component';
 import { NgFor } from '@angular/common';
-import { register } from 'swiper/element/bundle';
-register();
 
 @Component({
   selector: 'app-home',
